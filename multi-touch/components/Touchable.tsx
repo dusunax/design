@@ -1,11 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { createContext, useContext, useEffect, useState } from "react";
-import {
-  HANDLE_COLOR,
-  ROTATION_SIDES,
-  HANDLE_POSITIONS,
-} from "@constants/constant";
+import { ROTATION_SIDES, HANDLE_POSITIONS } from "@constants/constant";
 import useTouchable, {
   UseTouchableProps,
   UseTouchableReturns,
@@ -79,9 +75,7 @@ const Handles = ({ className = "" }: { className?: string }) => {
         />
       ))}
       <div
-        className={`absolute w-[calc(100%-8px)] h-[calc(100%-8px)] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 box-content border border-dotted ${
-          "border-" + HANDLE_COLOR
-        } -z-1`}
+        className={`absolute w-[calc(100%-8px)] h-[calc(100%-8px)] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 box-content border border-dotted ${"border-gray-600"} -z-1`}
       ></div>
     </div>
   );
@@ -111,7 +105,7 @@ const CornerHandle = ({ sideId }: { sideId: keyof typeof ROTATION_SIDES }) => {
         />
       ) : (
         <div
-          className={`bg-white border rounded-xs border-${HANDLE_COLOR} w-2 h-2 pointer-events-none`}
+          className={`bg-white border rounded-xs border-gray-600 w-2 h-2 pointer-events-none`}
         />
       )}
     </div>
@@ -235,7 +229,7 @@ const ControlButton = ({
       onPointerDown={onPointerDown}
       style={{ width: size, height: size }}
     >
-      <img src={src} alt={alt} width={size} height={size} />
+      o{/* <img src={src} alt={alt} width={size} height={size} /> */}
     </button>
   );
 };

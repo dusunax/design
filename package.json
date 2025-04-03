@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "storybook": "storybook dev -p 6013"
+    "storybook": "storybook dev -p 6013",
+    "build-storybook": "storybook build"
   },
   "description": "A design system for UI packages",
   "author": "dusunax",
@@ -29,6 +30,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.20",
+    "chromatic": "^11.28.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "1.0.4",

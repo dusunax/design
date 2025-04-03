@@ -47,7 +47,7 @@ devDependencies:
     specifier: latest
     version: 8.6.12(@storybook/test@8.6.12)(react-dom@19.1.0)(react@19.1.0)(storybook@8.6.11)(typescript@5.8.2)
   '@storybook/test':
-    specifier: ^8.6.12
+    specifier: latest
     version: 8.6.12(storybook@8.6.11)
   '@types/node':
     specifier: ^22
@@ -61,6 +61,9 @@ devDependencies:
   autoprefixer:
     specifier: ^10.4.20
     version: 10.4.21(postcss@8.5.3)
+  chromatic:
+    specifier: ^11.28.0
+    version: 11.28.0
   class-variance-authority:
     specifier: ^0.7.1
     version: 0.7.1
@@ -1315,7 +1318,7 @@ packages:
     peerDependencies:
       storybook: ^8.2.0 || ^8.3.0-0 || ^8.4.0-0 || ^8.5.0-0 || ^8.6.0-0
     dependencies:
-      chromatic: 11.27.0
+      chromatic: 11.28.0
       filesize: 10.1.6
       jsonfile: 6.1.0
       react-confetti: 6.4.0(react@19.1.0)
@@ -3916,8 +3919,8 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /chromatic@11.27.0:
-    resolution: {integrity: sha512-jQ2ufjS+ePpg+NtcPI9B2eOi+pAzlRd2nhd1LgNMsVCC9Bzf5t8mJtyd8v2AUuJS0LdX0QVBgkOnlNv9xviHzA==}
+  /chromatic@11.28.0:
+    resolution: {integrity: sha512-Xy3907MXY5UP7LoMksmsT02xCUsoLZpcC6sRITjd+KiXBteOxPF7J+QsFqy/VzQCEN6fpt/R2bOIpE+PwPfcZA==}
     hasBin: true
     peerDependencies:
       '@chromatic-com/cypress': ^0.*.* || ^1.0.0
