@@ -2,8 +2,20 @@ import type { StorybookConfig } from "@storybook/nextjs"
 import path from "path"
 
 const config: StorybookConfig = {
-  stories: ["../stories/**/*.mdx", "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
-  addons: [],
+  stories: [
+    "../stories/**/*.mdx",
+    "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+  ],
+  addons: [
+    "@storybook/addon-essentials",
+    "@storybook/addon-a11y",
+    "@chromatic-com/storybook",
+    "@storybook/addon-events",
+    "@storybook/addon-actions",
+    "@storybook/addon-viewport",
+    "@storybook/test",
+    "@storybook/addon-interactions",
+  ],
   framework: {
     name: "@storybook/nextjs",
     options: {},
@@ -19,12 +31,12 @@ const config: StorybookConfig = {
         "@components": path.resolve(__dirname, "../multi-touch/components"),
         "@constants": path.resolve(__dirname, "../multi-touch/constants"),
         "@hooks": path.resolve(__dirname, "../multi-touch/hooks"),
-      }
+      };
     }
-    return config
+    return config;
   },
-  staticDirs: ["../public"]
-}
+  staticDirs: ["../public"],
+};
 
 export default config
 
