@@ -23,7 +23,6 @@ export const Default: Story = {
   },
 };
 
-
 export const ShowHandlesAndControl: Story = {
   args: {
     id: "multi-touch__show-handles-and-control",
