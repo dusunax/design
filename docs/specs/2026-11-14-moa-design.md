@@ -87,6 +87,14 @@ multi-touch 예제, Next.js 설정, 쓰지 않는 의존성은 제거한다. 마
 - 토큰은 `@theme`에서 정의한다. 다크 모드는 `[data-moa-theme="dark"]` 셀렉터로 변수를 덮어쓴다.
 - `tailwind-merge`는 쓰지 않는다(크기). 클래스 결합은 `clsx`, 변형은 `class-variance-authority`로 한다.
 
+## 브랜드 컨셉
+
+마스코트는 새싹이 난 청록 슬라임이다. 작은 부품이 모여 화면이 자란다는 뜻을 담는다.
+
+- 16×16 격자 원본: [`moa-mascot-16.svg`](../assets/moa-mascot-16.svg) (32px 이하)
+- 32×32 격자 원본: [`moa-mascot-32.svg`](../assets/moa-mascot-32.svg) (32px 초과)
+- 쓰는 곳: 로고, 파비콘, 빈 상태 그림 (부품 문구·스토리·문서 문장 제외)
+
 ## 부품
 
 ### A2UI 철학 차용
