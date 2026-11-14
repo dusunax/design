@@ -28,11 +28,15 @@ description: >
 - 기본 UI 문구는 영어다. 문구를 바꿀 수 있는 prop은 각 소제목의 Interfaces에 적힌 것만 둔다.
 - 문서 언어는 한국어가 기본이고 영어를 지원어로 둔다. 부품 UI 문구(영어)와 별개다.
   - MOA-1\~MOA-5에서는 README와 Storybook 설명을 한국어로만 쓴다. 영어 지원은 MOA-6에서 한 번에 한다.
-  - Storybook 설명은 스토리 파일의 `parameters.docs.description`에 한국어 문자열로 바로 쓴다. MOA-6에서 이 문자열을 사전으로 옮긴다. 사이드바 제목, 스토리 이름, args·prop 이름은 처음부터 영어로 쓴다.
+  - Storybook 설명은 스토리 파일의 `parameters.docs.description`에 한국어 문자열로 바로 쓴다. 설명은 화면만으로 알 수 없는 사용 기준이 있을 때만 쓴다(예: primary는 한 화면에 하나). 이름만 봐도 아는 용도 설명은 쓰지 않는다. MOA-6에서 이 문자열을 사전으로 옮긴다. 사이드바 제목, 스토리 이름, args·prop 이름은 처음부터 영어로 쓴다.
   - 문구 prop이 있는 부품은 한국어 문구를 넣은 `Localized` 스토리를 하나 둔다.
 - 스토리 제목은 역할별 폴더를 쓴다: `Foundations/*`(토큰), `Layout/*`, `Display/*`, `Actions/*`, `Inputs/*`. 순서는 `preview.tsx`의 `storySort`로 고정한다.
 - 스토리는 args로 조작하는 `Playground` 하나와, 단순 variant·상태를 한 화면에 모은 `Variants`(또는 `States`) 하나를 기본으로 둔다. variant마다 스토리를 따로 만들지 않는다. 정적인 예시(문법 모음 등)와 상태를 가진 예시(controlled)도 Variants에 넣는다. 상태가 필요하면 스토리 파일 최상위에 작은 예시 컴포넌트를 두고 Variants에서 쓴다. 오류 상태처럼 부품이 보여 주는 상태는 넣고, 보안 대책이나 공격 입력 같은 특수 케이스는 스토리와 설명에 넣지 않는다(테스트와 SEC 문서가 맡는다).
-- Variants 안의 예시는 내용을 `라벨`, `버튼`, `입력값`처럼 중립적으로 쓰고, 예시는 테두리 상자 안에, 어떤 prop으로 만든 상태인지는 상자 밖 코드 캡션으로 보인다(`stories/_Prop.tsx`). 작은 예시를 나란히 둘 때는 `PropGrid`로 같은 너비의 칸에 놓아, 상자 크기와 캡션 위치가 줄마다 맞게 한다. variant 이름을 라벨이나 버튼 글자로 쓰지 않는다. 비밀번호처럼 의미가 있어야 하는 경우만 예외다.
+- Show code는 그대로 복사해 쓸 수 있는 코드만 보인다. 스토리 도우미(`Prop`, `PropGrid`)가 들어가는 스토리는 `parameters.docs.source.code`에 실제 사용 코드를 적는다.
+- 문서 표의 Description은 부품 타입의 JSDoc에서 온다. 화면만으로 알 수 없는 prop(예: `onChange`가 넘기는 값, `weight`의 뜻)에만 JSDoc을 단다. Storybook은 문서 표를 위해 `@dusunax/moa`를 소스(`src`)로 불러온다. TypeScript 7에서는 react-docgen-typescript가 동작하지 않아 기본 react-docgen을 쓴다.
+- hover·focus 같은 상태는 `storybook-addon-pseudo-states` 툴바로 확인한다. 상태마다 예시를 따로 만들지 않는다.
+- 변형이 없는 부품(Card)은 Playground만 둔다.
+- Variants 안의 예시는 내용을 `라벨`, `버튼`, `입력값`처럼 중립적으로 쓰고, 예시는 테두리 상자 안에, 어떤 prop으로 만든 상태인지는 상자 밖 코드 캡션으로 보인다(`stories/_Prop.tsx`). 캡션에는 코드 아래에 그 variant를 언제 쓰는지 한 줄(`use`)을 붙인다. 이름이나 화면만으로 알 수 있으면 쓰지 않는다. 작은 예시를 나란히 둘 때는 `PropGrid`로 같은 너비의 칸에 놓아, 상자 크기와 캡션 위치가 줄마다 맞게 한다. variant 이름을 라벨이나 버튼 글자로 쓰지 않는다. 비밀번호처럼 의미가 있어야 하는 경우만 예외다.
 - 의존성은 정확한 버전으로 저장하고, 배포된 지 3일이 안 된 버전은 쓰지 않는다. `pnpm-workspace.yaml`에 `saveExact: true`, `minimumReleaseAge: 4320`을 둔다. pnpm 12는 `.npmrc`의 `save-exact`를 읽지 않는다.
 - Storybook 빌드에 들어가는 환경 변수(`STORYBOOK_*`, `VITE_*`)에는 토큰이나 키를 넣지 않는다. Storybook은 Chromatic에 공개 배포된다. 허용 목록 밖의 변수는 `check-public-env.mjs`가 빌드 전에 막는다. 변수를 새로 쓰려면 허용 목록에 이름을 추가한다.
 - 레포 문서(README 등) 한국어판은 `~다` 체로 쓴다. 패키지 이름과 README에 "A2UI", "AG-UI"를 이름처럼 쓰지 않는다. 호환 대상으로만 설명한다.
