@@ -17,7 +17,14 @@ const meta: Meta<typeof DateTimeInput> = {
 export default meta;
 type Story = StoryObj<typeof DateTimeInput>;
 
-export const DateOnly: Story = {};
-export const TimeOnly: Story = { args: { label: "시간", enableDate: false, enableTime: true } };
-export const DateAndTime: Story = { args: { label: "일시", enableTime: true } };
-export const WithRange: Story = { args: { min: "2026-11-01", max: "2026-11-30" } };
+export const Playground: Story = {};
+export const Variants: Story = {
+  render: () => (
+    <div style={{ display: "grid", gap: 12, maxWidth: 280 }}>
+      <DateTimeInput label="날짜 (date)" enableDate />
+      <DateTimeInput label="시간 (time)" enableTime />
+      <DateTimeInput label="일시 (datetime-local)" enableDate enableTime />
+      <DateTimeInput label="범위 제한 (min/max)" enableDate min="2026-11-01" max="2026-11-30" />
+    </div>
+  ),
+};

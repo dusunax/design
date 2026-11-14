@@ -30,6 +30,7 @@ description: >
   - MOA-1\~MOA-5에서는 README와 Storybook 설명을 한국어로만 쓴다. 영어 지원은 MOA-6에서 한 번에 한다.
   - Storybook 설명은 스토리 파일의 `parameters.docs.description`에 한국어 문자열로 바로 쓴다. MOA-6에서 이 문자열을 사전으로 옮긴다. 사이드바 제목, 스토리 이름, args·prop 이름은 처음부터 영어로 쓴다.
   - 문구 prop이 있는 부품은 한국어 문구를 넣은 `Localized` 스토리를 하나 둔다.
+- 스토리는 args로 조작하는 `Playground` 하나와, 단순 variant·상태를 한 화면에 모은 `Variants`(또는 `States`) 하나를 기본으로 둔다. variant마다 스토리를 따로 만들지 않는다. 동작이 다른 경우(controlled, 위험한 입력 등)만 따로 둔다.
 - 의존성은 정확한 버전으로 저장하고, 배포된 지 3일이 안 된 버전은 쓰지 않는다. `pnpm-workspace.yaml`에 `saveExact: true`, `minimumReleaseAge: 4320`을 둔다. pnpm 12는 `.npmrc`의 `save-exact`를 읽지 않는다.
 - Storybook 빌드에 들어가는 환경 변수(`STORYBOOK_*`, `VITE_*`)에는 토큰이나 키를 넣지 않는다. Storybook은 Chromatic에 공개 배포된다. 허용 목록 밖의 변수는 `check-public-env.mjs`가 빌드 전에 막는다. 변수를 새로 쓰려면 허용 목록에 이름을 추가한다.
 - 레포 문서(README 등) 한국어판은 `~다` 체로 쓴다. 패키지 이름과 README에 "A2UI", "AG-UI"를 이름처럼 쓰지 않는다. 호환 대상으로만 설명한다.

@@ -17,18 +17,21 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof Button>;
 
-export const Default: Story = {};
-export const Primary: Story = { args: { variant: "primary" } };
-export const Borderless: Story = { args: { variant: "borderless" } };
-export const Disabled: Story = { args: { variant: "primary", disabled: true } };
-export const WithIcon: Story = {
-  args: {
-    variant: "primary",
-    children: (
-      <>
+export const Playground: Story = {};
+
+export const Variants: Story = {
+  render: () => (
+    <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
+      <Button>default</Button>
+      <Button variant="primary">primary</Button>
+      <Button variant="borderless">borderless</Button>
+      <Button variant="primary" disabled>
+        disabled
+      </Button>
+      <Button variant="primary">
         <Icon name="send" size={18} />
-        보내기
-      </>
-    ),
-  },
+        아이콘과 함께
+      </Button>
+    </div>
+  ),
 };

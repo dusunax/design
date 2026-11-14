@@ -18,8 +18,15 @@ const meta: Meta<typeof Text> = {
 export default meta;
 type Story = StoryObj<typeof Text>;
 
-export const Body: Story = {};
-export const Caption: Story = { args: { variant: "caption", text: "보조 설명은 caption으로 쓴다." } };
+export const Playground: Story = {};
+export const Variants: Story = {
+  render: () => (
+    <div style={{ display: "grid", gap: 8 }}>
+      <Text text="body: 에이전트가 보낸 응답 본문이다." />
+      <Text variant="caption" text="caption: 보조 설명이다." />
+    </div>
+  ),
+};
 export const Markdown: Story = {
   args: { text: "**굵게**, *기울임*, `코드`, [링크](https://github.com/dusunax/design)\n줄바꿈도 된다." },
 };

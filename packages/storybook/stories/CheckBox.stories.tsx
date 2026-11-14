@@ -13,6 +13,13 @@ const meta: Meta<typeof CheckBox> = {
 export default meta;
 type Story = StoryObj<typeof CheckBox>;
 
-export const Default: Story = {};
-export const Checked: Story = { args: { defaultValue: true } };
-export const Disabled: Story = { args: { disabled: true, defaultValue: true } };
+export const Playground: Story = {};
+export const States: Story = {
+  render: () => (
+    <div style={{ display: "grid", gap: 8 }}>
+      <CheckBox label="기본" />
+      <CheckBox label="체크됨" defaultValue />
+      <CheckBox label="비활성" disabled defaultValue />
+    </div>
+  ),
+};

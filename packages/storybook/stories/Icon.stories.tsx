@@ -18,17 +18,18 @@ const meta: Meta<typeof Icon> = {
 export default meta;
 type Story = StoryObj<typeof Icon>;
 
-export const Default: Story = {};
-export const Labelled: Story = { args: { name: "warning", label: "경고" } };
-export const CustomPath: Story = { args: { name: { svgPath: "M480-80 80-480l400-400 400 400L480-80Z" } } };
-export const Sizes: Story = {
+export const Playground: Story = {};
+export const Usage: Story = {
   render: () => (
     <div style={{ display: "flex", gap: 16, alignItems: "end" }}>
       {[16, 20, 24, 32].map((s) => (
         <Icon key={s} name="star" size={s} />
       ))}
+      <Icon name="warning" label="경고" />
+      <Icon name={{ svgPath: "M480-80 80-480l400-400 400 400L480-80Z" }} />
     </div>
   ),
+  parameters: { docs: { description: { story: "크기 16·20·24·32, label이 있는 아이콘, svgPath로 그린 아이콘" } } },
 };
 export const All: Story = {
   render: () => (

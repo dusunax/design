@@ -24,11 +24,11 @@ const meta: Meta<typeof Image> = {
 export default meta;
 type Story = StoryObj<typeof Image>;
 
-export const Default: Story = {};
+export const Playground: Story = {};
 export const Variants: Story = {
   render: (args) => (
-    <div style={{ display: "flex", gap: 16, alignItems: "end", flexWrap: "wrap" }}>
-      {(["icon", "avatar", "smallFeature", "mediumFeature", "largeFeature"] as ImageVariant[]).map((v) => (
+    <div style={{ display: "flex", gap: 16, alignItems: "end", flexWrap: "wrap", maxWidth: 640 }}>
+      {(["icon", "avatar", "smallFeature", "mediumFeature", "largeFeature", "header"] as ImageVariant[]).map((v) => (
         <div key={v} style={{ display: "grid", gap: 4, justifyItems: "center" }}>
           <Image {...args} variant={v} fit="cover" />
           <code>{v}</code>
@@ -37,7 +37,6 @@ export const Variants: Story = {
     </div>
   ),
 };
-export const Header: Story = { args: { variant: "header", fit: "cover" } };
 export const Fits: Story = {
   render: (args) => (
     <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
