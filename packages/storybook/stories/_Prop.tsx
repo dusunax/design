@@ -23,11 +23,11 @@ export function PropGrid({ min = 180, children }: { min?: number; children: Reac
 }
 
 /** 정렬 예시에서 쓰는 항목 상자. 정렬 차이가 잘 보이도록 강조색으로 채운다. */
-export function SampleBox({ label }: { label: string }) {
+export function SampleBox({ label, tall }: { label: string; tall?: boolean }) {
   return (
     <div
       style={{
-        padding: "4px 12px",
+        padding: tall ? "16px 12px" : "4px 12px",
         background: "var(--moa-color-primary-subtle)",
         border: "1px solid var(--moa-color-primary)",
         color: "var(--moa-color-primary-text)",

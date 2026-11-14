@@ -24,10 +24,19 @@ type Story = StoryObj<typeof List>;
 
 export const Playground: Story = {};
 
+const H_ALIGN = ["start", "center", "end"] as const;
+
 export const Variants: Story = {
-  parameters: { docs: { source: { code: "<List>\n  <span>A</span>\n  <span>B</span>\n</List>\n<List direction=\"horizontal\">…</List>", language: "tsx" } } },
+  parameters: {
+    docs: {
+      source: {
+        code: "<List>\n  <span>A</span>\n  <span>B</span>\n</List>\n<List direction=\"horizontal\">…</List>\n<List direction=\"horizontal\" align=\"center\">…</List>",
+        language: "tsx",
+      },
+    },
+  },
   render: () => (
-    <PropGrid min={240}>
+    <div style={{ display: "grid", gap: 16 }}>
       <Prop code='direction="vertical" (기본값)' use="일반 목록">
         <List>
           <SampleBox label="A" />
@@ -37,11 +46,21 @@ export const Variants: Story = {
       </Prop>
       <Prop code='direction="horizontal"' use="태그, 칩">
         <List direction="horizontal">
-          <SampleBox label="A" />
-          <SampleBox label="B" />
-          <SampleBox label="C" />
+          <SampleBox label="항목" />
+          <SampleBox label="긴 항목" />
+          <SampleBox label="가장 긴 항목" />
         </List>
       </Prop>
-    </PropGrid>
+      <PropGrid min={200}>
+        {H_ALIGN.map((a) => (
+          <Prop key={a} code={`align="${a}"`}>
+            <List direction="horizontal" align={a}>
+              <SampleBox label="높은 항목" tall />
+              <SampleBox label="항목" />
+            </List>
+          </Prop>
+        ))}
+      </PropGrid>
+    </div>
   ),
 };

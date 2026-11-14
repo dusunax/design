@@ -1,4 +1,4 @@
-import { ICON_NAMES, Icon } from "@dusunax/moa";
+import { BRAND_ICON_PATHS, type BrandIconName, ICON_NAMES, Icon } from "@dusunax/moa";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Prop, PropGrid } from "./_Prop";
 
@@ -20,7 +20,7 @@ type Story = StoryObj<typeof Icon>;
 
 export const Playground: Story = {};
 export const Variants: Story = {
-  parameters: { docs: { source: { code: "<Icon name=\"star\" size={16} />\n<Icon name=\"star\" size={20} />\n<Icon name=\"star\" />  {/* 24 */}\n<Icon name=\"star\" size={32} />\n<Icon name=\"warning\" label=\"경고\" />\n<Icon name={{ svgPath: \"M480-80 80-480l400-400 400 400L480-80Z\" }} />", language: "tsx" } } },
+  parameters: { docs: { source: { code: "<Icon name=\"star\" size={16} />\n<Icon name=\"star\" size={20} />\n<Icon name=\"star\" />  {/* 24 */}\n<Icon name=\"star\" size={32} />\n<Icon name=\"warning\" label=\"경고\" />\n<Icon name=\"moa\" />\n<Icon name={{ svgPath: \"M480-80 80-480l400-400 400 400L480-80Z\" }} />", language: "tsx" } } },
   render: () => (
     <PropGrid min={140}>
       {([[16, "버튼, 글자 옆"], [20, "목록 항목"], [24, "단독 (기본값)"], [32, "빈 상태 강조"]] as const).map(([s, use]) => (
@@ -31,6 +31,9 @@ export const Variants: Story = {
       <Prop code='label="경고"' use="글자 없이 아이콘만 쓸 때">
         <Icon name="warning" label="경고" />
       </Prop>
+      <Prop code='name="moa"' use="moa 로고 자리 (catalog 밖 이름)">
+        <Icon name="moa" />
+      </Prop>
       <Prop code="{ svgPath }" use="catalog에 없는 아이콘">
         <Icon name={{ svgPath: "M480-80 80-480l400-400 400 400L480-80Z" }} />
       </Prop>
@@ -38,10 +41,10 @@ export const Variants: Story = {
   ),
 };
 export const All: Story = {
-  parameters: { docs: { source: { code: "import { ICON_NAMES, Icon } from \"@dusunax/moa\";\n\nICON_NAMES.map((name) => <Icon key={name} name={name} />)", language: "tsx" } } },
+  parameters: { docs: { source: { code: "import { BRAND_ICON_PATHS, ICON_NAMES, Icon } from \"@dusunax/moa\";\n\n// catalog 59개 + moa 전용\n[...ICON_NAMES, ...Object.keys(BRAND_ICON_PATHS)].map((name) => <Icon key={name} name={name} />)", language: "tsx" } } },
   render: () => (
     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))", gap: 12 }}>
-      {ICON_NAMES.map((n) => (
+      {[...ICON_NAMES, ...(Object.keys(BRAND_ICON_PATHS) as BrandIconName[])].map((n) => (
         <div key={n} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 12 }}>
           <Icon name={n} size={20} />
           <code>{n}</code>
