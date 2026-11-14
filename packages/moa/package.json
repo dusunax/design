@@ -6,7 +6,21 @@
     "*.css"
   ],
   "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles.css",
+    "./*": {
+      "types": "./dist/*.d.ts",
+      "import": "./dist/*.js"
+    }
+  },
   "scripts": {
+    "build:js": "tsdown",
+    "build:css": "tailwindcss -i src/styles/index.css -o dist/styles.css --minify",
+    "build": "pnpm build:js && pnpm build:css && node scripts/check-css.mjs",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"
   },
@@ -14,7 +28,12 @@
     "react": "^19",
     "react-dom": "^19"
   },
+  "dependencies": {
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1"
+  },
   "devDependencies": {
+    "@tailwindcss/cli": "4.3.5",
     "@testing-library/jest-dom": "7.0.1",
     "@testing-library/react": "16.3.3",
     "@testing-library/user-event": "14.6.9",
@@ -23,6 +42,8 @@
     "jsdom": "31.0.0",
     "react": "19.3.1",
     "react-dom": "19.3.1",
+    "tailwindcss": "4.3.5",
+    "tsdown": "0.23.7",
     "typescript": "7.0.2",
     "vitest": "5.1.0"
   }
