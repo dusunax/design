@@ -10,6 +10,8 @@ const config: UserConfig = defineConfig({
     divider: "src/components/divider/index.ts",
     text: "src/components/text/index.ts",
     icon: "src/components/icon/index.ts",
+    image: "src/components/image/index.ts",
+    button: "src/components/button/index.ts",
   },
   format: "esm",
   dts: true,

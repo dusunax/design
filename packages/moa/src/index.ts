@@ -7,3 +7,5 @@ export * from "./components/card";
 export * from "./components/divider";
 export * from "./components/text";
 export * from "./components/icon";
+export * from "./components/image";
+export * from "./components/button";
