@@ -19,3 +19,7 @@ test("calls onClick and respects disabled", async () => {
   await userEvent.click(screen.getByRole("button"));
   expect(onClick).toHaveBeenCalledTimes(1);
 });
+test("disabled uses neutral colors instead of fading the variant", () => {
+  render(<Button variant="primary" disabled>Go</Button>);
+  expect(screen.getByRole("button")).toHaveClass("moa:disabled:bg-surface", "moa:disabled:text-fg-muted");
+});

@@ -1,7 +1,7 @@
 import { clsx } from "clsx";
 import { type JSX, useId } from "react";
 import { type BaseProps, weightStyle } from "../../utils/base";
-import { fieldInputClass, fieldLabelClass } from "../field";
+import { controlHeightClass, fieldInputClass, fieldLabelClass } from "../field";
 
 export type DateTimeInputProps = BaseProps & {
   label: string;
@@ -46,7 +46,7 @@ export function DateTimeInput({
         min={min}
         max={max}
         onChange={(e) => onChange?.(e.target.value)}
-        className={fieldInputClass}
+        className={clsx(fieldInputClass, controlHeightClass)}
       />
     </div>
   );

@@ -1,7 +1,7 @@
 import { clsx } from "clsx";
 import { type ChangeEvent, type JSX, useId } from "react";
 import { type BaseProps, weightStyle } from "../../utils/base";
-import { fieldInputClass, fieldLabelClass } from "../field";
+import { controlHeightClass, fieldInputClass, fieldLabelClass } from "../field";
 
 export type TextFieldVariant = "shortText" | "longText" | "number" | "obscured";
 
@@ -48,7 +48,7 @@ export function TextField({
       <label htmlFor={id} className={fieldLabelClass}>
         {label}
       </label>
-      {variant === "longText" ? <textarea rows={3} {...common} className={clsx(fieldInputClass, "moa:resize-y")} /> : <input {...inputType[variant]} {...common} />}
+      {variant === "longText" ? <textarea rows={3} {...common} className={clsx(fieldInputClass, "moa:resize-y")} /> : <input {...inputType[variant]} {...common} className={clsx(fieldInputClass, controlHeightClass)} />}
     </div>
   );
 }

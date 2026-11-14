@@ -30,6 +30,8 @@
 }
 
 [data-moa-theme="dark"] {
+  /* 날짜 아이콘, 숫자 스피너, 스크롤바 같은 브라우저 기본 UI도 dark로 그린다 */
+  color-scheme: dark;
   --moa-color-bg: #111111;
   --moa-color-surface: #222222;
   --moa-color-fg: #eeeeee;

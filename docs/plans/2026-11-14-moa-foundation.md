@@ -215,6 +215,9 @@ git commit -m "chore: init moa 디자인 시스템" -m "pnpm 모노레포와 @du
   - 읽는 본문(Text body, 메시지)은 `text-prose`, 조작 요소는 `text-body`다.
   - 입력 라벨은 `text-body` `font-medium` `text-fg`다. 입력값보다 약하게 만들지 않는다.
   - 입력 오류는 prop 대신 네이티브 검증(`:user-invalid`)으로 `danger` 테두리를 보인다.
+  - 한 줄 입력과 버튼은 높이 36px(`h-9`)로 맞춘다. preflight가 없어 입력은 content-box로 계산되므로 `box-border`를 준다.
+  - disabled는 투명도 대신 `surface` 배경, `fg-muted` 글자, `border` 테두리로 보인다.
+  - dark 테마는 `color-scheme: dark`를 설정해 날짜 아이콘·스피너·스크롤바 같은 브라우저 기본 UI도 dark로 그린다.
   - 색상은 Radix Colors의 Gray(중성색)와 Teal(강조색)을 기준으로 하고, 글자색은 WCAG AA(4.5:1)를 넘도록 조정했다. `primary-fg`는 light에서 흰색, dark에서 검정이다.
   - 토큰(아래 표)은 Tailwind 유틸리티 `moa:bg-surface`, `moa:text-fg-muted`, `moa:rounded-md`처럼 쓴다.
 

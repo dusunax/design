@@ -11,7 +11,7 @@ export type ButtonProps = BaseProps &
   };
 
 const button = cva(
-  "moa:inline-flex moa:[font-family:inherit] moa:items-center moa:justify-center moa:gap-1.5 moa:rounded-md moa:px-3 moa:py-1.5 moa:text-body moa:font-medium moa:cursor-pointer moa:transition-colors moa:disabled:cursor-not-allowed moa:disabled:opacity-50 moa:focus-visible:outline-2 moa:focus-visible:outline-offset-2 moa:focus-visible:outline-primary",
+  "moa:inline-flex moa:h-9 moa:[font-family:inherit] moa:items-center moa:justify-center moa:gap-1.5 moa:rounded-md moa:px-3 moa:text-body moa:font-medium moa:cursor-pointer moa:transition-colors moa:disabled:cursor-not-allowed moa:disabled:border-border moa:disabled:bg-surface moa:disabled:text-fg-muted moa:focus-visible:outline-2 moa:focus-visible:outline-offset-2 moa:focus-visible:outline-primary",
   {
     variants: {
       variant: {
