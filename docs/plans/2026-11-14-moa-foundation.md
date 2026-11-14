@@ -29,7 +29,6 @@ description: >
 - 문서 언어는 한국어가 기본이고 영어를 지원어로 둔다. 부품 UI 문구(영어)와 별개다.
   - MOA-1\~MOA-5에서는 README와 Storybook 설명을 한국어로만 쓴다. 영어 지원은 MOA-6에서 한 번에 한다.
   - Storybook 설명은 스토리 파일의 `parameters.docs.description`에 한국어 문자열로 바로 쓴다. 설명은 화면만으로 알 수 없는 사용 기준이 있을 때만 쓴다(예: primary는 한 화면에 하나). 이름만 봐도 아는 용도 설명은 쓰지 않는다. MOA-6에서 이 문자열을 사전으로 옮긴다. 사이드바 제목, 스토리 이름, args·prop 이름은 처음부터 영어로 쓴다.
-  - 문구 prop이 있는 부품은 한국어 문구를 넣은 `Localized` 스토리를 하나 둔다.
 - 스토리 제목은 역할별 폴더를 쓴다: `Foundations/*`(토큰), `Layout/*`, `Display/*`, `Actions/*`, `Inputs/*`. 순서는 `preview.tsx`의 `storySort`로 고정한다.
 - 스토리는 args로 조작하는 `Playground` 하나와, 단순 variant·상태를 한 화면에 모은 `Variants` 하나를 기본으로 둔다. variant마다 스토리를 따로 만들지 않는다. 정적인 예시(문법 모음 등)와 상태를 가진 예시(controlled)도 Variants에 넣는다. 상태가 필요하면 스토리 파일 최상위에 작은 예시 컴포넌트를 두고 Variants에서 쓴다. 오류 상태처럼 부품이 보여 주는 상태는 넣고, 보안 대책이나 공격 입력 같은 특수 케이스는 스토리와 설명에 넣지 않는다(테스트와 SEC 문서가 맡는다).
 - Show code는 그대로 복사해 쓸 수 있는 코드만 보인다. 스토리 도우미(`Prop`, `PropGrid`)가 들어가는 스토리는 `parameters.docs.source.code`에 실제 사용 코드를 적는다.
@@ -731,15 +730,15 @@ test("number variant reports empty string when cleared", async () => {
 
 **Interfaces:**
 - Consumes: MOA-2 CheckBox·DateTimeInput의 `CheckBox`
-- Produces: `ChoicePicker(props: BaseProps & { label: string; options: { label: string; value: string }[]; value?: string[]; defaultValue?: string[]; onChange?: (values: string[]) => void; variant?: "multipleSelection" | "mutuallyExclusive"; displayStyle?: "checkbox" | "chips"; filterable?: boolean; filterPlaceholder?: string })`
-  - 기본값은 `variant="mutuallyExclusive"`, `displayStyle="checkbox"`, `filterPlaceholder="Search"`다.
+- Produces: `ChoicePicker(props: BaseProps & { label: string; options: { label: string; value: string }[]; value?: string[]; defaultValue?: string[]; onChange?: (values: string[]) => void; variant?: "multipleSelection" | "mutuallyExclusive"; displayStyle?: "checkbox" | "chips"; filterable?: boolean; filterPlaceholder?: string; emptyText?: string })`
+  - 기본값은 `variant="mutuallyExclusive"`, `displayStyle="checkbox"`, `filterPlaceholder="Search"`, `emptyText="No results"`다.
   - 렌더링 조합:
     - 단일 선택 + checkbox → RadioGroup
     - 단일 선택 + chips → ToggleGroup `type="single"`
     - 다중 선택 + checkbox → CheckBox 목록
     - 다중 선택 + chips → ToggleGroup `type="multiple"`
   - 단일 선택이어도 값은 길이 0\~1인 배열이다(catalog의 `DynamicStringList`).
-  - `filterable`이면 label을 대소문자 구분 없이 부분 일치로 거른다. 그룹 이름은 `role="group"`(또는 radiogroup)에 `aria-labelledby`로 화면의 라벨을 연결해 붙인다.
+  - `filterable`이면 label을 대소문자 구분 없이 부분 일치로 거른다. 검색창 왼쪽에 돋보기 아이콘을 두고, 목록은 최대 240px에서 스크롤한다. 결과가 없으면 `emptyText`를 보인다. 그룹 이름은 `role="group"`(또는 radiogroup)에 `aria-labelledby`로 화면의 라벨을 연결해 붙인다.
 
 - [x] **MOA-3.13: 테스트를 작성한다**
 
