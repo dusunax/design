@@ -8,6 +8,7 @@ const COLORS = [
   "fg-muted",
   "border",
   "primary",
+  "primary-hover",
   "primary-fg",
   "primary-subtle",
   "primary-text",

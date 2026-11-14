@@ -208,6 +208,8 @@ git commit -m "chore: init moa 디자인 시스템" -m "pnpm 모노레포와 @du
     "./styles.css": "./dist/styles.css",
     "./*": { "types": "./dist/*.d.ts", "import": "./dist/*.js" }
     ```
+  - `button`, `input`, `textarea`는 preflight가 없어 페이지 글꼴을 물려받지 않는다. 부품에 `moa:[font-family:inherit]`를 준다.
+  - hover 색은 투명도로 처리하지 않고 `primary-hover` 토큰을 쓴다.
   - 색상은 Radix Colors의 Gray(중성색)와 Teal(강조색)을 기준으로 하고, 글자색은 WCAG AA(4.5:1)를 넘도록 조정했다. `primary-fg`는 light에서 흰색, dark에서 검정이다.
   - 토큰(아래 표)은 Tailwind 유틸리티 `moa:bg-surface`, `moa:text-fg-muted`, `moa:rounded-md`처럼 쓴다.
 
@@ -219,6 +221,7 @@ git commit -m "chore: init moa 디자인 시스템" -m "pnpm 모노레포와 @du
 | `--moa-color-fg-muted` | `#646464` | `#b4b4b4` |
 | `--moa-color-border` | `#d9d9d9` | `#3a3a3a` |
 | `--moa-color-primary` | `#008573` | `#12a594` |
+| `--moa-color-primary-hover` | `#00705f` | `#0eb39e` |
 | `--moa-color-primary-fg` | `#ffffff` | `#111111` |
 | `--moa-color-primary-subtle` | `#e0f8f3` | `#0d2d2a` |
 | `--moa-color-primary-text` | `#007a69` | `#0bd8b6` |
@@ -226,7 +229,7 @@ git commit -m "chore: init moa 디자인 시스템" -m "pnpm 모노레포와 @du
 | `--moa-color-success` | `#218358` | `#3dd68c` |
 | `--moa-color-warning` | `#a05e00` | `#ffca16` |
 | `--moa-radius-sm` / `md` / `lg` | `4px` / `8px` / `12px` | 동일 |
-| `--moa-text-caption` / `body` | `12px` / `14px` | 동일 |
+| `--moa-text-caption` / `body` | `12px` / `14px`, 줄 높이 `1.4` / `1.5` | 동일 |
 
 - [x] **MOA-1.10: `src/styles/index.css`를 작성한다**
 
@@ -303,7 +306,7 @@ git commit -m "feat(moa): 토큰과 프리픽스 CSS·ESM 빌드 파이프라인
 
 - [x] **MOA-1.18: `Tokens.stories.tsx`를 작성한다**
 
-  색상 토큰 12개를 견본 칩으로 보여 준다. 값은 `getComputedStyle`로 읽어서 함께 표시한다.
+  색상 토큰 13개를 견본 칩으로 보여 준다. 값은 `getComputedStyle`로 읽어서 함께 표시한다.
 
 - [x] **MOA-1.18a: 공개 환경 변수 검사를 확인한다** — SEC-1.6
 
