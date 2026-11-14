@@ -4,7 +4,7 @@
 @source "../components";
 
 @theme static {
-  --color-bg: #fcfcfc;
+  --color-bg: #ffffff;
   --color-surface: #f0f0f0;
   --color-fg: #202020;
   --color-fg-muted: #646464;

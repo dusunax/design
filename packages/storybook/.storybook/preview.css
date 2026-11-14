@@ -1,4 +1,4 @@
 .story-frame {
-  border: 1px solid var(--moa-color-border);
+  border: 1px dashed var(--moa-color-border-strong);
   padding: 8px;
 }

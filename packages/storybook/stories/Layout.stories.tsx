@@ -3,8 +3,19 @@ import type { Justify } from "@dusunax/moa";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Prop } from "./_Prop";
 
+// 정렬 차이가 잘 보이도록 항목은 강조색으로 채운다.
 const Box = ({ label }: { label: string }) => (
-  <div style={{ padding: "4px 10px", border: "1px dashed var(--moa-color-border)", borderRadius: 4 }}>{label}</div>
+  <div
+    style={{
+      padding: "4px 12px",
+      background: "var(--moa-color-primary-subtle)",
+      border: "1px solid var(--moa-color-primary)",
+      color: "var(--moa-color-primary-text)",
+      borderRadius: 4,
+    }}
+  >
+    {label}
+  </div>
 );
 
 const meta: Meta = {

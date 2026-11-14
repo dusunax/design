@@ -225,7 +225,7 @@ git commit -m "chore: init moa 디자인 시스템" -m "pnpm 모노레포와 @du
 
 | 토큰 | light | dark |
 |---|---|---|
-| `--moa-color-bg` | `#fcfcfc` | `#111111` |
+| `--moa-color-bg` | `#ffffff` | `#111111` |
 | `--moa-color-surface` | `#f0f0f0` | `#222222` |
 | `--moa-color-fg` | `#202020` | `#eeeeee` |
 | `--moa-color-fg-muted` | `#646464` | `#b4b4b4` |
