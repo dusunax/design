@@ -378,7 +378,7 @@ git commit -m "ci: 타입·테스트·빌드 검사 워크플로와 PR 템플릿
 ### 레이아웃 (Row, Column, List, Card, Divider)
 
 **Files:**
-- Create: `packages/moa/src/components/{row,column,list,card,divider}/{<Name>.tsx,index.ts}`, `packages/moa/src/components/layout.ts`(공통 매핑), `packages/moa/src/components/layout.test.tsx`(5종 테스트를 한 파일에), `packages/storybook/stories/Layout.stories.tsx`
+- Create: `packages/moa/src/components/{row,column,list,card,divider}/{<Name>.tsx,index.ts}`, `packages/moa/src/components/layout.ts`(공통 매핑), `packages/moa/src/components/layout.test.tsx`(5종 테스트를 한 파일에), `packages/storybook/stories/{Row,Column,Card,List,Divider}.stories.tsx`
 - Modify: `tsdown.config.ts`(entry 5개), `src/index.ts`
 
 **Interfaces:**
@@ -434,9 +434,9 @@ Expected: FAIL. 모듈이 없다는 오류가 난다.
 Run: `pnpm --filter @dusunax/moa test`
 Expected: PASS
 
-- [x] **MOA-2.5: `Layout.stories.tsx`를 작성한다**
+- [x] **MOA-2.5: 레이아웃 부품 스토리를 부품마다 작성한다**
 
-  justify 7종, align 4종, weight 비교, Card·List(방향 2종)·Divider(축 2종)를 보여 준다. 빌드가 통과하는지 확인한다(MOA-1.19 명령).
+  Row(justify 7종, weight), Column(align 4종), Card, List(방향 2종), Divider(축 2종)를 각자의 스토리 파일에 둔다. 빌드가 통과하는지 확인한다(MOA-1.19 명령).
 
 - [x] **MOA-2.6: 커밋한다** — `feat(moa): Row·Column·List·Card·Divider 레이아웃 부품 추가`
 
