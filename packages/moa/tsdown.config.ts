@@ -16,6 +16,8 @@ const config: UserConfig = defineConfig({
     "check-box": "src/components/check-box/index.ts",
     "date-time-input": "src/components/date-time-input/index.ts",
     modal: "src/components/modal/index.ts",
+    tabs: "src/components/tabs/index.ts",
+    slider: "src/components/slider/index.ts",
   },
   format: "esm",
   dts: true,

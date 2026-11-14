@@ -706,18 +706,18 @@ test("number variant reports empty string when cleared", async () => {
   - `Slider(props: BaseProps & { label: string; min?: number; max: number; steps?: number; value?: number; defaultValue?: number; onChange?: (value: number) => void })`
     - `min` 기본값은 0이다. `step`은 `steps`가 있으면 `(max - min) / steps`, 없으면 `(max - min) / 100`이다. 단일 thumb만 지원한다. `aria-label`은 `label`이고, 현재 값을 라벨 옆에 표시한다.
 
-- [ ] **MOA-3.7: 테스트를 작성한다**
+- [x] **MOA-3.7: 테스트를 작성한다**
 
   - `Tabs switches panel with arrow keys`
   - `Tabs defaultIndex selects tab`
   - `Slider snaps to steps`: `min=0`, `max=10`, `steps=5`일 때 오른쪽 화살표 한 번에 `onChange(2)`가 호출된다.
   - `Slider exposes label`: `getByRole("slider", { name: "Volume" })`
 
-- [ ] **MOA-3.8: 테스트를 실행해 실패하는지 확인한다**
-- [ ] **MOA-3.9: 구현한다**
-- [ ] **MOA-3.10: 테스트를 실행해 통과하는지 확인한다**
-- [ ] **MOA-3.11: 스토리를 작성한다**
-- [ ] **MOA-3.12: 커밋한다** — `feat(moa): Radix 기반 Tabs·Slider 추가`
+- [x] **MOA-3.8: 테스트를 실행해 실패하는지 확인한다**
+- [x] **MOA-3.9: 구현한다**
+- [x] **MOA-3.10: 테스트를 실행해 통과하는지 확인한다**
+- [x] **MOA-3.11: 스토리를 작성한다**
+- [x] **MOA-3.12: 커밋한다** — `feat(moa): Radix 기반 Tabs·Slider 추가`
 
 ---
 

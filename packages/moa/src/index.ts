@@ -13,3 +13,5 @@ export * from "./components/text-field";
 export * from "./components/check-box";
 export * from "./components/date-time-input";
 export * from "./components/modal";
+export * from "./components/tabs";
+export * from "./components/slider";
