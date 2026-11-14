@@ -12,3 +12,4 @@ export * from "./components/button";
 export * from "./components/text-field";
 export * from "./components/check-box";
 export * from "./components/date-time-input";
+export * from "./components/modal";

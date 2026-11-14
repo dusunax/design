@@ -675,21 +675,21 @@ test("number variant reports empty string when cleared", async () => {
 
 **Interfaces:**
 - Produces: `Modal(props: BaseProps & { trigger: ReactElement; title: string; children: ReactNode; open?: boolean; onOpenChange?: (open: boolean) => void })`
-  - `trigger`는 Radix `Trigger asChild`로 감싼다. `title`은 필수이고 화면에 보이는 제목이다(Dialog 접근성 요구사항). 닫기 버튼은 `Icon name="close" label="Close"`다.
+  - `trigger`는 Radix `Trigger asChild`로 감싼다. `title`은 필수이고 화면에 보이는 제목이다(Dialog 접근성 요구사항). 닫기 버튼의 접근성 이름은 "Close"다. CheckBox처럼 close path 하나만 부품 안에 둔다(`Icon`을 import하면 아이콘 59개가 모두 번들에 들어간다).
   - 포털 안의 내용에도 테마가 적용되어야 한다. 그래서 Content에 트리거 근처 조상의 `data-moa-theme` 값을 복사한다. 조상을 찾는 방법은 `closest("[data-moa-theme]")`다.
 
-- [ ] **MOA-3.1: 테스트를 작성한다**
+- [x] **MOA-3.1: 테스트를 작성한다**
 
   - `opens from trigger and shows title as dialog name`: `getByRole("dialog", { name: "Title" })`
   - `closes on Escape and via close button`
   - `controlled open calls onOpenChange(false)`
   - `inherits dark theme inside portal`: `<div data-moa-theme="dark">`로 감싼 경우 dialog가 dark 테마를 가진 조상 안에 있거나, 그 속성을 직접 가지고 있어야 한다.
 
-- [ ] **MOA-3.2: 테스트를 실행해 실패하는지 확인한다**
-- [ ] **MOA-3.3: 구현한다**
-- [ ] **MOA-3.4: 테스트를 실행해 통과하는지 확인한다**
-- [ ] **MOA-3.5: 스토리를 작성한다** — 기본, controlled, 긴 내용 스크롤
-- [ ] **MOA-3.6: 커밋한다** — `feat(moa): Radix Dialog 기반 Modal 추가`
+- [x] **MOA-3.2: 테스트를 실행해 실패하는지 확인한다**
+- [x] **MOA-3.3: 구현한다**
+- [x] **MOA-3.4: 테스트를 실행해 통과하는지 확인한다**
+- [x] **MOA-3.5: 스토리를 작성한다** — 기본, controlled, 긴 내용 스크롤
+- [x] **MOA-3.6: 커밋한다** — `feat(moa): Radix Dialog 기반 Modal 추가`
 
 ---
 
