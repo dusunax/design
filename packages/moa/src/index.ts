@@ -19,3 +19,4 @@ export * from "./components/choice-picker";
 export * from "./components/message-bubble";
 export * from "./components/streaming-text";
 export * from "./components/run-status";
+export * from "./components/tool-call-card";

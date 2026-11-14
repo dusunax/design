@@ -22,6 +22,7 @@ const config: UserConfig = defineConfig({
     "message-bubble": "src/components/message-bubble/index.ts",
     "streaming-text": "src/components/streaming-text/index.ts",
     "run-status": "src/components/run-status/index.ts",
+    "tool-call-card": "src/components/tool-call-card/index.ts",
   },
   format: "esm",
   dts: true,

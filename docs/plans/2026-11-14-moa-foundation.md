@@ -803,27 +803,28 @@ test("number variant reports empty string when cleared", async () => {
 
 **Files:**
 - Create: `src/components/tool-call-card/*`
-- Modify: `stories/Agent.stories.tsx`, `tsdown.config.ts`, `src/index.ts`
+- Create: `stories/ToolCallCard.stories.tsx`
+- Modify: `tsdown.config.ts`, `src/index.ts`
 
 **Interfaces:**
-- Consumes: MOA-4 에이전트 부품의 `RunStatus` 색 규칙, `Icon`
+- Consumes: MOA-4 에이전트 부품의 `RunStatus` 색 규칙
 - Produces: `ToolCallCard(props: BaseProps & { name: string; status: "pending" | "running" | "finished" | "error"; args?: string; result?: string; defaultOpen?: boolean })`
   - 상태 이름은 RunStatus와 맞춘다. 대기 상태만 `idle` 대신 `pending`을 쓴다. 배지 색은 pending fg-muted, running primary, finished success, error danger다.
   - 네이티브 `<details>`/`<summary>`로 만든다. summary에는 도구 이름과 상태 배지를 넣는다.
   - `args`와 `result`는 원문 문자열이다. `JSON.parse`에 성공하면 들여쓰기 2칸으로 다시 출력한다. 실패하면 원문을 그대로 `<pre>`로 보여 준다.
 
-- [ ] **MOA-4.7: 테스트를 작성한다**
+- [x] **MOA-4.7: 테스트를 작성한다**
 
   - `pretty-prints valid JSON args`
   - `shows raw args when JSON is partial`: `args='{"city":"Seo'`일 때 오류 없이 원문이 보여야 한다.
   - `error status shows result in danger color`
   - `defaultOpen opens details`
 
-- [ ] **MOA-4.8: 테스트를 실행해 실패하는지 확인한다**
-- [ ] **MOA-4.9: 구현한다**
-- [ ] **MOA-4.10: 테스트를 실행해 통과하는지 확인한다**
-- [ ] **MOA-4.11: 스토리를 작성한다** — Agent 스토리에 pending, 인자 스트리밍 중, finished, error를 추가한다.
-- [ ] **MOA-4.12: 커밋한다** — `feat(moa): ToolCallCard 추가`
+- [x] **MOA-4.8: 테스트를 실행해 실패하는지 확인한다**
+- [x] **MOA-4.9: 구현한다**
+- [x] **MOA-4.10: 테스트를 실행해 통과하는지 확인한다**
+- [x] **MOA-4.11: 스토리를 작성한다** — ToolCallCard 스토리에 pending, 인자 스트리밍 중, finished, error를 추가한다.
+- [x] **MOA-4.12: 커밋한다** — `feat(moa): ToolCallCard 추가`
 
 ---
 
