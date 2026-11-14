@@ -18,3 +18,11 @@ test("number variant reports empty string when cleared", async () => {
   await userEvent.clear(screen.getByLabelText("N"));
   expect(onChange).toHaveBeenLastCalledWith("");
 });
+test("longText only resizes vertically", () => {
+  render(<TextField label="L" variant="longText" />);
+  expect(screen.getByLabelText("L")).toHaveClass("moa:resize-y");
+});
+test("invalid input shows danger border via :user-invalid", () => {
+  render(<TextField label="N" variant="number" />);
+  expect(screen.getByLabelText("N")).toHaveClass("moa:user-invalid:border-danger");
+});

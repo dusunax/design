@@ -48,7 +48,7 @@ export function TextField({
       <label htmlFor={id} className={fieldLabelClass}>
         {label}
       </label>
-      {variant === "longText" ? <textarea rows={3} {...common} /> : <input {...inputType[variant]} {...common} />}
+      {variant === "longText" ? <textarea rows={3} {...common} className={clsx(fieldInputClass, "moa:resize-y")} /> : <input {...inputType[variant]} {...common} />}
     </div>
   );
 }

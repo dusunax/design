@@ -1,7 +1,9 @@
 import { clsx } from "clsx";
 import { type JSX, useId } from "react";
 import { type BaseProps, weightStyle } from "../../utils/base";
-import { Icon } from "../icon/Icon";
+
+// Icon 전체(59개 path)를 끌어오지 않도록 체크 path만 둔다. 출처: Material Symbols check, Apache-2.0
+const CHECK_PATH = "M378-246 154-470l43-43 181 181 384-384 43 43-427 427Z";
 
 export type CheckBoxProps = BaseProps & {
   label: string;
@@ -25,11 +27,16 @@ export function CheckBox({ label, value, defaultValue, onChange, disabled, weigh
           onChange={(e) => onChange?.(e.target.checked)}
           className="moa:peer moa:m-0 moa:size-4 moa:cursor-pointer moa:appearance-none moa:rounded-sm moa:border moa:border-border-strong moa:bg-bg moa:checked:border-primary moa:checked:bg-primary moa:focus-visible:outline-2 moa:focus-visible:outline-offset-2 moa:focus-visible:outline-primary moa:disabled:cursor-not-allowed moa:disabled:opacity-50"
         />
-        <Icon
-          name="check"
-          size={16}
+        <svg
+          viewBox="0 -960 960 960"
+          width={16}
+          height={16}
+          fill="currentColor"
+          aria-hidden
           className="moa:pointer-events-none moa:absolute moa:inset-0 moa:hidden moa:text-primary-fg moa:peer-checked:block"
-        />
+        >
+          <path d={CHECK_PATH} />
+        </svg>
       </span>
       <label htmlFor={id} className="moa:cursor-pointer moa:text-body moa:text-fg">
         {label}

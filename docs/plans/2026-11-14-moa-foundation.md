@@ -213,6 +213,8 @@ git commit -m "chore: init moa 디자인 시스템" -m "pnpm 모노레포와 @du
   - hover 색은 투명도로 처리하지 않고 `primary-hover` 토큰을 쓴다.
   - 조작 요소(입력, 체크박스, default 버튼)의 테두리는 배경 대비 3:1(WCAG 1.4.11)을 넘는 `border-strong`, 장식 테두리(카드, 구분선)는 `border`를 쓴다.
   - 읽는 본문(Text body, 메시지)은 `text-prose`, 조작 요소는 `text-body`다.
+  - 입력 라벨은 `text-body` `font-medium` `text-fg`다. 입력값보다 약하게 만들지 않는다.
+  - 입력 오류는 prop 대신 네이티브 검증(`:user-invalid`)으로 `danger` 테두리를 보인다.
   - 색상은 Radix Colors의 Gray(중성색)와 Teal(강조색)을 기준으로 하고, 글자색은 WCAG AA(4.5:1)를 넘도록 조정했다. `primary-fg`는 light에서 흰색, dark에서 검정이다.
   - 토큰(아래 표)은 Tailwind 유틸리티 `moa:bg-surface`, `moa:text-fg-muted`, `moa:rounded-md`처럼 쓴다.
 
@@ -632,7 +634,7 @@ test("number variant reports empty string when cleared", async () => {
 **Interfaces:**
 - Produces:
   - `CheckBox(props: BaseProps & { label: string; value?: boolean; defaultValue?: boolean; onChange?: (checked: boolean) => void; disabled?: boolean })`
-    - 네이티브 `<input type="checkbox">`에 `moa:appearance-none`을 적용한다. 체크 표시는 `Icon name="check"`로 그린다. catalog처럼 체크 상태를 `value`로 받는다.
+    - 네이티브 `<input type="checkbox">`에 `moa:appearance-none`을 적용한다. 체크 표시는 Material Symbols `check` path 하나만 부품 안에 두고 그린다. `Icon`을 import하면 아이콘 59개가 모두 번들에 들어간다. catalog처럼 체크 상태를 `value`로 받는다.
   - `DateTimeInput(props: BaseProps & { label: string; value?: string; defaultValue?: string; onChange?: (iso: string) => void; enableDate?: boolean; enableTime?: boolean; min?: string; max?: string })`
     - 입력 type: 날짜와 시간이 모두 켜지면 `datetime-local`, 시간만 켜지면 `time`, 그 밖에는 `date`다. 둘 다 꺼진 경우도 `date`다.
 

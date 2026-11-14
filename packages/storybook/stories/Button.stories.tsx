@@ -29,7 +29,7 @@ export const Variants: Story = {
         disabled
       </Button>
       <Button variant="primary">
-        <Icon name="send" size={18} />
+        <Icon name="send" size={16} />
         아이콘과 함께
       </Button>
     </div>
