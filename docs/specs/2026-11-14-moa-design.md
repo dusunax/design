@@ -99,7 +99,7 @@ A2UI v1.0 basic catalog를 직접 구현하지 않고, 철학만 가져온다.
 4. 스타일이 아닌 의미 힌트: `variant`로 무엇인지만 전달한다.
 5. Action은 에이전트로 돌아가는 이벤트다.
 
-`moa`의 **부품 이름, prop 이름, variant 값은 catalog와 같게 맞춘다.** 나중에 `moa-render`에서 1:1로 매핑하기 위해서다. 공개 API는 React 관례를 따른다(`children`, `onChange`, `onClick`).
+`moa`의 **부품 이름, prop 이름, variant 값은 catalog와 같게 맞춘다.** 나중에 `moa-render`에서 1:1로 매핑하기 위해서다. 기본값은 다를 수 있다(Image `fit`은 catalog `fill`, moa `cover`). 이때 `moa-render`는 명세에 값이 없으면 catalog 기본값을 직접 넘긴다. 공개 API는 React 관례를 따른다(`children`, `onChange`, `onClick`).
 
 ### 직접 구현 (네이티브 요소)
 

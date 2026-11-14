@@ -29,7 +29,8 @@ const variantClass: Record<ImageVariant, string> = {
   header: "moa:h-50 moa:w-full",
 };
 
-export function Image({ url, description, fit = "fill", variant = "mediumFeature", weight, className }: ImageProps): JSX.Element {
+// catalog 기본값은 fill이지만 비율이 다른 이미지가 찌그러지므로 cover를 기본으로 한다.
+export function Image({ url, description, fit = "cover", variant = "mediumFeature", weight, className }: ImageProps): JSX.Element {
   return (
     <img
       src={url}

@@ -539,7 +539,7 @@ test("accepts custom svgPath", () => {
 
 **Interfaces:**
 - Produces: `Image(props: BaseProps & { url: string; description?: string; fit?: "contain" | "cover" | "fill" | "none" | "scaleDown"; variant?: "icon" | "avatar" | "smallFeature" | "mediumFeature" | "largeFeature" | "header" })`
-  - 기본값은 `fit="fill"`, `variant="mediumFeature"`다(catalog 기본값).
+  - 기본값은 `fit="cover"`, `variant="mediumFeature"`다. catalog 기본값은 `fill`이지만 비율이 다른 이미지가 찌그러져서 `cover`로 바꿨다.
   - 크기: icon 24px, avatar 40px(원형), smallFeature 96px, mediumFeature 160px, largeFeature 240px. 앞의 값은 모두 정사각형이다. header는 너비 100%, 높이 200px다.
   - `alt`는 `description ?? ""`이고, `loading="lazy"`를 붙인다.
 
