@@ -86,9 +86,9 @@ packages/storybook/
 
 ### 게이트
 
-- [ ] **MOA-1.0: 게이트를 확인한다** — SEC-1. DOC-4의 게이트 확인을 따른다.
+- [x] **MOA-1.0: 게이트를 확인한다** — SEC-1. DOC-4의 게이트 확인을 따른다.
 
-- [ ] **MOA-1.0a: 이전 레포에 태그를 달고, `MOA-1` 브랜치에 문서를 먼저 커밋한다**
+- [x] **MOA-1.0a: 이전 레포에 태그를 달고, `MOA-1` 브랜치에 문서를 먼저 커밋한다**
 
   문서는 init과 함께 MOA-1 PR로 올린다. `main`에 직접 올리지 않는다. 태그는 브랜치를 만들기 전 `main`에 달아, multi-touch 레포의 마지막 상태를 가리키게 한다. 문서를 따로 먼저 커밋해야 MOA-1.9 init 커밋에 문서가 섞이지 않는다. 이 커밋에서 DOC-3의 MOA-1 상태를 `진행`으로 바꾼다.
 
@@ -116,7 +116,7 @@ git commit -m "docs: moa 설계·플랜·규칙 문서 추가"
   - `function weightStyle(weight?: number): React.CSSProperties | undefined`: `weight`가 `undefined`이면 `undefined`를 반환하고, 숫자면 `{ flexGrow: weight }`를 반환한다.
   - `@dusunax/moa`의 스크립트: `test`(`vitest run`), `typecheck`(`tsc --noEmit`)
 
-- [ ] **MOA-1.1: Delete 목록을 지우고 제거만 따로 커밋한다**
+- [x] **MOA-1.1: Delete 목록을 지우고 제거만 따로 커밋한다**
 
   제거와 시작을 커밋 두 개로 나눈다. 그래야 MOA-1.9의 init 커밋에 새 파일만 들어가고, 거기서부터 moa 이력이 시작된다.
 
@@ -125,7 +125,7 @@ git rm -r multi-touch stories public lib styles .storybook next.config.mjs postc
 git commit -m "chore: moa 재구성 전에 기존 multi-touch 예제와 Next.js 설정 제거"
 ```
 
-- [ ] **MOA-1.2: 루트 설정을 작성한다**
+- [x] **MOA-1.2: 루트 설정을 작성한다**
 
   먼저 Tech Stack의 버전을 "배포된 지 3일 이상 지난 최신 안정판" 기준으로 다시 정하고, 바뀌었으면 이 플랜의 버전을 같이 고친다.
 
@@ -147,14 +147,14 @@ git commit -m "chore: moa 재구성 전에 기존 multi-touch 예제와 Next.js 
   - 의존성이 들고 오는 에이전트 스킬(pnpm의 "Agent skills awaiting approval", 예: tsdown)은 승인하지 않는다(`pnpm approve` 금지).
   - `tsconfig.base.json`: `strict`, `jsx: "react-jsx"`, `module: "esnext"`, `moduleResolution: "bundler"`, `target: "es2022"`, `isolatedDeclarations: true`, `declaration: true`, `verbatimModuleSyntax: true`
 
-- [ ] **MOA-1.3: `packages/moa` 패키지 파일을 만든다**
+- [x] **MOA-1.3: `packages/moa` 패키지 파일을 만든다**
 
   - `name: "@dusunax/moa"`, `version: "0.0.0"`, `type: "module"`, `sideEffects: ["*.css"]`, `license: "MIT"`
   - devDependencies: `typescript@7.0.2`, `vitest@5.1.0`, `jsdom@31.0.0`, `@testing-library/react@16.3.3`, `@testing-library/user-event@14.6.9`, `react@19.3.1`, `react-dom@19.3.1`, `@types/react@19.3.0`
   - `vitest.config.ts`: `environment: "jsdom"`, `setupFiles: ["./vitest.setup.ts"]`
   - `vitest.setup.ts`: `afterEach(cleanup)`. jsdom에 없는 `ResizeObserver`를 빈 클래스로 채운다(Radix Slider가 필요로 한다).
 
-- [ ] **MOA-1.4: 실패하는 테스트를 작성한다**
+- [x] **MOA-1.4: 실패하는 테스트를 작성한다**
 
 ```ts
 // packages/moa/src/utils/base.test.ts
@@ -165,23 +165,23 @@ test("weightStyle maps weight to flexGrow", () => {
 });
 ```
 
-- [ ] **MOA-1.5: `pnpm install` 후 테스트를 실행해 실패하는지 확인한다**
+- [x] **MOA-1.5: `pnpm install` 후 테스트를 실행해 실패하는지 확인한다**
 
 Run: `pnpm --filter @dusunax/moa test`
 Expected: FAIL. `weightStyle`을 찾을 수 없다는 오류가 난다.
 
-- [ ] **MOA-1.6: `src/utils/base.ts`에 `BaseProps`와 `weightStyle`을 구현한다. `src/index.ts`는 일단 비워 둔다(`export {}`)**
+- [x] **MOA-1.6: `src/utils/base.ts`에 `BaseProps`와 `weightStyle`을 구현한다. `src/index.ts`는 일단 비워 둔다(`export {}`)**
 
-- [ ] **MOA-1.7: 테스트와 타입 검사를 실행한다**
+- [x] **MOA-1.7: 테스트와 타입 검사를 실행한다**
 
 Run: `pnpm test && pnpm typecheck`
 Expected: PASS
 
-- [ ] **MOA-1.8: README를 쓴다**
+- [x] **MOA-1.8: README를 쓴다**
 
   내용은 프로젝트 한 줄 소개, 패키지 표, 개발 명령, 문서 시작점(`docs/INDEX.md` 링크)이다. 한국어 `~다` 체로 쓴다. 영어판은 MOA-6에서 만든다.
 
-- [ ] **MOA-1.9: init 커밋을 만든다. 여기서부터가 moa 레포다**
+- [x] **MOA-1.9: init 커밋을 만든다. 여기서부터가 moa 레포다**
 
 ```bash
 git add -A
@@ -225,7 +225,7 @@ git commit -m "chore: init moa 디자인 시스템" -m "pnpm 모노레포와 @du
 | `--moa-radius-sm` / `md` / `lg` | `4px` / `8px` / `12px` | 동일 |
 | `--moa-text-caption` / `body` | `12px` / `14px` | 동일 |
 
-- [ ] **MOA-1.10: `src/styles/index.css`를 작성한다**
+- [x] **MOA-1.10: `src/styles/index.css`를 작성한다**
 
   - preflight 없이 테마와 유틸리티만 import한다.
     ```css
@@ -238,14 +238,14 @@ git commit -m "chore: init moa 디자인 시스템" -m "pnpm 모노레포와 @du
   - `[data-moa-theme="dark"]` 블록에서는 출력되는 이름(`--moa-color-*`)으로 dark 값을 덮어쓴다.
   - `prefix()`를 개별 import에 붙이는 문법이 4.3.5에서 동작하지 않으면 `@import "tailwindcss" prefix(moa);`를 쓰고 preflight만 제외하는 방식으로 바꾼다. 어느 쪽이든 MOA-1.13 검사를 통과해야 한다.
 
-- [ ] **MOA-1.11: `scripts/check-css.mjs`를 작성한다**
+- [x] **MOA-1.11: `scripts/check-css.mjs`를 작성한다**
 
   `dist/styles.css`를 읽어서 다음을 검사하고, 하나라도 어기면 `process.exit(1)`로 끝낸다.
   - `--moa-color-primary`가 들어 있다.
   - 접두사 없는 `--color-` 변수 정의가 없다.
   - 셀렉터가 `*`, `html`, `body`, `:root`(테마 변수 정의는 예외), 또는 맨 태그로 시작하는 규칙이 없다.
 
-- [ ] **MOA-1.12: 빌드 스크립트와 tsdown 설정을 추가한다**
+- [x] **MOA-1.12: 빌드 스크립트와 tsdown 설정을 추가한다**
 
   - devDependencies에 `tailwindcss@4.3.5`, `@tailwindcss/cli@4.3.5`, `tsdown@0.23.7`을 추가한다. dependencies에 `clsx@2.1.1`, `class-variance-authority@0.7.1`을 추가한다.
   - `tsdown.config.ts`: `entry: { index: "src/index.ts" }`(부품을 추가할 때마다 entry를 하나씩 추가한다), `format: "esm"`, `dts: true`, `fixedExtension: false`(`.js`/`.d.ts`로 출력), `deps: { neverBundle: [/^react/, /^@radix-ui\//] }`
@@ -254,16 +254,16 @@ git commit -m "chore: init moa 디자인 시스템" -m "pnpm 모노레포와 @du
     - `build:css`: `tailwindcss -i src/styles/index.css -o dist/styles.css --minify`
     - `build`: `pnpm build:js && pnpm build:css && node scripts/check-css.mjs`
 
-- [ ] **MOA-1.13: 빌드를 실행한다**
+- [x] **MOA-1.13: 빌드를 실행한다**
 
 Run: `pnpm --filter @dusunax/moa build`
 Expected: `dist/index.js`, `dist/index.d.ts`, `dist/styles.css`가 생기고 check-css가 통과한다(exit 0).
 
-- [ ] **MOA-1.14: 검사 스크립트가 실제로 실패를 잡아내는지 확인한다**
+- [x] **MOA-1.14: 검사 스크립트가 실제로 실패를 잡아내는지 확인한다**
 
   `index.css`에 임시로 `body { margin: 0 }`을 넣고 빌드한다. exit 1이 나는지 확인한 뒤 임시 코드를 되돌린다.
 
-- [ ] **MOA-1.15: 커밋한다**
+- [x] **MOA-1.15: 커밋한다**
 
 ```bash
 git add packages/moa
@@ -286,7 +286,7 @@ git commit -m "feat(moa): 토큰과 프리픽스 CSS·ESM 빌드 파이프라인
   - 툴바 global `theme: "light" | "dark"`: decorator가 스토리를 감싼 요소에 `data-moa-theme`를 붙인다.
   - 이후 모든 스토리 파일의 `title`은 `Components/<Name>` 또는 `Agent/<Name>` 형식을 쓴다.
 
-- [ ] **MOA-1.16: 패키지를 만든다**
+- [x] **MOA-1.16: 패키지를 만든다**
 
   - dependencies: `@dusunax/moa: "workspace:*"`
   - devDependencies: `storybook@10.6.7`, `@storybook/react-vite@10.6.7`, `@storybook/addon-docs@10.6.7`, `@storybook/addon-a11y@10.6.7`, `@chromatic-com/storybook@5.6.0`, `vite@8.3.8`, react 19 세트
@@ -294,29 +294,29 @@ git commit -m "feat(moa): 토큰과 프리픽스 CSS·ESM 빌드 파이프라인
   - 설명을 보여 줄 스토리는 meta에 `tags: ["autodocs"]`를 둔다.
   - `docs/Intro.mdx`: moa 소개와 사용법을 한국어로 쓴다.
 
-- [ ] **MOA-1.17: `preview.tsx`를 작성한다**
+- [x] **MOA-1.17: `preview.tsx`를 작성한다**
 
   `import "@dusunax/moa/styles.css"`를 넣는다. 배경이 `--moa-color-bg`인 래퍼 decorator를 두고, 테마 툴바를 추가한다.
 
-- [ ] **MOA-1.18: `Tokens.stories.tsx`를 작성한다**
+- [x] **MOA-1.18: `Tokens.stories.tsx`를 작성한다**
 
   색상 토큰 10개를 견본 칩으로 보여 준다. 값은 `getComputedStyle`로 읽어서 함께 표시한다.
 
-- [ ] **MOA-1.18a: 공개 환경 변수 검사를 확인한다** — SEC-1.6
+- [x] **MOA-1.18a: 공개 환경 변수 검사를 확인한다** — SEC-1.6
 
 Run: `STORYBOOK_API_TOKEN=x pnpm --filter @dusunax/moa-storybook build`
 Expected: FAIL. `STORYBOOK_API_TOKEN`이 허용 목록에 없다는 메시지가 나오고, 값 `x`는 출력되지 않는다. 확인되면 SEC-1.6을 🟢로 바꾼다.
 
-- [ ] **MOA-1.19: 빌드를 확인한다**
+- [x] **MOA-1.19: 빌드를 확인한다**
 
 Run: `pnpm --filter @dusunax/moa build && pnpm --filter @dusunax/moa-storybook build`
 Expected: `packages/storybook/storybook-static/index.html`이 생긴다.
 
-- [ ] **MOA-1.20: 개발 서버에서 확인한다**
+- [x] **MOA-1.20: 개발 서버에서 확인한다**
 
   `pnpm storybook`을 실행하고 Tokens 스토리를 연다. 테마 툴바를 dark로 바꾸면 견본 색이 dark 값으로 바뀌어야 한다. Tokens 설명이 한국어로 나와야 한다.
 
-- [ ] **MOA-1.21: 최소 CI를 추가한다**
+- [x] **MOA-1.21: 최소 CI를 추가한다**
 
   `.github/workflows/ci.yml`에 `check` job 하나만 둔다.
   - 트리거는 `push`와 `pull_request`다. `pull_request_target`은 쓰지 않는다. fork PR 코드가 secret에 접근할 수 있기 때문이다.
@@ -326,7 +326,7 @@ Expected: `packages/storybook/storybook-static/index.html`이 생긴다.
 
   job은 install → `pnpm typecheck` → `pnpm test` → `pnpm build`를 실행한다. MOA-2\~MOA-4가 자동 검사를 받게 하기 위해서다. 크기 리포트와 Chromatic은 MOA-5에서 추가한다.
 
-- [ ] **MOA-1.21a: PR 템플릿을 추가한다**
+- [x] **MOA-1.21a: PR 템플릿을 추가한다**
 
   `.github/pull_request_template.md`. 본문은 `~다` 체로 쓰고, 섹션은 아래 순서다.
 
@@ -342,7 +342,7 @@ Expected: `packages/storybook/storybook-static/index.html`이 생긴다.
   - [ ] 게이트 SEC가 있으면 확인 (DOC-4)
   ```
 
-- [ ] **MOA-1.22: 커밋한다**
+- [x] **MOA-1.22: 커밋한다**
 
 ```bash
 git add packages/storybook pnpm-lock.yaml
