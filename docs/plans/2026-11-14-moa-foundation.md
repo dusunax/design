@@ -436,7 +436,7 @@ Expected: PASS
 
 - [x] **MOA-2.5: `Layout.stories.tsx`를 작성한다**
 
-  justify 7종, align 4종, weight 비교, Card 안의 Column을 보여 준다. 빌드가 통과하는지 확인한다(MOA-1.19 명령).
+  justify 7종, align 4종, weight 비교, Card·List(방향 2종)·Divider(축 2종)를 보여 준다. 빌드가 통과하는지 확인한다(MOA-1.19 명령).
 
 - [x] **MOA-2.6: 커밋한다** — `feat(moa): Row·Column·List·Card·Divider 레이아웃 부품 추가`
 

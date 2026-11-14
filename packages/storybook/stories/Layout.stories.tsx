@@ -78,18 +78,41 @@ export const Weight: StoryObj = {
   ),
 };
 
-export const CardWithList: StoryObj = {
+export const CardListDivider: StoryObj = {
+  name: "Card·List·Divider",
   render: () => (
-    <Card>
-      <Column>
-        <strong>할 일</strong>
-        <Divider />
+    <PropGrid min={240}>
+      <Prop code="<Card>">
+        <Card>카드 내용</Card>
+      </Prop>
+      <Prop code='<List direction="vertical"> (기본값)'>
         <List>
-          <span>토큰 정하기</span>
-          <span>레이아웃 부품 만들기</span>
-          <span>Text 부품 만들기</span>
+          <Box label="A" />
+          <Box label="B" />
+          <Box label="C" />
         </List>
-      </Column>
-    </Card>
+      </Prop>
+      <Prop code='<List direction="horizontal">'>
+        <List direction="horizontal">
+          <Box label="A" />
+          <Box label="B" />
+          <Box label="C" />
+        </List>
+      </Prop>
+      <Prop code='<Divider axis="horizontal"> (기본값)'>
+        <Column>
+          <span>위</span>
+          <Divider />
+          <span>아래</span>
+        </Column>
+      </Prop>
+      <Prop code='<Divider axis="vertical">'>
+        <Row align="center">
+          <span>왼쪽</span>
+          <Divider axis="vertical" />
+          <span>오른쪽</span>
+        </Row>
+      </Prop>
+    </PropGrid>
   ),
 };
