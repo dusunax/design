@@ -5,3 +5,4 @@ export * from "./components/column";
 export * from "./components/list";
 export * from "./components/card";
 export * from "./components/divider";
+export * from "./components/text";

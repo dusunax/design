@@ -8,6 +8,7 @@ const config: UserConfig = defineConfig({
     list: "src/components/list/index.ts",
     card: "src/components/card/index.ts",
     divider: "src/components/divider/index.ts",
+    text: "src/components/text/index.ts",
   },
   format: "esm",
   dts: true,
