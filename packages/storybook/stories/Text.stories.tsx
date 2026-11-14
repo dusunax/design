@@ -22,22 +22,19 @@ type Story = StoryObj<typeof Text>;
 export const Playground: Story = {};
 export const Variants: Story = {
   render: () => (
-    <div style={{ display: "grid", gap: 12 }}>
+    <div style={{ display: "grid", gap: 16 }}>
       <Prop code='variant="body" (기본값)'>
         <Text text="에이전트가 보낸 응답 본문이다." />
       </Prop>
       <Prop code='variant="caption"'>
         <Text variant="caption" text="보조 설명이다." />
       </Prop>
+      <Prop code="Markdown">
+        <Text text={"**굵게**, *기울임*, `코드`, [링크](https://github.com/dusunax/design)\n줄바꿈"} />
+      </Prop>
+      <Prop code="위험한 입력 → 평문">
+        <Text text="[눌러 보기](javascript:alert(1)) <img src=x onerror=alert(1)>" />
+      </Prop>
     </div>
   ),
-};
-export const Markdown: Story = {
-  args: { text: "**굵게**, *기울임*, `코드`, [링크](https://github.com/dusunax/design)\n줄바꿈도 된다." },
-};
-export const DangerousInput: Story = {
-  args: { text: "[눌러 보기](javascript:alert(1)) <img src=x onerror=alert(1)>" },
-  parameters: {
-    docs: { description: { story: "위험한 링크와 HTML은 평문으로 보인다." } },
-  },
 };
