@@ -6,7 +6,7 @@ const meta: Meta<typeof Button> = {
   title: "Components/Button",
   component: Button,
   tags: ["autodocs"],
-  args: { children: "보내기", variant: "default" },
+  args: { children: "버튼", variant: "default" },
   parameters: {
     docs: {
       description: {

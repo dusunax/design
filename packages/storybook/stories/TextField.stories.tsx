@@ -7,7 +7,7 @@ const meta: Meta<typeof TextField> = {
   title: "Components/TextField",
   component: TextField,
   tags: ["autodocs"],
-  args: { label: "이름", placeholder: "홍길동", variant: "shortText" },
+  args: { label: "라벨", placeholder: "입력값", variant: "shortText" },
   parameters: {
     docs: {
       description: {

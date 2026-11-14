@@ -6,7 +6,7 @@ const meta: Meta<typeof DateTimeInput> = {
   title: "Components/DateTimeInput",
   component: DateTimeInput,
   tags: ["autodocs"],
-  args: { label: "날짜", enableDate: true },
+  args: { label: "라벨", enableDate: true },
   parameters: {
     docs: {
       description: {

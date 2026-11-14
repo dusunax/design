@@ -6,7 +6,7 @@ const meta: Meta<typeof CheckBox> = {
   title: "Components/CheckBox",
   component: CheckBox,
   tags: ["autodocs"],
-  args: { label: "약관에 동의" },
+  args: { label: "라벨" },
   parameters: {
     docs: { description: { component: "네이티브 체크박스에 `appearance: none`을 적용하고 체크 표시는 Icon으로 그린다." } },
   },
