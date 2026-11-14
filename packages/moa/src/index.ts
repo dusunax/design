@@ -6,3 +6,4 @@ export * from "./components/list";
 export * from "./components/card";
 export * from "./components/divider";
 export * from "./components/text";
+export * from "./components/icon";

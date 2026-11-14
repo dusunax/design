@@ -9,6 +9,7 @@ const config: UserConfig = defineConfig({
     card: "src/components/card/index.ts",
     divider: "src/components/divider/index.ts",
     text: "src/components/text/index.ts",
+    icon: "src/components/icon/index.ts",
   },
   format: "esm",
   dts: true,
