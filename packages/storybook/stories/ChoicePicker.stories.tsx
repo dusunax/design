@@ -19,9 +19,6 @@ export default meta;
 type Story = StoryObj<typeof ChoicePicker>;
 
 export const Playground: Story = {};
-export const Localized: Story = {
-  args: { options: MANY, variant: "multipleSelection", filterable: true, filterPlaceholder: "검색", defaultValue: ["2"] },
-};
 export const Variants: Story = {
   parameters: {
     docs: {
