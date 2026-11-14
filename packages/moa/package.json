@@ -22,7 +22,8 @@
     "build:css": "tailwindcss -i src/styles/index.css -o dist/styles.css --minify",
     "build": "pnpm build:js && pnpm build:css && node scripts/check-css.mjs",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "gen:icons": "node scripts/gen-icons.mjs"
   },
   "peerDependencies": {
     "react": "^19",
@@ -33,6 +34,7 @@
     "clsx": "2.1.1"
   },
   "devDependencies": {
+    "@material-symbols/svg-400": "0.48.3",
     "@tailwindcss/cli": "4.3.5",
     "@testing-library/jest-dom": "7.0.1",
     "@testing-library/react": "16.3.3",

@@ -1,7 +1,21 @@
 import { defineConfig, type UserConfig } from "tsdown";
 
 const config: UserConfig = defineConfig({
-  entry: { index: "src/index.ts" },
+  entry: {
+    index: "src/index.ts",
+    row: "src/components/row/index.ts",
+    column: "src/components/column/index.ts",
+    list: "src/components/list/index.ts",
+    card: "src/components/card/index.ts",
+    divider: "src/components/divider/index.ts",
+    text: "src/components/text/index.ts",
+    icon: "src/components/icon/index.ts",
+    image: "src/components/image/index.ts",
+    button: "src/components/button/index.ts",
+    "text-field": "src/components/text-field/index.ts",
+    "check-box": "src/components/check-box/index.ts",
+    "date-time-input": "src/components/date-time-input/index.ts",
+  },
   format: "esm",
   dts: true,
   fixedExtension: false,

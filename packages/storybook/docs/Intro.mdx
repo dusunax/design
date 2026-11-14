@@ -2,18 +2,46 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 <Meta title="Intro" />
 
-# moa
+# moa: 에이전트 UI 디자인 시스템
 
-moa는 에이전트 UI를 위한 경량 React 부품 모음이다. 부품 이름과 prop은 A2UI v1.0 basic catalog와 맞추고, 스타일은 `--moa-*` 토큰을 쓰는 플레인 CSS 한 파일로 배포한다.
+부품 이름과 prop은 [A2UI v1.0 basic catalog](https://a2ui.org/specification/v1.0-a2ui/)를 따른다.
 
-## 사용법
+## 부품 공통 스토리
 
-```bash
-pnpm add @dusunax/moa
-```
+- **Playground**: 아래 Controls 패널에서 prop을 바꿔 보는 스토리
+- **Variants**: 주요 상태를 한 화면에 모은 스토리
+  - 테두리 상자 안: 부품
+  - 상자 아래 회색 코드: 그 예시를 만든 prop
+
+## 다크 모드
+
+감싸는 요소에 `data-moa-theme="dark"`를 붙이면 그 안의 부품이 모두 dark 토큰으로 바뀐다.
 
 ```tsx
-import "@dusunax/moa/styles.css";
+<div data-moa-theme="dark">…</div>
 ```
 
-다크 모드는 감싸는 요소에 `data-moa-theme="dark"`를 붙인다.
+이 문서에서는 화면 위 툴바의 Theme에서 light와 dark를 바꿔 볼 수 있다.
+
+## 시작하기
+
+1. 설치
+
+   ```bash
+   pnpm add @dusunax/moa
+   ```
+
+2. 앱 진입점에서 스타일 한 번 불러오기 (Tailwind 불필요)
+
+   ```tsx
+   import "@dusunax/moa/styles.css";
+   ```
+
+3. 부품 사용 (부품별로 따로 불러오기도 가능)
+
+   ```tsx
+   import { Button } from "@dusunax/moa";
+   import { TextField } from "@dusunax/moa/text-field";
+
+   <Button variant="primary">보내기</Button>;
+   ```

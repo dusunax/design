@@ -87,6 +87,14 @@ multi-touch 예제, Next.js 설정, 쓰지 않는 의존성은 제거한다. 마
 - 토큰은 `@theme`에서 정의한다. 다크 모드는 `[data-moa-theme="dark"]` 셀렉터로 변수를 덮어쓴다.
 - `tailwind-merge`는 쓰지 않는다(크기). 클래스 결합은 `clsx`, 변형은 `class-variance-authority`로 한다.
 
+## 브랜드 컨셉
+
+마스코트는 새싹이 난 청록 슬라임이다. 작은 부품이 모여 화면이 자란다는 뜻을 담는다.
+
+- 16×16 격자 원본: [`moa-mascot-16.svg`](../assets/moa-mascot-16.svg) (32px 이하)
+- 32×32 격자 원본: [`moa-mascot-32.svg`](../assets/moa-mascot-32.svg) (32px 초과)
+- 쓰는 곳: 로고, 파비콘, 빈 상태 그림 (부품 문구·스토리·문서 문장 제외)
+
 ## 부품
 
 ### A2UI 철학 차용
@@ -99,7 +107,7 @@ A2UI v1.0 basic catalog를 직접 구현하지 않고, 철학만 가져온다.
 4. 스타일이 아닌 의미 힌트: `variant`로 무엇인지만 전달한다.
 5. Action은 에이전트로 돌아가는 이벤트다.
 
-`moa`의 **부품 이름, prop 이름, variant 값은 catalog와 같게 맞춘다.** 나중에 `moa-render`에서 1:1로 매핑하기 위해서다. 공개 API는 React 관례를 따른다(`children`, `onChange`, `onClick`).
+`moa`의 **부품 이름, prop 이름, variant 값은 catalog와 같게 맞춘다.** 나중에 `moa-render`에서 1:1로 매핑하기 위해서다. 기본값은 다를 수 있다(Image `fit`은 catalog `fill`, moa `cover`). 이때 `moa-render`는 명세에 값이 없으면 catalog 기본값을 직접 넘긴다. 공개 API는 React 관례를 따른다(`children`, `onChange`, `onClick`).
 
 ### 직접 구현 (네이티브 요소)
 

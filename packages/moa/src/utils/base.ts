@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 
 export type BaseProps = {
   className?: string;
+  /** 부모 Row·Column 안에서 남는 공간을 나누는 비율(flex-grow) */
   weight?: number;
 };
 

@@ -1,0 +1,32 @@
+.story-frame {
+  border: 1px dashed var(--moa-color-border-strong);
+  padding: 8px;
+}
+
+.story-prop {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 6px;
+  margin: 0;
+  min-width: 0;
+  /* 한국어 캡션이 음절 중간에서 줄바꿈되지 않게 한다 */
+  word-break: keep-all;
+}
+
+.story-prop-sample {
+  padding: 12px 16px;
+  border: 1px solid var(--moa-color-border);
+  border-radius: 6px;
+}
+
+.story-prop-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  color: var(--moa-color-fg-muted);
+}
+
+.story-prop-use {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--moa-color-fg);
+}

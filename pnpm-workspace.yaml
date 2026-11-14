@@ -5,3 +5,7 @@ minimumReleaseAge: 4320
 allowBuilds:
   esbuild: false
   "@parcel/watcher": false
+# Storybook 10.6.7이 받는 0.7.x는 취약한 glob·minimatch를 쓴다. react-docgen 설정에서는 실행되지 않지만 경고를 없애려고 올린다.
+# Storybook을 올릴 때 이 플러그인 범위가 0.9 이상이면 지운다.
+overrides:
+  "@joshwooding/vite-plugin-react-docgen-typescript": 0.9.1
