@@ -16,6 +16,8 @@ const COLORS = [
   "danger",
   "success",
   "warning",
+  "raised",
+  "overlay",
 ] as const;
 
 function Swatch({ name }: { name: string }) {

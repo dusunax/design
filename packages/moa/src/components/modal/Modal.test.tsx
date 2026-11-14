@@ -46,3 +46,14 @@ test("inherits dark theme inside portal", async () => {
   await userEvent.click(screen.getByRole("button", { name: "Open" }));
   expect(screen.getByRole("dialog").closest('[data-moa-theme="dark"]')).not.toBeNull();
 });
+test("hideClose removes the close button but Escape still closes", async () => {
+  render(
+    <Modal trigger={<button type="button">Open</button>} title="Title" hideClose>
+      Body
+    </Modal>,
+  );
+  await userEvent.click(screen.getByRole("button", { name: "Open" }));
+  expect(screen.queryByRole("button", { name: "Close" })).not.toBeInTheDocument();
+  await userEvent.keyboard("{Escape}");
+  expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+});
