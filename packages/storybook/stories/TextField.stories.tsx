@@ -1,5 +1,6 @@
 import { TextField } from "@dusunax/moa";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Prop } from "./_Prop";
 import { useState } from "react";
 
 const meta: Meta<typeof TextField> = {
@@ -21,13 +22,25 @@ type Story = StoryObj<typeof TextField>;
 export const Playground: Story = {};
 export const Variants: Story = {
   render: () => (
-    <div style={{ display: "grid", gap: 12, maxWidth: 320 }}>
-      <TextField label="shortText" defaultValue="홍길동" />
-      <TextField label="longText" variant="longText" defaultValue={"여러 줄 입력이다.\n줄바꿈도 그대로 보인다."} />
-      <TextField label="number" variant="number" defaultValue="42" />
-      <TextField label="obscured" variant="obscured" defaultValue="secret123" />
-      <TextField label="disabled" disabled defaultValue="수정할 수 없음" />
-      <TextField label="invalid" invalid defaultValue="이미 쓰고 있는 이름" />
+    <div style={{ display: "grid", gap: 16, maxWidth: 320 }}>
+      <Prop code='variant="shortText" (기본값)' stretch>
+        <TextField label="라벨" defaultValue="입력값" />
+      </Prop>
+      <Prop code='variant="longText"' stretch>
+        <TextField label="라벨" variant="longText" defaultValue={"여러 줄 입력값\n두 번째 줄"} />
+      </Prop>
+      <Prop code='variant="number"' stretch>
+        <TextField label="라벨" variant="number" defaultValue="42" />
+      </Prop>
+      <Prop code='variant="obscured"' stretch>
+        <TextField label="비밀번호" variant="obscured" defaultValue="secret123" />
+      </Prop>
+      <Prop code="disabled" stretch>
+        <TextField label="라벨" disabled defaultValue="입력값" />
+      </Prop>
+      <Prop code="invalid" stretch>
+        <TextField label="라벨" invalid defaultValue="입력값" />
+      </Prop>
     </div>
   ),
 };

@@ -1,5 +1,6 @@
 import { ICON_NAMES, Icon } from "@dusunax/moa";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Prop } from "./_Prop";
 
 const meta: Meta<typeof Icon> = {
   title: "Components/Icon",
@@ -21,15 +22,20 @@ type Story = StoryObj<typeof Icon>;
 export const Playground: Story = {};
 export const Usage: Story = {
   render: () => (
-    <div style={{ display: "flex", gap: 16, alignItems: "end" }}>
+    <div style={{ display: "flex", gap: 20, alignItems: "end", flexWrap: "wrap" }}>
       {[16, 20, 24, 32].map((s) => (
-        <Icon key={s} name="star" size={s} />
+        <Prop key={s} code={`size={${s}}`}>
+          <Icon name="star" size={s} />
+        </Prop>
       ))}
-      <Icon name="warning" label="경고" />
-      <Icon name={{ svgPath: "M480-80 80-480l400-400 400 400L480-80Z" }} />
+      <Prop code='label="경고"'>
+        <Icon name="warning" label="경고" />
+      </Prop>
+      <Prop code="{ svgPath }">
+        <Icon name={{ svgPath: "M480-80 80-480l400-400 400 400L480-80Z" }} />
+      </Prop>
     </div>
   ),
-  parameters: { docs: { description: { story: "크기 16·20·24·32, label이 있는 아이콘, svgPath로 그린 아이콘" } } },
 };
 export const All: Story = {
   render: () => (

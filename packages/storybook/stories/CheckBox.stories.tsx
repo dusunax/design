@@ -1,5 +1,6 @@
 import { CheckBox } from "@dusunax/moa";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Prop } from "./_Prop";
 
 const meta: Meta<typeof CheckBox> = {
   title: "Components/CheckBox",
@@ -16,10 +17,19 @@ type Story = StoryObj<typeof CheckBox>;
 export const Playground: Story = {};
 export const States: Story = {
   render: () => (
-    <div style={{ display: "grid", gap: 8 }}>
-      <CheckBox label="기본" />
-      <CheckBox label="체크됨" defaultValue />
-      <CheckBox label="비활성" disabled defaultValue />
+    <div style={{ display: "grid", gap: 12 }}>
+      <Prop code="(기본)">
+        <CheckBox label="라벨" />
+      </Prop>
+      <Prop code="defaultValue">
+        <CheckBox label="라벨" defaultValue />
+      </Prop>
+      <Prop code="disabled">
+        <CheckBox label="라벨" disabled />
+      </Prop>
+      <Prop code="disabled defaultValue">
+        <CheckBox label="라벨" disabled defaultValue />
+      </Prop>
     </div>
   ),
 };

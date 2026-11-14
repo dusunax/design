@@ -1,6 +1,7 @@
 import { Card, Column, Divider, List, Row } from "@dusunax/moa";
 import type { Justify } from "@dusunax/moa";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Prop } from "./_Prop";
 
 const Box = ({ label }: { label: string }) => (
   <div style={{ padding: "4px 10px", border: "1px dashed var(--moa-color-border)", borderRadius: 4 }}>{label}</div>
@@ -26,14 +27,13 @@ export const RowJustify: StoryObj = {
   render: () => (
     <Column>
       {JUSTIFY.map((j) => (
-        <div key={j}>
-          <code>{j}</code>
-          <Row justify={j} className="story-frame">
+        <Prop key={j} code={`<Row justify="${j}">`} stretch>
+          <Row justify={j} className="story-frame" weight={1}>
             <Box label="A" />
             <Box label="B" />
             <Box label="C" />
           </Row>
-        </div>
+        </Prop>
       ))}
     </Column>
   ),
@@ -43,11 +43,12 @@ export const ColumnAlign: StoryObj = {
   render: () => (
     <Row>
       {(["start", "center", "end", "stretch"] as const).map((a) => (
-        <Column key={a} align={a} weight={1} className="story-frame">
-          <code>{a}</code>
-          <Box label="짧음" />
-          <Box label="조금 더 긴 항목" />
-        </Column>
+        <Prop key={a} code={`<Column align="${a}">`} stretch>
+          <Column align={a} className="story-frame" weight={1}>
+            <Box label="짧음" />
+            <Box label="조금 더 긴 항목" />
+          </Column>
+        </Prop>
       ))}
     </Row>
   ),
@@ -56,8 +57,12 @@ export const ColumnAlign: StoryObj = {
 export const Weight: StoryObj = {
   render: () => (
     <Row>
-      <Card weight={1}>weight 1</Card>
-      <Card weight={2}>weight 2</Card>
+      <Card weight={1}>
+        <code>weight=1</code>
+      </Card>
+      <Card weight={2}>
+        <code>weight=2</code>
+      </Card>
     </Row>
   ),
 };

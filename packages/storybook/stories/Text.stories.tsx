@@ -1,5 +1,6 @@
 import { Text } from "@dusunax/moa";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Prop } from "./_Prop";
 
 const meta: Meta<typeof Text> = {
   title: "Components/Text",
@@ -21,9 +22,13 @@ type Story = StoryObj<typeof Text>;
 export const Playground: Story = {};
 export const Variants: Story = {
   render: () => (
-    <div style={{ display: "grid", gap: 8 }}>
-      <Text text="body: 에이전트가 보낸 응답 본문이다." />
-      <Text variant="caption" text="caption: 보조 설명이다." />
+    <div style={{ display: "grid", gap: 12 }}>
+      <Prop code='variant="body" (기본값, 15px)'>
+        <Text text="에이전트가 보낸 응답 본문이다." />
+      </Prop>
+      <Prop code='variant="caption" (12px)'>
+        <Text variant="caption" text="보조 설명이다." />
+      </Prop>
     </div>
   ),
 };
