@@ -53,3 +53,9 @@ test("keeps selection hidden by filter", async () => {
   await userEvent.clear(search);
   expect(screen.getByRole("checkbox", { name: "Banana" })).toBeChecked();
 });
+test("shows empty text when nothing matches", async () => {
+  render(<ChoicePicker label="Fruit" options={options} filterable emptyText="None" />);
+  await userEvent.type(screen.getByRole("searchbox", { name: "Fruit" }), "zz");
+  expect(screen.getByText("None")).toBeInTheDocument();
+  expect(screen.queryByRole("radio")).not.toBeInTheDocument();
+});
