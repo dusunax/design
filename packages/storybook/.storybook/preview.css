@@ -1,0 +1,4 @@
+.story-frame {
+  border: 1px solid var(--moa-color-border);
+  padding: 8px;
+}

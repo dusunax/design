@@ -1,5 +1,6 @@
 import type { Preview } from "@storybook/react-vite";
 import "@dusunax/moa/styles.css";
+import "./preview.css";
 
 const preview: Preview = {
   globalTypes: {
