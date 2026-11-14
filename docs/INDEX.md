@@ -30,7 +30,7 @@ ID의 순서와 상태는 이 문서에만 적는다. 다른 문서는 이 표�
 | DOC-6 | plan | MOA-1\~MOA-6 구현 플랜 | DOC-5 | — | 완료 | `plans/2026-11-14-moa-foundation.md` | — |
 | SEC-1 | review | 플랜 보안 검토 | DOC-5, DOC-6 | — | 완료 | `reviews/2026-11-14-SEC-1.md` | — |
 | MOA-1 | 구현 | init: 레포 정리, 토큰, Storybook | — | SEC-1 | 완료 | 브랜치 `MOA-1`, Step은 DOC-6 | [#1](https://github.com/dusunax/design/pull/1) |
-| MOA-2 | 구현 | 기본 부품 | MOA-1 | — | 진행 | 브랜치 `MOA-2`, Step은 DOC-6 | — |
+| MOA-2 | 구현 | 기본 부품 | MOA-1 | — | 완료 | 브랜치 `MOA-2`, Step은 DOC-6 | [#2](https://github.com/dusunax/design/pull/2) |
 | MOA-3 | 구현 | 의존성 있는 부품 | MOA-2 | — | 대기 | 브랜치 `MOA-3`, Step은 DOC-6 | — |
 | MOA-4 | 구현 | 에이전트 부품 | MOA-3 | — | 대기 | 브랜치 `MOA-4`, Step은 DOC-6 | — |
 | SEC-2 | review | 구현 코드 보안 점검 (첫 npm 배포 전) | MOA-4 | — | 대기 | — | — |
