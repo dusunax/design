@@ -22,10 +22,10 @@ export const Playground: Story = {};
 export const Variants: Story = {
   render: () => (
     <div style={{ display: "grid", gap: 12, maxWidth: 320 }}>
-      <TextField label="shortText" placeholder="홍길동" />
-      <TextField label="longText" variant="longText" />
-      <TextField label="number" variant="number" placeholder="0" />
-      <TextField label="obscured" variant="obscured" />
+      <TextField label="shortText" defaultValue="홍길동" />
+      <TextField label="longText" variant="longText" defaultValue={"여러 줄 입력이다.\n줄바꿈도 그대로 보인다."} />
+      <TextField label="number" variant="number" defaultValue="42" />
+      <TextField label="obscured" variant="obscured" defaultValue="secret123" />
       <TextField label="disabled" disabled defaultValue="수정할 수 없음" />
       <TextField label="invalid" invalid defaultValue="이미 쓰고 있는 이름" />
     </div>
