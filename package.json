@@ -1,48 +1,15 @@
 {
-  "name": "design-system-dusunax",
-  "version": "0.1.0",
+  "name": "moa",
   "private": true,
-  "scripts": {
-    "storybook": "storybook dev -p 6013",
-    "build-storybook": "storybook build"
-  },
-  "description": "A design system for UI packages",
-  "author": "dusunax",
   "license": "MIT",
-  "dependencies": {
-    "react": "^19",
-    "react-dom": "^19"
+  "packageManager": "pnpm@12.18.0",
+  "engines": {
+    "node": ">=24"
   },
-  "devDependencies": {
-    "@chromatic-com/storybook": "^3.2.6",
-    "@storybook/addon-a11y": "^8.6.12",
-    "@storybook/addon-actions": "^8.6.12",
-    "@storybook/addon-essentials": "^8.6.12",
-    "@storybook/addon-events": "^6.2.9",
-    "@storybook/addon-interactions": "^8.6.12",
-    "@storybook/addon-links": "^8.6.11",
-    "@storybook/addon-viewport": "^8.6.12",
-    "@storybook/blocks": "^8.6.11",
-    "@storybook/nextjs": "latest",
-    "@storybook/react": "latest",
-    "@storybook/test": "latest",
-    "@types/node": "^22",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "autoprefixer": "^10.4.20",
-    "chromatic": "^11.28.0",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "cmdk": "1.0.4",
-    "event-emitter": "^0.3.5",
-    "path": "latest",
-    "postcss": "^8",
-    "react-multi-touch": "^1.0.28",
-    "storybook": "latest",
-    "tailwind-merge": "^2.5.5",
-    "tailwindcss": "^3.4.17",
-    "tailwindcss-animate": "^1.0.7",
-    "typescript": "^5",
-    "webpack": "latest"
+  "scripts": {
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "typecheck": "pnpm -r typecheck",
+    "storybook": "pnpm --filter @dusunax/moa-storybook dev"
   }
 }
