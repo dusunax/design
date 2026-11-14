@@ -40,7 +40,7 @@ export const Variants: Story = {
 export const All: Story = {
   parameters: { docs: { source: { code: "import { ICON_NAMES, Icon } from \"@dusunax/moa\";\n\nICON_NAMES.map((name) => <Icon key={name} name={name} />)", language: "tsx" } } },
   render: () => (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(120px, 1fr))", gap: 12 }}>
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))", gap: 12 }}>
       {ICON_NAMES.map((n) => (
         <div key={n} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 12 }}>
           <Icon name={n} size={20} />
