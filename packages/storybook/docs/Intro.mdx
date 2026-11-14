@@ -1,0 +1,19 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Intro" />
+
+# moa
+
+moa는 에이전트 UI를 위한 경량 React 부품 모음이다. 부품 이름과 prop은 A2UI v1.0 basic catalog와 맞추고, 스타일은 `--moa-*` 토큰을 쓰는 플레인 CSS 한 파일로 배포한다.
+
+## 사용법
+
+```bash
+pnpm add @dusunax/moa
+```
+
+```tsx
+import "@dusunax/moa/styles.css";
+```
+
+다크 모드는 감싸는 요소에 `data-moa-theme="dark"`를 붙인다.
