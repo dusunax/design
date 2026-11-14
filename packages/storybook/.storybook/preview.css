@@ -5,8 +5,10 @@
 
 .story-prop {
   display: grid;
+  grid-template-rows: 1fr auto;
   gap: 6px;
   margin: 0;
+  min-width: 0;
 }
 
 .story-prop-sample {

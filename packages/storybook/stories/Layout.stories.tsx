@@ -1,7 +1,7 @@
 import { Card, Column, Divider, List, Row } from "@dusunax/moa";
 import type { Justify } from "@dusunax/moa";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Prop } from "./_Prop";
+import { Prop, PropGrid } from "./_Prop";
 
 // 정렬 차이가 잘 보이도록 항목은 강조색으로 채운다.
 const Box = ({ label }: { label: string }) => (
@@ -38,7 +38,7 @@ export const RowJustify: StoryObj = {
   render: () => (
     <Column>
       {JUSTIFY.map((j) => (
-        <Prop key={j} code={`<Row justify="${j}">`} stretch>
+        <Prop key={j} code={`<Row justify="${j}">`}>
           <Row justify={j} weight={1}>
             <Box label="A" />
             <Box label="B" />
@@ -52,16 +52,16 @@ export const RowJustify: StoryObj = {
 
 export const ColumnAlign: StoryObj = {
   render: () => (
-    <Row>
+    <PropGrid>
       {(["start", "center", "end", "stretch"] as const).map((a) => (
-        <Prop key={a} code={`<Column align="${a}">`} stretch>
+        <Prop key={a} code={`<Column align="${a}">`}>
           <Column align={a} weight={1}>
             <Box label="짧음" />
             <Box label="조금 더 긴 항목" />
           </Column>
         </Prop>
       ))}
-    </Row>
+    </PropGrid>
   ),
 };
 

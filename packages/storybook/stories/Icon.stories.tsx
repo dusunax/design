@@ -1,6 +1,6 @@
 import { ICON_NAMES, Icon } from "@dusunax/moa";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Prop } from "./_Prop";
+import { Prop, PropGrid } from "./_Prop";
 
 const meta: Meta<typeof Icon> = {
   title: "Components/Icon",
@@ -22,7 +22,7 @@ type Story = StoryObj<typeof Icon>;
 export const Playground: Story = {};
 export const Usage: Story = {
   render: () => (
-    <div style={{ display: "flex", gap: 20, alignItems: "end", flexWrap: "wrap" }}>
+    <PropGrid min={140}>
       {[16, 20, 24, 32].map((s) => (
         <Prop key={s} code={`size={${s}}`}>
           <Icon name="star" size={s} />
@@ -34,7 +34,7 @@ export const Usage: Story = {
       <Prop code="{ svgPath }">
         <Icon name={{ svgPath: "M480-80 80-480l400-400 400 400L480-80Z" }} />
       </Prop>
-    </div>
+    </PropGrid>
   ),
 };
 export const All: Story = {

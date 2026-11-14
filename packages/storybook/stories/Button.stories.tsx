@@ -1,6 +1,6 @@
 import { Button, Icon } from "@dusunax/moa";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Prop } from "./_Prop";
+import { Prop, PropGrid } from "./_Prop";
 
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
@@ -22,7 +22,7 @@ export const Playground: Story = {};
 
 export const Variants: Story = {
   render: () => (
-    <div style={{ display: "flex", gap: 16, flexWrap: "wrap", alignItems: "start" }}>
+    <PropGrid>
       <Prop code='variant="default"'>
         <Button>버튼</Button>
       </Prop>
@@ -40,9 +40,9 @@ export const Variants: Story = {
       <Prop code="Icon + 글자">
         <Button variant="primary">
           <Icon name="send" size={16} />
-          보내기
+          버튼
         </Button>
       </Prop>
-    </div>
+    </PropGrid>
   ),
 };

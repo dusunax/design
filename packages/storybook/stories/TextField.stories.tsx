@@ -23,22 +23,22 @@ export const Playground: Story = {};
 export const Variants: Story = {
   render: () => (
     <div style={{ display: "grid", gap: 16, maxWidth: 320 }}>
-      <Prop code='variant="shortText" (기본값)' stretch>
+      <Prop code='variant="shortText" (기본값)'>
         <TextField label="라벨" defaultValue="입력값" />
       </Prop>
-      <Prop code='variant="longText"' stretch>
+      <Prop code='variant="longText"'>
         <TextField label="라벨" variant="longText" defaultValue={"여러 줄 입력값\n두 번째 줄"} />
       </Prop>
-      <Prop code='variant="number"' stretch>
+      <Prop code='variant="number"'>
         <TextField label="라벨" variant="number" defaultValue="42" />
       </Prop>
-      <Prop code='variant="obscured"' stretch>
+      <Prop code='variant="obscured"'>
         <TextField label="비밀번호" variant="obscured" defaultValue="secret123" />
       </Prop>
-      <Prop code="disabled" stretch>
+      <Prop code="disabled">
         <TextField label="라벨" disabled defaultValue="입력값" />
       </Prop>
-      <Prop code="invalid" stretch>
+      <Prop code="invalid">
         <TextField label="라벨" invalid defaultValue="입력값" />
       </Prop>
     </div>
