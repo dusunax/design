@@ -517,7 +517,7 @@ test("caption variant uses caption size", () => {
 - Produces:
   - `ICON_NAMES`: catalog의 59개 이름을 그대로 담은 readonly 튜플이다(`accountCircle`부터 `warning`까지, 스펙의 catalog 목록 순서).
   - `type IconName = (typeof ICON_NAMES)[number]`
-  - `Icon(props: BaseProps & { name: IconName | { svgPath: string }; size?: number; label?: string }): JSX.Element`. `size` 기본값은 24다. `label`이 없으면 `aria-hidden="true"`, 있으면 `role="img"`와 `aria-label`을 붙인다. `viewBox`는 `0 -960 960 960`(Material Symbols 기준)이고 `fill="currentColor"`다.
+  - `Icon(props: BaseProps & { name: IconName | BrandIconName | { svgPath: string }; size?: number; label?: string }): JSX.Element`. `BrandIconName`은 catalog 밖의 moa 전용 이름(`"moa"`)이고 `brand.ts`에 둔다. `ICON_NAMES`에는 넣지 않는다. `size` 기본값은 24다. `label`이 없으면 `aria-hidden="true"`, 있으면 `role="img"`와 `aria-label`을 붙인다. `viewBox`는 `0 -960 960 960`(Material Symbols 기준)이고 `fill="currentColor"`다.
   - `scripts/gen-icons.mjs`: camelCase 이름을 snake_case로 바꿔서 `@material-symbols/svg-400/outlined/<snake>.svg`의 `d` 속성을 읽는다. 결과는 `paths.ts`에 `Record<IconName, string>`으로 쓴다. 파일이 없는 이름은 스크립트 안의 `OVERRIDES` 표(예: `favoriteOff → heart_broken`)로 대체한다. 그래도 없으면 이름 목록을 출력하고 exit 1로 끝낸다.
 
 - [x] **MOA-2.13: 실패하는 테스트를 작성한다**

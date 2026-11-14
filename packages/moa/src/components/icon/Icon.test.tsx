@@ -17,3 +17,8 @@ test("accepts custom svgPath", () => {
   const { container } = render(<Icon name={{ svgPath: "M0 0h10" }} />);
   expect(container.querySelector("path")).toHaveAttribute("d", "M0 0h10");
 });
+test("renders the moa brand icon outside the catalog", () => {
+  const { container } = render(<Icon name="moa" />);
+  expect(ICON_NAMES).not.toContain("moa");
+  expect(container.querySelector("path")?.getAttribute("d")).toMatch(/^M/);
+});
