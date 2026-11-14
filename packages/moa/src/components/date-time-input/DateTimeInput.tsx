@@ -12,6 +12,8 @@ export type DateTimeInputProps = BaseProps & {
   enableTime?: boolean;
   min?: string;
   max?: string;
+  /** 네이티브 검증으로 잡을 수 없는 오류(서버 검증 등)를 표시한다. */
+  invalid?: boolean;
 };
 
 function inputType(enableDate?: boolean, enableTime?: boolean): "date" | "time" | "datetime-local" {
@@ -29,6 +31,7 @@ export function DateTimeInput({
   enableTime,
   min,
   max,
+  invalid,
   weight,
   className,
 }: DateTimeInputProps): JSX.Element {
@@ -45,6 +48,7 @@ export function DateTimeInput({
         defaultValue={defaultValue}
         min={min}
         max={max}
+        aria-invalid={invalid || undefined}
         onChange={(e) => onChange?.(e.target.value)}
         className={clsx(fieldInputClass, controlHeightClass)}
       />

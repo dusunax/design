@@ -10,7 +10,7 @@ const meta: Meta<typeof TextField> = {
   parameters: {
     docs: {
       description: {
-        component: "`variant`는 shortText, longText, number, obscured다. `onChange`는 입력값 문자열을 넘기고, 숫자 입력을 비우면 빈 문자열이다.",
+        component: "`variant`는 shortText, longText, number, obscured다. 오류는 `invalid`로 표시하고, 네이티브 검증(`:user-invalid`)에 걸려도 같은 모습이 된다. `onChange`는 입력값 문자열을 넘기고, 숫자 입력을 비우면 빈 문자열이다.",
       },
     },
   },
@@ -27,6 +27,7 @@ export const Variants: Story = {
       <TextField label="number" variant="number" placeholder="0" />
       <TextField label="obscured" variant="obscured" />
       <TextField label="disabled" disabled defaultValue="수정할 수 없음" />
+      <TextField label="invalid" invalid defaultValue="이미 쓰고 있는 이름" />
     </div>
   ),
 };

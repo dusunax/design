@@ -14,6 +14,8 @@ export type TextFieldProps = BaseProps & {
   placeholder?: string;
   variant?: TextFieldVariant;
   disabled?: boolean;
+  /** 네이티브 검증으로 잡을 수 없는 오류(서버 검증 등)를 표시한다. */
+  invalid?: boolean;
 };
 
 const inputType: Record<Exclude<TextFieldVariant, "longText">, { type: string; inputMode?: "decimal" }> = {
@@ -30,6 +32,7 @@ export function TextField({
   placeholder,
   variant = "shortText",
   disabled,
+  invalid,
   weight,
   className,
 }: TextFieldProps): JSX.Element {
@@ -40,6 +43,7 @@ export function TextField({
     defaultValue,
     placeholder,
     disabled,
+    "aria-invalid": invalid || undefined,
     className: fieldInputClass,
     onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => onChange?.(e.target.value),
   };

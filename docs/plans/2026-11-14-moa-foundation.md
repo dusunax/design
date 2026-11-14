@@ -214,7 +214,7 @@ git commit -m "chore: init moa 디자인 시스템" -m "pnpm 모노레포와 @du
   - 조작 요소(입력, 체크박스, default 버튼)의 테두리는 배경 대비 3:1(WCAG 1.4.11)을 넘는 `border-strong`, 장식 테두리(카드, 구분선)는 `border`를 쓴다.
   - 읽는 본문(Text body, 메시지)은 `text-prose`, 조작 요소는 `text-body`다.
   - 입력 라벨은 `text-body` `font-medium` `text-fg`다. 입력값보다 약하게 만들지 않는다.
-  - 입력 오류는 prop 대신 네이티브 검증(`:user-invalid`)으로 `danger` 테두리를 보인다.
+  - 입력 오류는 네이티브 검증(`:user-invalid`)과 `invalid` prop(`aria-invalid`) 두 경로 모두 같은 `danger` 테두리로 보인다.
   - 입력 포커스는 테두리를 `primary`로 바꾸고 같은 색 1px 외곽선(간격 0)을 붙여 2px 한 줄로 보인다. 회색 테두리 위에 외곽선을 겹치지 않는다. 버튼·체크박스는 `:focus-visible` 2px 외곽선, 간격 2px다.
   - 한 줄 입력과 버튼은 높이 36px(`h-9`)로 맞춘다. preflight가 없어 입력은 content-box로 계산되므로 `box-border`를 준다.
   - disabled는 투명도 대신 `surface` 배경, `fg-muted` 글자, `border` 테두리로 보인다.
@@ -601,7 +601,7 @@ test("accepts custom svgPath", () => {
 - Modify: `tsdown.config.ts`, `src/index.ts`
 
 **Interfaces:**
-- Produces: `TextField(props: BaseProps & { label: string; value?: string; defaultValue?: string; onChange?: (value: string) => void; placeholder?: string; variant?: "shortText" | "longText" | "number" | "obscured"; disabled?: boolean })`
+- Produces: `TextField(props: BaseProps & { label: string; value?: string; defaultValue?: string; onChange?: (value: string) => void; placeholder?: string; variant?: "shortText" | "longText" | "number" | "obscured"; disabled?: boolean; invalid?: boolean })`
   - variant별 요소: `shortText`는 `<input type="text">`, `longText`는 `<textarea rows={3}>`, `number`는 `<input type="number" inputMode="decimal">`, `obscured`는 `<input type="password">`다.
   - `label`은 `useId`로 연결한다. `onChange`는 이벤트가 아니라 문자열을 넘긴다.
 
@@ -639,7 +639,7 @@ test("number variant reports empty string when cleared", async () => {
 - Produces:
   - `CheckBox(props: BaseProps & { label: string; value?: boolean; defaultValue?: boolean; onChange?: (checked: boolean) => void; disabled?: boolean })`
     - 네이티브 `<input type="checkbox">`에 `moa:appearance-none`을 적용한다. 체크 표시는 Material Symbols `check` path 하나만 부품 안에 두고 그린다. `Icon`을 import하면 아이콘 59개가 모두 번들에 들어간다. catalog처럼 체크 상태를 `value`로 받는다.
-  - `DateTimeInput(props: BaseProps & { label: string; value?: string; defaultValue?: string; onChange?: (iso: string) => void; enableDate?: boolean; enableTime?: boolean; min?: string; max?: string })`
+  - `DateTimeInput(props: BaseProps & { label: string; value?: string; defaultValue?: string; onChange?: (iso: string) => void; enableDate?: boolean; enableTime?: boolean; min?: string; max?: string; invalid?: boolean })`
     - 입력 type: 날짜와 시간이 모두 켜지면 `datetime-local`, 시간만 켜지면 `time`, 그 밖에는 `date`다. 둘 다 꺼진 경우도 `date`다.
 
 - [x] **MOA-2.37: 테스트를 작성한다**

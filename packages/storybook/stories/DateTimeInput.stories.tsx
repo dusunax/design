@@ -25,6 +25,7 @@ export const Variants: Story = {
       <DateTimeInput label="시간 (time)" enableTime />
       <DateTimeInput label="일시 (datetime-local)" enableDate enableTime />
       <DateTimeInput label="범위 제한 (min/max)" enableDate min="2026-11-01" max="2026-11-30" />
+      <DateTimeInput label="invalid" enableDate invalid defaultValue="2026-12-25" />
     </div>
   ),
 };

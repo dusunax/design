@@ -26,3 +26,9 @@ test("invalid input shows danger border via :user-invalid", () => {
   render(<TextField label="N" variant="number" />);
   expect(screen.getByLabelText("N")).toHaveClass("moa:user-invalid:border-danger");
 });
+test("invalid sets aria-invalid only when true", () => {
+  const { rerender } = render(<TextField label="E" invalid />);
+  expect(screen.getByLabelText("E")).toHaveAttribute("aria-invalid", "true");
+  rerender(<TextField label="E" />);
+  expect(screen.getByLabelText("E")).not.toHaveAttribute("aria-invalid");
+});

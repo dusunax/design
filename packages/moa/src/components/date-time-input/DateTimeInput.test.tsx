@@ -20,3 +20,7 @@ test("DateTimeInput passes min/max through", () => {
   expect(input).toHaveAttribute("min", "2026-01-01");
   expect(input).toHaveAttribute("max", "2026-12-31");
 });
+test("DateTimeInput invalid sets aria-invalid", () => {
+  render(<DateTimeInput label="When" invalid />);
+  expect(screen.getByLabelText("When")).toHaveAttribute("aria-invalid", "true");
+});
