@@ -29,6 +29,7 @@ const JUSTIFY_USE: Partial<Record<Justify, string>> = {
   center: "빈 상태 안내처럼 가운데 둘 때",
   end: "확인·취소 버튼 묶음",
   spaceBetween: "제목과 동작 버튼을 양끝에",
+  stretch: "항목이 늘어나지 않으면 start와 같다. 항목에 weight를 줄 때",
 };
 
 const ALIGN_USE: Partial<Record<Align, string>> = {

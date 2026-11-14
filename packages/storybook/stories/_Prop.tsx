@@ -13,10 +13,10 @@ export function Prop({ code, use, children }: { code: string; use?: string; chil
   );
 }
 
-/** 작은 예시를 같은 너비의 칸으로 나란히 놓는다. */
+/** 작은 예시를 같은 너비의 칸으로 나란히 놓는다. 캡션 줄 수가 달라도 같은 줄의 상자 높이와 캡션 위치가 맞는다. */
 export function PropGrid({ min = 180, children }: { min?: number; children: ReactNode }) {
   return (
-    <div style={{ display: "grid", gridTemplateColumns: `repeat(auto-fill, minmax(${min}px, 1fr))`, gap: 16 }}>
+    <div className="story-prop-grid" style={{ gridTemplateColumns: `repeat(auto-fill, minmax(${min}px, 1fr))` }}>
       {children}
     </div>
   );

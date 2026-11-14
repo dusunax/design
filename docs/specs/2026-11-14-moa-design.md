@@ -126,7 +126,7 @@ Text, Image, Icon, Row, Column, List, Card, Divider, Button, TextField, CheckBox
 | Modal | `@radix-ui/react-dialog` |
 | Tabs | `@radix-ui/react-tabs` |
 | Slider | `@radix-ui/react-slider` |
-| ChoicePicker (`mutuallyExclusive`) | `@radix-ui/react-radio-group` |
+| ChoicePicker (단일 선택 + `checkbox`) | `@radix-ui/react-radio-group` |
 | ChoicePicker (`chips`) | `@radix-ui/react-toggle-group` |
 
 - Radix를 쓰는 이유: 같은 5개 부품의 실측 크기가 Radix 36.2KB, Base UI 1.9.0 60.8KB(gzip)다.

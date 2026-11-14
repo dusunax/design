@@ -29,13 +29,12 @@ description: >
 - 문서 언어는 한국어가 기본이고 영어를 지원어로 둔다. 부품 UI 문구(영어)와 별개다.
   - MOA-1\~MOA-5에서는 README와 Storybook 설명을 한국어로만 쓴다. 영어 지원은 MOA-6에서 한 번에 한다.
   - Storybook 설명은 스토리 파일의 `parameters.docs.description`에 한국어 문자열로 바로 쓴다. 설명은 화면만으로 알 수 없는 사용 기준이 있을 때만 쓴다(예: primary는 한 화면에 하나). 이름만 봐도 아는 용도 설명은 쓰지 않는다. MOA-6에서 이 문자열을 사전으로 옮긴다. 사이드바 제목, 스토리 이름, args·prop 이름은 처음부터 영어로 쓴다.
-  - 문구 prop이 있는 부품은 한국어 문구를 넣은 `Localized` 스토리를 하나 둔다.
 - 스토리 제목은 역할별 폴더를 쓴다: `Foundations/*`(토큰), `Layout/*`, `Display/*`, `Actions/*`, `Inputs/*`. 순서는 `preview.tsx`의 `storySort`로 고정한다.
-- 스토리는 args로 조작하는 `Playground` 하나와, 단순 variant·상태를 한 화면에 모은 `Variants`(또는 `States`) 하나를 기본으로 둔다. variant마다 스토리를 따로 만들지 않는다. 정적인 예시(문법 모음 등)와 상태를 가진 예시(controlled)도 Variants에 넣는다. 상태가 필요하면 스토리 파일 최상위에 작은 예시 컴포넌트를 두고 Variants에서 쓴다. 오류 상태처럼 부품이 보여 주는 상태는 넣고, 보안 대책이나 공격 입력 같은 특수 케이스는 스토리와 설명에 넣지 않는다(테스트와 SEC 문서가 맡는다).
+- 스토리는 args로 조작하는 `Playground` 하나와, 단순 variant·상태를 한 화면에 모은 `Variants` 하나를 기본으로 둔다. variant마다 스토리를 따로 만들지 않는다. 정적인 예시(문법 모음 등)와 상태를 가진 예시(controlled)도 Variants에 넣는다. 상태가 필요하면 스토리 파일 최상위에 작은 예시 컴포넌트를 두고 Variants에서 쓴다. 오류 상태처럼 부품이 보여 주는 상태는 넣고, 보안 대책이나 공격 입력 같은 특수 케이스는 스토리와 설명에 넣지 않는다(테스트와 SEC 문서가 맡는다).
 - Show code는 그대로 복사해 쓸 수 있는 코드만 보인다. 스토리 도우미(`Prop`, `PropGrid`)가 들어가는 스토리는 `parameters.docs.source.code`에 실제 사용 코드를 적는다.
 - 문서 표의 Description은 부품 타입의 JSDoc에서 온다. 화면만으로 알 수 없는 prop(예: `onChange`가 넘기는 값, `weight`의 뜻)에만 JSDoc을 단다. Storybook은 문서 표를 위해 `@dusunax/moa`를 소스(`src`)로 불러온다. TypeScript 7에서는 react-docgen-typescript가 동작하지 않아 기본 react-docgen을 쓴다.
 - hover·focus 같은 상태는 `storybook-addon-pseudo-states` 툴바로 확인한다. 상태마다 예시를 따로 만들지 않는다.
-- 변형이 없는 부품(Card)은 Playground만 둔다.
+- 변형이 없는 부품(Card, Tabs)은 Playground만 둔다.
 - Variants 안의 예시는 내용을 `라벨`, `버튼`, `입력값`처럼 중립적으로 쓰고, 예시는 테두리 상자 안에, 어떤 prop으로 만든 상태인지는 상자 밖 코드 캡션으로 보인다(`stories/_Prop.tsx`). 캡션에는 코드 아래에 그 variant를 언제 쓰는지 한 줄(`use`)을 붙인다. 이름이나 화면만으로 알 수 있으면 쓰지 않는다. 작은 예시를 나란히 둘 때는 `PropGrid`로 같은 너비의 칸에 놓아, 상자 크기와 캡션 위치가 줄마다 맞게 한다. variant 이름을 라벨이나 버튼 글자로 쓰지 않는다. 비밀번호처럼 의미가 있어야 하는 경우만 예외다.
 - 의존성은 정확한 버전으로 저장하고, 배포된 지 3일이 안 된 버전은 쓰지 않는다. `pnpm-workspace.yaml`에 `saveExact: true`, `minimumReleaseAge: 4320`을 둔다. pnpm 12는 `.npmrc`의 `save-exact`를 읽지 않는다.
 - Storybook 빌드에 들어가는 환경 변수(`STORYBOOK_*`, `VITE_*`)에는 토큰이나 키를 넣지 않는다. Storybook은 Chromatic에 공개 배포된다. 허용 목록 밖의 변수는 `check-public-env.mjs`가 빌드 전에 막는다. 변수를 새로 쓰려면 허용 목록에 이름을 추가한다.
@@ -225,7 +224,7 @@ git commit -m "chore: init moa 디자인 시스템" -m "pnpm 모노레포와 @du
   - 한 줄 입력과 버튼은 높이 36px(`h-9`)로 맞춘다. preflight가 없어 입력은 content-box로 계산되므로 `box-border`를 준다.
   - disabled는 투명도 대신 `surface` 배경, `fg-muted` 글자, `border` 테두리로 보인다.
   - dark 테마는 `color-scheme: dark`를 설정해 날짜 아이콘·스피너·스크롤바 같은 브라우저 기본 UI도 dark로 그린다.
-  - 색상은 Radix Colors의 Gray(중성색)와 Teal(강조색)을 기준으로 하고, 글자색은 WCAG AA(4.5:1)를 넘도록 조정했다. `primary-fg`는 light에서 흰색, dark에서 검정이다.
+  - 색상은 Radix Colors의 Gray(중성색)와 Teal(강조색)을 기준으로 하고, 글자색은 WCAG AA(4.5:1)를 넘도록 조정했다. `primary-fg`는 light에서 흰색, dark에서 검정이다. `raised`와 `overlay`는 Modal처럼 페이지 위에 뜨는 표면과 그 뒤를 덮는 막이다. dark에서는 `raised`를 `bg`보다 한 단계 밝게(Radix Gray 2) 두어 떠 있는 것이 보이게 한다.
   - 토큰(아래 표)은 Tailwind 유틸리티 `moa:bg-surface`, `moa:text-fg-muted`, `moa:rounded-md`처럼 쓴다.
 
 | 토큰 | light | dark |
@@ -244,6 +243,8 @@ git commit -m "chore: init moa 디자인 시스템" -m "pnpm 모노레포와 @du
 | `--moa-color-danger` | `#ce2c31` | `#ff9592` |
 | `--moa-color-success` | `#218358` | `#3dd68c` |
 | `--moa-color-warning` | `#a05e00` | `#ffca16` |
+| `--moa-color-raised` | `#ffffff` | `#191919` |
+| `--moa-color-overlay` | `#00000066` (40%) | `#00000099` (60%) |
 | `--moa-radius-sm` / `md` / `lg` | `4px` / `8px` / `12px` | 동일 |
 | `--moa-text-caption` / `body` / `prose` | `12px` / `14px` / `15px`, 줄 높이 `1.4` / `1.5` / `1.6` | 동일 |
 
@@ -674,22 +675,22 @@ test("number variant reports empty string when cleared", async () => {
 - Modify: `package.json`(`@radix-ui/react-dialog@1.3.1`), `tsdown.config.ts`, `src/index.ts`
 
 **Interfaces:**
-- Produces: `Modal(props: BaseProps & { trigger: ReactElement; title: string; children: ReactNode; open?: boolean; onOpenChange?: (open: boolean) => void })`
-  - `trigger`는 Radix `Trigger asChild`로 감싼다. `title`은 필수이고 화면에 보이는 제목이다(Dialog 접근성 요구사항). 닫기 버튼은 `Icon name="close" label="Close"`다.
+- Produces: `Modal(props: BaseProps & { trigger: ReactElement; title: string; children: ReactNode; open?: boolean; onOpenChange?: (open: boolean) => void; hideClose?: boolean })`
+  - `trigger`는 Radix `Trigger asChild`로 감싼다. `title`은 필수이고 화면에 보이는 제목이다(Dialog 접근성 요구사항). 닫기 버튼의 접근성 이름은 "Close"다. `hideClose`는 catalog 밖 옵션으로, 본문에 닫는 버튼을 직접 둘 때 제목 옆 버튼을 숨긴다. Esc와 바깥 클릭으로는 계속 닫힌다. CheckBox처럼 close path 하나만 부품 안에 둔다(`Icon`을 import하면 아이콘 59개가 모두 번들에 들어간다).
   - 포털 안의 내용에도 테마가 적용되어야 한다. 그래서 Content에 트리거 근처 조상의 `data-moa-theme` 값을 복사한다. 조상을 찾는 방법은 `closest("[data-moa-theme]")`다.
 
-- [ ] **MOA-3.1: 테스트를 작성한다**
+- [x] **MOA-3.1: 테스트를 작성한다**
 
   - `opens from trigger and shows title as dialog name`: `getByRole("dialog", { name: "Title" })`
   - `closes on Escape and via close button`
   - `controlled open calls onOpenChange(false)`
   - `inherits dark theme inside portal`: `<div data-moa-theme="dark">`로 감싼 경우 dialog가 dark 테마를 가진 조상 안에 있거나, 그 속성을 직접 가지고 있어야 한다.
 
-- [ ] **MOA-3.2: 테스트를 실행해 실패하는지 확인한다**
-- [ ] **MOA-3.3: 구현한다**
-- [ ] **MOA-3.4: 테스트를 실행해 통과하는지 확인한다**
-- [ ] **MOA-3.5: 스토리를 작성한다** — 기본, controlled, 긴 내용 스크롤
-- [ ] **MOA-3.6: 커밋한다** — `feat(moa): Radix Dialog 기반 Modal 추가`
+- [x] **MOA-3.2: 테스트를 실행해 실패하는지 확인한다**
+- [x] **MOA-3.3: 구현한다**
+- [x] **MOA-3.4: 테스트를 실행해 통과하는지 확인한다**
+- [x] **MOA-3.5: 스토리를 작성한다** — 기본, controlled, 긴 내용 스크롤
+- [x] **MOA-3.6: 커밋한다** — `feat(moa): Radix Dialog 기반 Modal 추가`
 
 ---
 
@@ -706,18 +707,18 @@ test("number variant reports empty string when cleared", async () => {
   - `Slider(props: BaseProps & { label: string; min?: number; max: number; steps?: number; value?: number; defaultValue?: number; onChange?: (value: number) => void })`
     - `min` 기본값은 0이다. `step`은 `steps`가 있으면 `(max - min) / steps`, 없으면 `(max - min) / 100`이다. 단일 thumb만 지원한다. `aria-label`은 `label`이고, 현재 값을 라벨 옆에 표시한다.
 
-- [ ] **MOA-3.7: 테스트를 작성한다**
+- [x] **MOA-3.7: 테스트를 작성한다**
 
   - `Tabs switches panel with arrow keys`
   - `Tabs defaultIndex selects tab`
   - `Slider snaps to steps`: `min=0`, `max=10`, `steps=5`일 때 오른쪽 화살표 한 번에 `onChange(2)`가 호출된다.
   - `Slider exposes label`: `getByRole("slider", { name: "Volume" })`
 
-- [ ] **MOA-3.8: 테스트를 실행해 실패하는지 확인한다**
-- [ ] **MOA-3.9: 구현한다**
-- [ ] **MOA-3.10: 테스트를 실행해 통과하는지 확인한다**
-- [ ] **MOA-3.11: 스토리를 작성한다**
-- [ ] **MOA-3.12: 커밋한다** — `feat(moa): Radix 기반 Tabs·Slider 추가`
+- [x] **MOA-3.8: 테스트를 실행해 실패하는지 확인한다**
+- [x] **MOA-3.9: 구현한다**
+- [x] **MOA-3.10: 테스트를 실행해 통과하는지 확인한다**
+- [x] **MOA-3.11: 스토리를 작성한다**
+- [x] **MOA-3.12: 커밋한다** — `feat(moa): Radix 기반 Tabs·Slider 추가`
 
 ---
 
@@ -729,17 +730,17 @@ test("number variant reports empty string when cleared", async () => {
 
 **Interfaces:**
 - Consumes: MOA-2 CheckBox·DateTimeInput의 `CheckBox`
-- Produces: `ChoicePicker(props: BaseProps & { label: string; options: { label: string; value: string }[]; value?: string[]; defaultValue?: string[]; onChange?: (values: string[]) => void; variant?: "multipleSelection" | "mutuallyExclusive"; displayStyle?: "checkbox" | "chips"; filterable?: boolean; filterPlaceholder?: string })`
-  - 기본값은 `variant="mutuallyExclusive"`, `displayStyle="checkbox"`, `filterPlaceholder="Search"`다.
+- Produces: `ChoicePicker(props: BaseProps & { label: string; options: { label: string; value: string }[]; value?: string[]; defaultValue?: string[]; onChange?: (values: string[]) => void; variant?: "multipleSelection" | "mutuallyExclusive"; displayStyle?: "checkbox" | "chips"; filterable?: boolean; filterPlaceholder?: string; emptyText?: string })`
+  - 기본값은 `variant="mutuallyExclusive"`, `displayStyle="checkbox"`, `filterPlaceholder="Search"`, `emptyText="No results"`다.
   - 렌더링 조합:
     - 단일 선택 + checkbox → RadioGroup
     - 단일 선택 + chips → ToggleGroup `type="single"`
     - 다중 선택 + checkbox → CheckBox 목록
     - 다중 선택 + chips → ToggleGroup `type="multiple"`
   - 단일 선택이어도 값은 길이 0\~1인 배열이다(catalog의 `DynamicStringList`).
-  - `filterable`이면 label을 대소문자 구분 없이 부분 일치로 거른다. 그룹 이름은 `role="group"`(또는 radiogroup)에 `aria-label={label}`로 붙인다.
+  - `filterable`이면 label을 대소문자 구분 없이 부분 일치로 거른다. 검색창 왼쪽에 돋보기 아이콘을 두고, 목록은 최대 240px에서 스크롤한다. 결과가 없으면 `emptyText`를 보인다. 그룹 이름은 `role="group"`(또는 radiogroup)에 `aria-labelledby`로 화면의 라벨을 연결해 붙인다.
 
-- [ ] **MOA-3.13: 테스트를 작성한다**
+- [x] **MOA-3.13: 테스트를 작성한다**
 
   - `mutuallyExclusive checkbox is a radiogroup`
   - `multipleSelection chips toggles multiple values`: `onChange(["a","b"])`가 호출된다.
@@ -747,14 +748,14 @@ test("number variant reports empty string when cleared", async () => {
   - `filter narrows options case-insensitively`
   - `keeps selection hidden by filter`: `defaultValue=["b"]`인 상태에서 검색어를 입력해 b가 목록에서 사라져도 `onChange`가 호출되지 않는다. 검색어를 지우면 b가 여전히 선택되어 있다.
 
-- [ ] **MOA-3.14: 테스트를 실행해 실패하는지 확인한다**
-- [ ] **MOA-3.15: 구현한다**
+- [x] **MOA-3.14: 테스트를 실행해 실패하는지 확인한다**
+- [x] **MOA-3.15: 구현한다**
 
   선택 상태는 부품 하나에서 관리하고, 네 가지 렌더러는 그 상태를 표시만 한다.
 
-- [ ] **MOA-3.16: 테스트를 실행해 통과하는지 확인한다**
-- [ ] **MOA-3.17: 스토리를 작성한다** — 네 조합과 filterable
-- [ ] **MOA-3.18: 커밋한다** — `feat(moa): ChoicePicker 추가`
+- [x] **MOA-3.16: 테스트를 실행해 통과하는지 확인한다**
+- [x] **MOA-3.17: 스토리를 작성한다** — 네 조합과 filterable
+- [x] **MOA-3.18: 커밋한다** — `feat(moa): ChoicePicker 추가`
 
 ---
 

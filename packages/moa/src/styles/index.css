@@ -18,6 +18,9 @@
   --color-danger: #ce2c31;
   --color-success: #218358;
   --color-warning: #a05e00;
+  /* Modal처럼 페이지 위에 뜨는 표면과 그 뒤를 덮는 막 */
+  --color-raised: #ffffff;
+  --color-overlay: #00000066;
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 12px;
@@ -46,4 +49,6 @@
   --moa-color-danger: #ff9592;
   --moa-color-success: #3dd68c;
   --moa-color-warning: #ffca16;
+  --moa-color-raised: #191919;
+  --moa-color-overlay: #00000099;
 }
