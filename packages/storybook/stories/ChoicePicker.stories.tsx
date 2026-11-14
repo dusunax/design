@@ -19,6 +19,9 @@ export default meta;
 type Story = StoryObj<typeof ChoicePicker>;
 
 export const Playground: Story = {};
+export const Localized: Story = {
+  args: { options: MANY, variant: "multipleSelection", filterable: true, filterPlaceholder: "검색", defaultValue: ["2"] },
+};
 export const Variants: Story = {
   parameters: {
     docs: {
@@ -30,7 +33,7 @@ export const Variants: Story = {
   },
   render: () => (
     <div style={{ display: "grid", gap: 16, maxWidth: 360 }}>
-      <Prop code="(기본값) 단일 선택 · checkbox" use="선택지가 적은 단일 선택">
+      <Prop code='variant="mutuallyExclusive" (기본값)' use="선택지가 적은 단일 선택">
         <ChoicePicker label="라벨" options={OPTIONS} defaultValue={["1"]} />
       </Prop>
       <Prop code='displayStyle="chips"' use="필터처럼 가로로 짧게 둘 때">

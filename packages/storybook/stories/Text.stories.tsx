@@ -22,7 +22,7 @@ export const Variants: Story = {
       <Prop code='variant="caption"' use="출처, 시각 같은 보조 정보">
         <Text variant="caption" text="보조 설명이다." />
       </Prop>
-      <Prop code="Markdown">
+      <Prop code='text="**굵게**, *기울임*, `코드`, [링크](…)"' use="줄바꿈은 \n">
         <Text text={"**굵게**, *기울임*, `코드`, [링크](https://github.com/dusunax/design)\n줄바꿈"} />
       </Prop>
     </div>

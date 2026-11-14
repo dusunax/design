@@ -13,6 +13,19 @@
   word-break: keep-all;
 }
 
+.story-prop-grid {
+  display: grid;
+  column-gap: 16px;
+  row-gap: 16px;
+}
+
+/* 한 예시가 두 행(상자, 캡션)을 차지하고, 같은 줄 예시끼리 행 높이를 공유한다 */
+.story-prop-grid > .story-prop {
+  grid-row: span 2;
+  grid-template-rows: subgrid;
+  row-gap: 6px;
+}
+
 .story-prop-sample {
   padding: 12px 16px;
   border: 1px solid var(--moa-color-border);

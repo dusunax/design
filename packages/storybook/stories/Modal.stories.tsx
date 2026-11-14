@@ -18,11 +18,11 @@ const meta: Meta<typeof Modal> = {
 export default meta;
 type Story = StoryObj<typeof Modal>;
 
-function ControlledModal() {
+function ControlledModal({ hideClose }: { hideClose?: boolean }) {
   const [open, setOpen] = useState(false);
   return (
     <div style={{ display: "grid", gap: 6, justifyItems: "start" }}>
-      <Modal trigger={<Button>열기</Button>} title="제목" open={open} onOpenChange={setOpen}>
+      <Modal trigger={<Button>열기</Button>} title="제목" open={open} onOpenChange={setOpen} hideClose={hideClose}>
         <div style={{ display: "grid", gap: 12, justifyItems: "start" }}>
           내용
           <Button variant="primary" onClick={() => setOpen(false)}>
@@ -42,14 +42,14 @@ export const Variants: Story = {
   parameters: {
     docs: {
       source: {
-        code: "<Modal trigger={<Button>열기</Button>} title=\"제목\">내용</Modal>\n\nconst [open, setOpen] = useState(false);\n<Modal trigger={<Button>열기</Button>} title=\"제목\" open={open} onOpenChange={setOpen}>\n  <Button onClick={() => setOpen(false)}>완료</Button>\n</Modal>",
+        code: "<Modal trigger={<Button>열기</Button>} title=\"제목\">내용</Modal>\n\nconst [open, setOpen] = useState(false);\n<Modal trigger={<Button>열기</Button>} title=\"제목\" open={open} onOpenChange={setOpen}>\n  <Button onClick={() => setOpen(false)}>완료</Button>\n</Modal>\n<Modal trigger={<Button>열기</Button>} title=\"제목\" open={open} onOpenChange={setOpen} hideClose>…</Modal>",
         language: "tsx",
       },
     },
   },
   render: () => (
     <div style={{ display: "grid", gap: 16, maxWidth: 320 }}>
-      <Prop code="trigger + title">
+      <Prop code='trigger={<Button>열기</Button>} title="제목"'>
         <Modal trigger={<Button>열기</Button>} title="제목">
           내용
         </Modal>
@@ -57,7 +57,10 @@ export const Variants: Story = {
       <Prop code="open + onOpenChange (controlled)" use="안의 버튼으로 닫을 때">
         <ControlledModal />
       </Prop>
-      <Prop code="긴 children" use="제목은 고정되고 본문만 스크롤">
+      <Prop code="hideClose" use="본문에 닫는 버튼이 있어 제목 옆 닫기 버튼이 겹칠 때">
+        <ControlledModal hideClose />
+      </Prop>
+      <Prop code="children={…}" use="내용이 길면 제목은 고정되고 본문만 스크롤">
         <Modal trigger={<Button>열기</Button>} title="제목">
           {LONG.map((line) => (
             <p key={line} style={{ margin: "0 0 8px" }}>

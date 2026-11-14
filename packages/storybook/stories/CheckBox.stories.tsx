@@ -16,7 +16,7 @@ export const Variants: Story = {
   parameters: { docs: { source: { code: "<CheckBox label=\"라벨\" />\n<CheckBox label=\"라벨\" defaultValue />\n<CheckBox label=\"라벨\" disabled />\n<CheckBox label=\"라벨\" disabled defaultValue />", language: "tsx" } } },
   render: () => (
     <div style={{ display: "grid", gap: 12 }}>
-      <Prop code="(기본)">
+      <Prop code="defaultValue={false} (기본값)">
         <CheckBox label="라벨" />
       </Prop>
       <Prop code="defaultValue">
