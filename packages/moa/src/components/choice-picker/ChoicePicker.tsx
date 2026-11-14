@@ -23,7 +23,7 @@ export type ChoicePickerProps = BaseProps & {
 };
 
 const chipClass =
-  "moa:inline-flex moa:h-8 moa:cursor-pointer moa:items-center moa:rounded-full moa:border moa:border-border-strong moa:bg-bg moa:px-3 moa:[font-family:inherit] moa:text-body moa:text-fg moa:hover:bg-surface moa:focus-visible:outline-2 moa:focus-visible:outline-offset-2 moa:focus-visible:outline-primary moa:data-[state=on]:border-primary moa:data-[state=on]:bg-primary-subtle moa:data-[state=on]:text-primary-text";
+  "moa:inline-flex moa:h-9 moa:cursor-pointer moa:items-center moa:rounded-full moa:border moa:border-border-strong moa:bg-bg moa:px-3 moa:[font-family:inherit] moa:text-body moa:text-fg moa:hover:bg-surface moa:focus-visible:outline-2 moa:focus-visible:outline-offset-2 moa:focus-visible:outline-primary moa:data-[state=on]:border-primary moa:data-[state=on]:bg-primary-subtle moa:data-[state=on]:text-primary-text";
 
 export function ChoicePicker({
   label,
@@ -82,8 +82,8 @@ export function ChoicePicker({
         {o.label}
       </ToggleGroup.Item>
     ));
-    // Radix는 toolbar 역할을 붙인다. 항목 성격에 맞게 radiogroup·group으로 바꾼다.
     const groupClass = "moa:flex moa:flex-wrap moa:gap-2";
+    // Radix는 toolbar 역할을 붙인다. 항목 성격에 맞게 radiogroup·group으로 바꾼다.
     list = single ? (
       <ToggleGroup.Root type="single" role="radiogroup" aria-labelledby={labelId} value={selected[0] ?? ""} onValueChange={(v) => update(v ? [v] : [])} className={groupClass}>
         {chips}
@@ -101,9 +101,7 @@ export function ChoicePicker({
             key={o.value}
             label={o.label}
             value={selected.includes(o.value)}
-            onChange={(checked) =>
-              update(checked ? options.filter((x) => x.value === o.value || selected.includes(x.value)).map((x) => x.value) : selected.filter((v) => v !== o.value))
-            }
+            onChange={(checked) => update(checked ? [...selected, o.value] : selected.filter((v) => v !== o.value))}
           />
         ))}
       </div>

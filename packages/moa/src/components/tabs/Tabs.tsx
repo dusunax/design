@@ -22,7 +22,7 @@ export function Tabs({ tabs, defaultIndex = 0, onChange, weight, className }: Ta
       <RadixTabs.List className="moa:flex moa:gap-1 moa:border-b moa:border-border">
         {tabs.map((tab, i) => (
           <RadixTabs.Trigger
-            key={tab.title}
+            key={i}
             value={String(i)}
             className="moa:-mb-px moa:cursor-pointer moa:border-0 moa:border-b-2 moa:border-transparent moa:bg-transparent moa:px-3 moa:py-2 moa:[font-family:inherit] moa:text-body moa:font-medium moa:text-fg-muted moa:hover:text-fg moa:focus-visible:outline-2 moa:focus-visible:outline-primary moa:data-[state=active]:border-primary moa:data-[state=active]:text-fg"
           >
@@ -31,7 +31,7 @@ export function Tabs({ tabs, defaultIndex = 0, onChange, weight, className }: Ta
         ))}
       </RadixTabs.List>
       {tabs.map((tab, i) => (
-        <RadixTabs.Content key={tab.title} value={String(i)} className="moa:text-body moa:focus-visible:outline-2 moa:focus-visible:outline-primary">
+        <RadixTabs.Content key={i} value={String(i)} className="moa:text-body moa:focus-visible:outline-2 moa:focus-visible:outline-primary">
           {tab.child}
         </RadixTabs.Content>
       ))}
