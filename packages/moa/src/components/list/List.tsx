@@ -5,6 +5,7 @@ import { type Align, alignClass } from "../layout";
 
 export type ListProps = BaseProps & {
   direction?: "vertical" | "horizontal";
+  /** 항목의 수직 방향 정렬 */
   align?: Align;
   children?: ReactNode;
 };

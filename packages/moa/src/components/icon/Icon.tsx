@@ -5,7 +5,9 @@ import type { IconName } from "./names";
 import { ICON_PATHS } from "./paths";
 
 export type IconProps = BaseProps & {
+  /** catalog 아이콘 이름, 또는 viewBox `0 -960 960 960` 기준 `{ svgPath }` */
   name: IconName | { svgPath: string };
+  /** px */
   size?: number;
   /** 없으면 장식용(aria-hidden)으로 렌더링한다. */
   label?: string;

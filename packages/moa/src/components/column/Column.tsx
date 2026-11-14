@@ -4,7 +4,9 @@ import { type BaseProps, weightStyle } from "../../utils/base";
 import { type Align, alignClass, type Justify, justifyClass } from "../layout";
 
 export type ColumnProps = BaseProps & {
+  /** 놓는 방향의 정렬 */
   justify?: Justify;
+  /** 놓는 방향과 수직인 방향의 정렬 */
   align?: Align;
   children?: ReactNode;
 };

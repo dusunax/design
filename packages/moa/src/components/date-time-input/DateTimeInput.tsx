@@ -7,8 +7,11 @@ export type DateTimeInputProps = BaseProps & {
   label: string;
   value?: string;
   defaultValue?: string;
+  /** 입력 type에 맞는 ISO 형식 문자열(예: `2026-11-14`, `09:30`)을 넘긴다. 비우면 ""이다. */
   onChange?: (iso: string) => void;
+  /** 날짜만 켜면 date, 둘 다 켜면 datetime-local */
   enableDate?: boolean;
+  /** 시간만 켜면 time */
   enableTime?: boolean;
   min?: string;
   max?: string;

@@ -4,6 +4,7 @@ import { type BaseProps, weightStyle } from "../../utils/base";
 import { type InlineNode, parseInline } from "./markdown";
 
 export type TextProps = BaseProps & {
+  /** 굵게, 기울임, `코드`, [링크](url), 줄바꿈을 쓸 수 있다. HTML은 글자 그대로 보인다. */
   text: string;
   variant?: "body" | "caption";
 };

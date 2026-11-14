@@ -7,6 +7,7 @@ export type ImageVariant = "icon" | "avatar" | "smallFeature" | "mediumFeature" 
 
 export type ImageProps = BaseProps & {
   url: string;
+  /** 대체 텍스트(alt). 장식용이면 비운다. */
   description?: string;
   fit?: ImageFit;
   variant?: ImageVariant;

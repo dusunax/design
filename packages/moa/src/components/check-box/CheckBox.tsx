@@ -7,8 +7,10 @@ const CHECK_PATH = "M378-246 154-470l43-43 181 181 384-384 43 43-427 427Z";
 
 export type CheckBoxProps = BaseProps & {
   label: string;
+  /** 체크 여부(controlled) */
   value?: boolean;
   defaultValue?: boolean;
+  /** 이벤트가 아니라 체크 여부를 넘긴다. */
   onChange?: (checked: boolean) => void;
   disabled?: boolean;
 };
