@@ -127,7 +127,7 @@ git commit -m "chore: moa 재구성 전에 기존 multi-touch 예제와 Next.js 
 
 - [ ] **MOA-1.2: 루트 설정을 작성한다**
 
-  먼저 Tech Stack의 버전을 "배포된 지 3일 이상 지난 최신 안정판" 기준으로 다시 정하고, 바뀌었으면 이 플랜의 버전을 같이 고친다. 2026-11-14 기준으로 `jsdom@31.0.1`, `chromatic@18.14.4`, `vite@8.3.8`, `@material-symbols/svg-400@0.49.0`은 3일 미만이다.
+  먼저 Tech Stack의 버전을 "배포된 지 3일 이상 지난 최신 안정판" 기준으로 다시 정하고, 바뀌었으면 이 플랜의 버전을 같이 고친다.
 
   - 루트 `package.json`: `"private": true`, `packageManager`, `engines`, 스크립트(`build`, `test`, `typecheck`는 `pnpm -r <스크립트>`, `storybook`은 `pnpm --filter @dusunax/moa-storybook dev`)
   - `pnpm-workspace.yaml`:
@@ -150,7 +150,7 @@ git commit -m "chore: moa 재구성 전에 기존 multi-touch 예제와 Next.js 
 - [ ] **MOA-1.3: `packages/moa` 패키지 파일을 만든다**
 
   - `name: "@dusunax/moa"`, `version: "0.0.0"`, `type: "module"`, `sideEffects: ["*.css"]`, `license: "MIT"`
-  - devDependencies: `typescript@7.0.2`, `vitest@5.1.0`, `jsdom@31.0.1`, `@testing-library/react@16.3.3`, `@testing-library/user-event@14.6.10`, `react@19.3.1`, `react-dom@19.3.1`, `@types/react@19.3.0`
+  - devDependencies: `typescript@7.0.2`, `vitest@5.1.0`, `jsdom@31.0.0`, `@testing-library/react@16.3.3`, `@testing-library/user-event@14.6.9`, `react@19.3.1`, `react-dom@19.3.1`, `@types/react@19.3.0`
   - `vitest.config.ts`: `environment: "jsdom"`, `setupFiles: ["./vitest.setup.ts"]`
   - `vitest.setup.ts`: `afterEach(cleanup)`. jsdom에 없는 `ResizeObserver`를 빈 클래스로 채운다(Radix Slider가 필요로 한다).
 
@@ -488,7 +488,7 @@ test("caption variant uses caption size", () => {
 
 **Files:**
 - Create: `scripts/gen-icons.mjs`, `src/components/icon/{names.ts,paths.ts(생성됨),Icon.tsx,Icon.test.tsx,index.ts}`, `stories/Icon.stories.tsx`
-- Modify: `package.json`(devDependency `@material-symbols/svg-400@0.49.0`, 스크립트 `gen:icons`), `tsdown.config.ts`, `src/index.ts`
+- Modify: `package.json`(devDependency `@material-symbols/svg-400@0.48.3`, 스크립트 `gen:icons`), `tsdown.config.ts`, `src/index.ts`
 
 **Interfaces:**
 - Produces:
@@ -848,7 +848,7 @@ Expected: `dist/`, `package.json`, `README.md`만 포함되고 `src/`는 없다.
 ### CI와 Chromatic
 
 **Files:**
-- Modify: `.github/workflows/ci.yml`(MOA-1에서 만든 파일), `packages/storybook/package.json`(devDependency `chromatic@18.14.4`, 스크립트 `chromatic`), `packages/storybook/.storybook/preview.tsx`(Chromatic 실행 중에는 애니메이션 끄기)
+- Modify: `.github/workflows/ci.yml`(MOA-1에서 만든 파일), `packages/storybook/package.json`(devDependency `chromatic@18.14.3`, 스크립트 `chromatic`), `packages/storybook/.storybook/preview.tsx`(Chromatic 실행 중에는 애니메이션 끄기)
 
 **Interfaces:**
 - Produces:
