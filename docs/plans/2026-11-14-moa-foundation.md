@@ -208,20 +208,23 @@ git commit -m "chore: init moa 디자인 시스템" -m "pnpm 모노레포와 @du
     "./styles.css": "./dist/styles.css",
     "./*": { "types": "./dist/*.d.ts", "import": "./dist/*.js" }
     ```
+  - 색상은 Radix Colors의 Gray(중성색)와 Teal(강조색)을 기준으로 하고, 글자색은 WCAG AA(4.5:1)를 넘도록 조정했다. `primary-fg`는 light에서 흰색, dark에서 검정이다.
   - 토큰(아래 표)은 Tailwind 유틸리티 `moa:bg-surface`, `moa:text-fg-muted`, `moa:rounded-md`처럼 쓴다.
 
 | 토큰 | light | dark |
 |---|---|---|
-| `--moa-color-bg` | `#ffffff` | `#0f1115` |
-| `--moa-color-surface` | `#f6f7f9` | `#181b21` |
-| `--moa-color-fg` | `#14171c` | `#eef0f3` |
-| `--moa-color-fg-muted` | `#5b6472` | `#9aa3b0` |
-| `--moa-color-border` | `#dde1e6` | `#2a2f38` |
-| `--moa-color-primary` | `#2f6feb` | `#5b8dff` |
-| `--moa-color-primary-fg` | `#ffffff` | `#0f1115` |
-| `--moa-color-danger` | `#d1393a` | `#ff6b6b` |
-| `--moa-color-success` | `#1f8a4c` | `#4cc38a` |
-| `--moa-color-warning` | `#b7791f` | `#f2b84b` |
+| `--moa-color-bg` | `#fcfcfc` | `#111111` |
+| `--moa-color-surface` | `#f0f0f0` | `#222222` |
+| `--moa-color-fg` | `#202020` | `#eeeeee` |
+| `--moa-color-fg-muted` | `#646464` | `#b4b4b4` |
+| `--moa-color-border` | `#d9d9d9` | `#3a3a3a` |
+| `--moa-color-primary` | `#008573` | `#12a594` |
+| `--moa-color-primary-fg` | `#ffffff` | `#111111` |
+| `--moa-color-primary-subtle` | `#e0f8f3` | `#0d2d2a` |
+| `--moa-color-primary-text` | `#007a69` | `#0bd8b6` |
+| `--moa-color-danger` | `#ce2c31` | `#ff9592` |
+| `--moa-color-success` | `#218358` | `#3dd68c` |
+| `--moa-color-warning` | `#a05e00` | `#ffca16` |
 | `--moa-radius-sm` / `md` / `lg` | `4px` / `8px` / `12px` | 동일 |
 | `--moa-text-caption` / `body` | `12px` / `14px` | 동일 |
 
@@ -300,7 +303,7 @@ git commit -m "feat(moa): 토큰과 프리픽스 CSS·ESM 빌드 파이프라인
 
 - [x] **MOA-1.18: `Tokens.stories.tsx`를 작성한다**
 
-  색상 토큰 10개를 견본 칩으로 보여 준다. 값은 `getComputedStyle`로 읽어서 함께 표시한다.
+  색상 토큰 12개를 견본 칩으로 보여 준다. 값은 `getComputedStyle`로 읽어서 함께 표시한다.
 
 - [x] **MOA-1.18a: 공개 환경 변수 검사를 확인한다** — SEC-1.6
 

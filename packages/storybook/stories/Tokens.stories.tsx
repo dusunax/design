@@ -9,6 +9,8 @@ const COLORS = [
   "border",
   "primary",
   "primary-fg",
+  "primary-subtle",
+  "primary-text",
   "danger",
   "success",
   "warning",
