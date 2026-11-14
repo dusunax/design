@@ -11,7 +11,7 @@ const meta: Meta<typeof Text> = {
     docs: {
       description: {
         component:
-          "굵게, 기울임, 인라인 코드, 링크, 줄바꿈만 지원한다. HTML은 렌더링하지 않고, 링크는 http·https·mailto만 허용한다.",
+          "굵게, 기울임, 인라인 코드, 링크, 줄바꿈을 지원한다.",
       },
     },
   },
@@ -31,9 +31,6 @@ export const Variants: Story = {
       </Prop>
       <Prop code="Markdown">
         <Text text={"**굵게**, *기울임*, `코드`, [링크](https://github.com/dusunax/design)\n줄바꿈"} />
-      </Prop>
-      <Prop code="위험한 입력 → 평문">
-        <Text text="[눌러 보기](javascript:alert(1)) <img src=x onerror=alert(1)>" />
       </Prop>
     </div>
   ),

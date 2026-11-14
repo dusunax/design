@@ -16,7 +16,7 @@ const meta: Meta<typeof Image> = {
     docs: {
       description: {
         component:
-          "`variant`는 크기, `fit`은 맞춤 방식이다. 에이전트가 정한 URL을 그대로 불러오므로 쓰는 쪽에서 CSP `img-src`로 출처를 제한한다(SEC-1.3).",
+          "`variant`는 크기, `fit`은 맞춤 방식이다.",
       },
     },
   },

@@ -2,3 +2,21 @@
   border: 1px dashed var(--moa-color-border-strong);
   padding: 8px;
 }
+
+.story-prop {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+}
+
+.story-prop-sample {
+  padding: 12px 16px;
+  border: 1px solid var(--moa-color-border);
+  border-radius: 6px;
+}
+
+.story-prop-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  color: var(--moa-color-fg-muted);
+}

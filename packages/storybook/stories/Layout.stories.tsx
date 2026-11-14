@@ -39,7 +39,7 @@ export const RowJustify: StoryObj = {
     <Column>
       {JUSTIFY.map((j) => (
         <Prop key={j} code={`<Row justify="${j}">`} stretch>
-          <Row justify={j} className="story-frame" weight={1}>
+          <Row justify={j} weight={1}>
             <Box label="A" />
             <Box label="B" />
             <Box label="C" />
@@ -55,7 +55,7 @@ export const ColumnAlign: StoryObj = {
     <Row>
       {(["start", "center", "end", "stretch"] as const).map((a) => (
         <Prop key={a} code={`<Column align="${a}">`} stretch>
-          <Column align={a} className="story-frame" weight={1}>
+          <Column align={a} weight={1}>
             <Box label="짧음" />
             <Box label="조금 더 긴 항목" />
           </Column>
