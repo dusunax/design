@@ -766,7 +766,7 @@ test("number variant reports empty string when cleared", async () => {
 ### 에이전트 부품 (MessageBubble, StreamingText, RunStatus)
 
 **Files:**
-- Create: `src/components/{message-bubble,streaming-text,run-status}/*`, `stories/Agent.stories.tsx`
+- Create: `src/components/{message-bubble,streaming-text,run-status}/*`, `stories/{MessageBubble,StreamingText,RunStatus,Conversation}.stories.tsx`(사이드바 `Agent/*`)
 - Modify: `tsdown.config.ts`, `src/index.ts`
 
 **Interfaces:**
@@ -779,7 +779,7 @@ test("number variant reports empty string when cleared", async () => {
   - `RunStatus(props: BaseProps & { status: "idle" | "running" | "finished" | "error"; message?: string; labels?: Partial<Record<"idle" | "running" | "finished" | "error", string>> })`
     - `role="status"`를 붙인다. 기본 라벨은 `Idle`, `Running`, `Done`, `Error`다. 상태 점 색은 fg-muted, primary, success, danger다. running이면 점이 펄스한다.
 
-- [ ] **MOA-4.1: 테스트를 작성한다**
+- [x] **MOA-4.1: 테스트를 작성한다**
 
   - `MessageBubble marks role`
   - `StreamingText shows cursor only while streaming`
@@ -788,14 +788,14 @@ test("number variant reports empty string when cleared", async () => {
   - `RunStatus renders default and custom labels`
   - `RunStatus error shows message`
 
-- [ ] **MOA-4.2: 테스트를 실행해 실패하는지 확인한다**
-- [ ] **MOA-4.3: 구현한다**
-- [ ] **MOA-4.4: 테스트를 실행해 통과하는지 확인한다**
-- [ ] **MOA-4.5: 스토리를 작성한다**
+- [x] **MOA-4.2: 테스트를 실행해 실패하는지 확인한다**
+- [x] **MOA-4.3: 구현한다**
+- [x] **MOA-4.4: 테스트를 실행해 통과하는지 확인한다**
+- [x] **MOA-4.5: 스토리를 작성한다**
 
   대화 예시(user → assistant 스트리밍 → finished)를 만든다. 스트리밍 스토리는 `args.text`와 `args.streaming`으로 상태를 고정한 정적 스냅샷이다. 타이머는 쓰지 않는다.
 
-- [ ] **MOA-4.6: 커밋한다** — `feat(moa): MessageBubble·StreamingText·RunStatus 에이전트 부품 추가`
+- [x] **MOA-4.6: 커밋한다** — `feat(moa): MessageBubble·StreamingText·RunStatus 에이전트 부품 추가`
 
 ---
 

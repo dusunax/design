@@ -30,6 +30,14 @@
   --text-body--line-height: 1.5;
   --text-prose: 15px;
   --text-prose--line-height: 1.6;
+  /* StreamingText 커서 */
+  --animate-blink: blink 1s step-end infinite;
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
 }
 
 [data-moa-theme="dark"] {
