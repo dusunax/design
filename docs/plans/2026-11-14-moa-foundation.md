@@ -30,7 +30,7 @@ description: >
   - MOA-1\~MOA-5에서는 README와 Storybook 설명을 한국어로만 쓴다. 영어 지원은 MOA-6에서 한 번에 한다.
   - Storybook 설명은 스토리 파일의 `parameters.docs.description`에 한국어 문자열로 바로 쓴다. MOA-6에서 이 문자열을 사전으로 옮긴다. 사이드바 제목, 스토리 이름, args·prop 이름은 처음부터 영어로 쓴다.
   - 문구 prop이 있는 부품은 한국어 문구를 넣은 `Localized` 스토리를 하나 둔다.
-- 스토리는 args로 조작하는 `Playground` 하나와, 단순 variant·상태를 한 화면에 모은 `Variants`(또는 `States`) 하나를 기본으로 둔다. variant마다 스토리를 따로 만들지 않는다. 정적인 예시(문법 모음 등)도 Variants에 넣고, 상태를 가져야 하는 예시(controlled)만 따로 둔다. 오류 상태처럼 부품이 보여 주는 상태는 넣고, 보안 대책이나 공격 입력 같은 특수 케이스는 스토리와 설명에 넣지 않는다(테스트와 SEC 문서가 맡는다).
+- 스토리는 args로 조작하는 `Playground` 하나와, 단순 variant·상태를 한 화면에 모은 `Variants`(또는 `States`) 하나를 기본으로 둔다. variant마다 스토리를 따로 만들지 않는다. 정적인 예시(문법 모음 등)와 상태를 가진 예시(controlled)도 Variants에 넣는다. 상태가 필요하면 스토리 파일 최상위에 작은 예시 컴포넌트를 두고 Variants에서 쓴다. 오류 상태처럼 부품이 보여 주는 상태는 넣고, 보안 대책이나 공격 입력 같은 특수 케이스는 스토리와 설명에 넣지 않는다(테스트와 SEC 문서가 맡는다).
 - Variants 안의 예시는 내용을 `라벨`, `버튼`, `입력값`처럼 중립적으로 쓰고, 예시는 테두리 상자 안에, 어떤 prop으로 만든 상태인지는 상자 밖 코드 캡션으로 보인다(`stories/_Prop.tsx`). 작은 예시를 나란히 둘 때는 `PropGrid`로 같은 너비의 칸에 놓아, 상자 크기와 캡션 위치가 줄마다 맞게 한다. variant 이름을 라벨이나 버튼 글자로 쓰지 않는다. 비밀번호처럼 의미가 있어야 하는 경우만 예외다.
 - 의존성은 정확한 버전으로 저장하고, 배포된 지 3일이 안 된 버전은 쓰지 않는다. `pnpm-workspace.yaml`에 `saveExact: true`, `minimumReleaseAge: 4320`을 둔다. pnpm 12는 `.npmrc`의 `save-exact`를 읽지 않는다.
 - Storybook 빌드에 들어가는 환경 변수(`STORYBOOK_*`, `VITE_*`)에는 토큰이나 키를 넣지 않는다. Storybook은 Chromatic에 공개 배포된다. 허용 목록 밖의 변수는 `check-public-env.mjs`가 빌드 전에 막는다. 변수를 새로 쓰려면 허용 목록에 이름을 추가한다.
@@ -625,7 +625,7 @@ test("number variant reports empty string when cleared", async () => {
 - [x] **MOA-2.32: 테스트를 실행해 실패하는지 확인한다**
 - [x] **MOA-2.33: 구현한다**
 - [x] **MOA-2.34: 테스트를 실행해 통과하는지 확인한다**
-- [x] **MOA-2.35: 스토리를 작성한다** — variant 4종, disabled, controlled 예시
+- [x] **MOA-2.35: 스토리를 작성한다** — Variants 하나에 variant 4종, disabled, invalid, controlled
 - [x] **MOA-2.36: 커밋한다** — `feat(moa): TextField 추가`
 
 ---

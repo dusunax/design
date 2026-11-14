@@ -19,6 +19,16 @@ const meta: Meta<typeof TextField> = {
 export default meta;
 type Story = StoryObj<typeof TextField>;
 
+function ControlledField() {
+  const [value, setValue] = useState("입력값");
+  return (
+    <div style={{ display: "grid", gap: 6 }}>
+      <TextField label="라벨" value={value} onChange={setValue} />
+      <code style={{ fontSize: 12 }}>value: {JSON.stringify(value)}</code>
+    </div>
+  );
+}
+
 export const Playground: Story = {};
 export const Variants: Story = {
   render: () => (
@@ -41,17 +51,9 @@ export const Variants: Story = {
       <Prop code="invalid">
         <TextField label="라벨" invalid defaultValue="입력값" />
       </Prop>
+      <Prop code="value + onChange (controlled)">
+        <ControlledField />
+      </Prop>
     </div>
   ),
-};
-export const Controlled: Story = {
-  render: (args) => {
-    const [value, setValue] = useState("");
-    return (
-      <div style={{ display: "grid", gap: 8 }}>
-        <TextField {...args} value={value} onChange={setValue} />
-        <code>value: {JSON.stringify(value)}</code>
-      </div>
-    );
-  },
 };
