@@ -7,7 +7,7 @@ export type CardProps = BaseProps & { children?: ReactNode };
 export function Card({ weight, className, children }: CardProps): JSX.Element {
   return (
     <div
-      className={clsx("moa:rounded-lg moa:border moa:border-border moa:bg-surface moa:p-4 moa:text-fg", className)}
+      className={clsx("moa:rounded-md moa:border moa:border-border moa:bg-bg moa:p-4 moa:text-fg", className)}
       style={weightStyle(weight)}
     >
       {children}

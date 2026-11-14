@@ -15,3 +15,7 @@ test("CheckBox is reachable by label", async () => {
   await userEvent.click(screen.getByText("Agree"));
   expect(screen.getByLabelText("Agree")).toBeChecked();
 });
+test("CheckBox uses strong border for 3:1 contrast", () => {
+  render(<CheckBox label="Agree" />);
+  expect(screen.getByRole("checkbox")).toHaveClass("moa:border-border-strong");
+});

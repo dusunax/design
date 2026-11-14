@@ -33,3 +33,7 @@ test("caption variant uses caption size", () => {
   render(<Text text="hi" variant="caption" />);
   expect(screen.getByText("hi")).toHaveClass("moa:text-caption");
 });
+test("body variant uses prose size for reading", () => {
+  render(<Text text="hello" />);
+  expect(screen.getByText("hello")).toHaveClass("moa:text-prose");
+});

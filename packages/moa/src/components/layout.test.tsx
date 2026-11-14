@@ -26,3 +26,7 @@ test("Divider exposes orientation", () => {
   render(<Divider axis="vertical" />);
   expect(screen.getByRole("separator")).toHaveAttribute("aria-orientation", "vertical");
 });
+test("Card uses border only, no surface fill", () => {
+  render(<Card>x</Card>);
+  expect(screen.getByText("x")).toHaveClass("moa:bg-bg", "moa:border-border");
+});

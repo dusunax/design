@@ -15,7 +15,7 @@ const button = cva(
   {
     variants: {
       variant: {
-        default: "moa:border moa:border-border moa:bg-bg moa:text-fg moa:hover:bg-surface",
+        default: "moa:border moa:border-border-strong moa:bg-bg moa:text-fg moa:hover:bg-surface",
         primary: "moa:border moa:border-transparent moa:bg-primary moa:text-primary-fg moa:hover:bg-primary-hover",
         borderless: "moa:border moa:border-transparent moa:bg-transparent moa:text-primary-text moa:hover:bg-primary-subtle",
       },

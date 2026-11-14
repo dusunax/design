@@ -38,7 +38,7 @@ export function Text({ text, variant = "body", weight, className }: TextProps): 
     <p
       className={clsx(
         "moa:m-0",
-        variant === "caption" ? "moa:text-caption moa:text-fg-muted" : "moa:text-body moa:text-fg",
+        variant === "caption" ? "moa:text-caption moa:text-fg-muted" : "moa:text-prose moa:text-fg",
         className,
       )}
       style={weightStyle(weight)}

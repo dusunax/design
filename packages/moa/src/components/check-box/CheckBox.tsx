@@ -23,7 +23,7 @@ export function CheckBox({ label, value, defaultValue, onChange, disabled, weigh
           defaultChecked={defaultValue}
           disabled={disabled}
           onChange={(e) => onChange?.(e.target.checked)}
-          className="moa:peer moa:m-0 moa:size-4 moa:cursor-pointer moa:appearance-none moa:rounded-sm moa:border moa:border-border moa:bg-bg moa:checked:border-primary moa:checked:bg-primary moa:focus-visible:outline-2 moa:focus-visible:outline-offset-2 moa:focus-visible:outline-primary moa:disabled:cursor-not-allowed moa:disabled:opacity-50"
+          className="moa:peer moa:m-0 moa:size-4 moa:cursor-pointer moa:appearance-none moa:rounded-sm moa:border moa:border-border-strong moa:bg-bg moa:checked:border-primary moa:checked:bg-primary moa:focus-visible:outline-2 moa:focus-visible:outline-offset-2 moa:focus-visible:outline-primary moa:disabled:cursor-not-allowed moa:disabled:opacity-50"
         />
         <Icon
           name="check"
