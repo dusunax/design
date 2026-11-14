@@ -10,11 +10,11 @@ const RADII = [
 const meta: Meta = {
   title: "Foundations/Radius",
   tags: ["autodocs"],
-  parameters: { docs: { description: { component: "둥글기 토큰 3종이다." } } },
 };
 export default meta;
 
 export const Sizes: StoryObj = {
+  parameters: { docs: { source: { code: "border-radius: var(--moa-radius-md);", language: "css" } } },
   render: () => (
     <PropGrid>
       {RADII.map(({ name, use }) => (

@@ -6,6 +6,7 @@ const meta: Meta<typeof List> = {
   title: "Layout/List",
   component: List,
   tags: ["autodocs"],
+  argTypes: { children: { control: false } },
   args: { direction: "vertical", align: "stretch" },
   render: (args) => (
     <List {...args}>
@@ -15,7 +16,7 @@ const meta: Meta<typeof List> = {
     </List>
   ),
   parameters: {
-    docs: { description: { component: "`<ul>`로 그리고 자식을 하나씩 `<li>`로 감싼다. `direction`으로 방향을 정한다." } },
+    docs: { description: { component: "항목을 나열할 때는 Column 대신 List를 쓴다. 스크린리더가 목록과 항목 수를 읽는다." } },
   },
 };
 export default meta;
@@ -24,16 +25,17 @@ type Story = StoryObj<typeof List>;
 export const Playground: Story = {};
 
 export const Variants: Story = {
+  parameters: { docs: { source: { code: "<List>\n  <span>A</span>\n  <span>B</span>\n</List>\n<List direction=\"horizontal\">…</List>", language: "tsx" } } },
   render: () => (
     <PropGrid min={240}>
-      <Prop code='direction="vertical" (기본값)'>
+      <Prop code='direction="vertical" (기본값)' use="일반 목록">
         <List>
           <SampleBox label="A" />
           <SampleBox label="B" />
           <SampleBox label="C" />
         </List>
       </Prop>
-      <Prop code='direction="horizontal"'>
+      <Prop code='direction="horizontal"' use="태그, 칩">
         <List direction="horizontal">
           <SampleBox label="A" />
           <SampleBox label="B" />

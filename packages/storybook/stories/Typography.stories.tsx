@@ -10,13 +10,11 @@ const SIZES = [
 const meta: Meta = {
   title: "Foundations/Typography",
   tags: ["autodocs"],
-  parameters: {
-    docs: { description: { component: "글자 크기 토큰 3종이다. 크기마다 줄 높이가 함께 정해져 있다." } },
-  },
 };
 export default meta;
 
 export const Sizes: StoryObj = {
+  parameters: { docs: { source: { code: "font-size: var(--moa-text-prose);\nline-height: var(--moa-text-prose--line-height);", language: "css" } } },
   render: () => (
     <div style={{ display: "grid", gap: 16 }}>
       {SIZES.map(({ name, use }) => (
@@ -28,7 +26,7 @@ export const Sizes: StoryObj = {
               lineHeight: `var(--moa-text-${name}--line-height)`,
             }}
           >
-            에이전트가 보낸 응답을 읽는다. The quick brown fox.
+            가나다라마바사 ABCDEFG abcdefg 0123456789
           </p>
         </Prop>
       ))}

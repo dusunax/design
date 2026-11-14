@@ -21,9 +21,6 @@ const meta: Meta<typeof Divider> = {
         <span>아래</span>
       </Column>
     ),
-  parameters: {
-    docs: { description: { component: "내용 사이를 선으로 나눈다. `axis`로 방향을 정한다." } },
-  },
 };
 export default meta;
 type Story = StoryObj<typeof Divider>;
@@ -31,16 +28,17 @@ type Story = StoryObj<typeof Divider>;
 export const Playground: Story = {};
 
 export const Variants: Story = {
+  parameters: { docs: { source: { code: "<Column>\n  <span>위</span>\n  <Divider />\n  <span>아래</span>\n</Column>\n<Row align=\"center\">\n  <span>왼쪽</span>\n  <Divider axis=\"vertical\" />\n  <span>오른쪽</span>\n</Row>", language: "tsx" } } },
   render: () => (
     <PropGrid min={240}>
-      <Prop code='axis="horizontal" (기본값)'>
+      <Prop code='axis="horizontal" (기본값)' use="섹션 사이">
         <Column>
           <span>위</span>
           <Divider />
           <span>아래</span>
         </Column>
       </Prop>
-      <Prop code='axis="vertical"'>
+      <Prop code='axis="vertical"' use="툴바의 버튼 묶음 사이">
         <Row align="center">
           <span>왼쪽</span>
           <Divider axis="vertical" />

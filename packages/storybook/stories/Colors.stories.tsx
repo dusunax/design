@@ -44,17 +44,11 @@ function Swatch({ name }: { name: string }) {
 const meta: Meta = {
   title: "Foundations/Colors",
   tags: ["autodocs"],
-  parameters: {
-    docs: {
-      description: {
-        component: "moa의 색상 토큰이다. 툴바에서 테마를 dark로 바꾸면 `[data-moa-theme=\"dark\"]` 값으로 바뀐다.",
-      },
-    },
-  },
 };
 export default meta;
 
 export const Colors: StoryObj = {
+  parameters: { docs: { source: { code: "/* 부품 밖에서도 같은 토큰을 쓸 수 있다 */\ncolor: var(--moa-color-fg);\nbackground: var(--moa-color-primary);", language: "css" } } },
   render: () => (
     <div style={{ display: "grid", gap: 8 }}>
       {COLORS.map((name) => (

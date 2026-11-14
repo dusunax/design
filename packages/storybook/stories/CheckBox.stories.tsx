@@ -7,15 +7,13 @@ const meta: Meta<typeof CheckBox> = {
   component: CheckBox,
   tags: ["autodocs"],
   args: { label: "라벨" },
-  parameters: {
-    docs: { description: { component: "네이티브 체크박스에 `appearance: none`을 적용하고 체크 표시는 Icon으로 그린다." } },
-  },
 };
 export default meta;
 type Story = StoryObj<typeof CheckBox>;
 
 export const Playground: Story = {};
-export const States: Story = {
+export const Variants: Story = {
+  parameters: { docs: { source: { code: "<CheckBox label=\"라벨\" />\n<CheckBox label=\"라벨\" defaultValue />\n<CheckBox label=\"라벨\" disabled />\n<CheckBox label=\"라벨\" disabled defaultValue />", language: "tsx" } } },
   render: () => (
     <div style={{ display: "grid", gap: 12 }}>
       <Prop code="(기본)">

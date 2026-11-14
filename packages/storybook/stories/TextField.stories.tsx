@@ -8,13 +8,6 @@ const meta: Meta<typeof TextField> = {
   component: TextField,
   tags: ["autodocs"],
   args: { label: "라벨", placeholder: "입력값", variant: "shortText" },
-  parameters: {
-    docs: {
-      description: {
-        component: "`variant`는 shortText, longText, number, obscured다. 오류는 `invalid`로 표시하고, 네이티브 검증(`:user-invalid`)에 걸려도 같은 모습이 된다. `onChange`는 입력값 문자열을 넘기고, 숫자 입력을 비우면 빈 문자열이다.",
-      },
-    },
-  },
 };
 export default meta;
 type Story = StoryObj<typeof TextField>;
@@ -31,24 +24,25 @@ function ControlledField() {
 
 export const Playground: Story = {};
 export const Variants: Story = {
+  parameters: { docs: { source: { code: "<TextField label=\"라벨\" defaultValue=\"입력값\" />\n<TextField label=\"라벨\" variant=\"longText\" />\n<TextField label=\"라벨\" variant=\"number\" />\n<TextField label=\"비밀번호\" variant=\"obscured\" />\n<TextField label=\"라벨\" disabled />\n<TextField label=\"라벨\" invalid />\n\nconst [value, setValue] = useState(\"\");\n<TextField label=\"라벨\" value={value} onChange={setValue} />", language: "tsx" } } },
   render: () => (
     <div style={{ display: "grid", gap: 16, maxWidth: 320 }}>
-      <Prop code='variant="shortText" (기본값)'>
+      <Prop code='variant="shortText" (기본값)' use="이름, 제목처럼 한 줄">
         <TextField label="라벨" defaultValue="입력값" />
       </Prop>
-      <Prop code='variant="longText"'>
+      <Prop code='variant="longText"' use="메모, 설명처럼 여러 줄">
         <TextField label="라벨" variant="longText" defaultValue={"여러 줄 입력값\n두 번째 줄"} />
       </Prop>
-      <Prop code='variant="number"'>
+      <Prop code='variant="number"' use="수량, 금액">
         <TextField label="라벨" variant="number" defaultValue="42" />
       </Prop>
-      <Prop code='variant="obscured"'>
+      <Prop code='variant="obscured"' use="비밀번호, 토큰">
         <TextField label="비밀번호" variant="obscured" defaultValue="secret123" />
       </Prop>
       <Prop code="disabled">
         <TextField label="라벨" disabled defaultValue="입력값" />
       </Prop>
-      <Prop code="invalid">
+      <Prop code="invalid" use="서버 검증처럼 브라우저가 잡지 못하는 오류">
         <TextField label="라벨" invalid defaultValue="입력값" />
       </Prop>
       <Prop code="value + onChange (controlled)">

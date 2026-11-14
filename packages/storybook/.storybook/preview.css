@@ -22,3 +22,9 @@
   font-size: 12px;
   color: var(--moa-color-fg-muted);
 }
+
+.story-prop-use {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--moa-color-fg);
+}

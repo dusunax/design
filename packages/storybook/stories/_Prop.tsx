@@ -1,11 +1,14 @@
 import type { ReactNode } from "react";
 
-/** 예시는 테두리 상자 안에, 어떤 prop으로 만든 상태인지는 상자 밖 캡션으로 보여 준다. 상자는 항상 칸 너비를 채운다. */
-export function Prop({ code, children }: { code: string; children: ReactNode }) {
+/** 예시는 테두리 상자 안에, 어떤 prop으로 만든 상태인지와 언제 쓰는지는 상자 밖 캡션으로 보여 준다. */
+export function Prop({ code, use, children }: { code: string; use?: string; children: ReactNode }) {
   return (
     <figure className="story-prop">
       <div className="story-prop-sample">{children}</div>
-      <figcaption className="story-prop-code">{code}</figcaption>
+      <figcaption>
+        <div className="story-prop-code">{code}</div>
+        {use && <div className="story-prop-use">{use}</div>}
+      </figcaption>
     </figure>
   );
 }
