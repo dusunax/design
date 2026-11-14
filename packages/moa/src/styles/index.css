@@ -1,0 +1,39 @@
+@layer theme, utilities;
+@import "tailwindcss/theme.css" layer(theme) prefix(moa);
+@import "tailwindcss/utilities.css" layer(utilities) prefix(moa);
+@source "../components";
+
+@theme static {
+  --color-bg: #fcfcfc;
+  --color-surface: #f0f0f0;
+  --color-fg: #202020;
+  --color-fg-muted: #646464;
+  --color-border: #d9d9d9;
+  --color-primary: #008573;
+  --color-primary-fg: #ffffff;
+  --color-primary-subtle: #e0f8f3;
+  --color-primary-text: #007a69;
+  --color-danger: #ce2c31;
+  --color-success: #218358;
+  --color-warning: #a05e00;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --text-caption: 12px;
+  --text-body: 14px;
+}
+
+[data-moa-theme="dark"] {
+  --moa-color-bg: #111111;
+  --moa-color-surface: #222222;
+  --moa-color-fg: #eeeeee;
+  --moa-color-fg-muted: #b4b4b4;
+  --moa-color-border: #3a3a3a;
+  --moa-color-primary: #12a594;
+  --moa-color-primary-fg: #111111;
+  --moa-color-primary-subtle: #0d2d2a;
+  --moa-color-primary-text: #0bd8b6;
+  --moa-color-danger: #ff9592;
+  --moa-color-success: #3dd68c;
+  --moa-color-warning: #ffca16;
+}

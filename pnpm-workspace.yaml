@@ -1,0 +1,7 @@
+packages:
+  - "packages/*"
+saveExact: true
+minimumReleaseAge: 4320
+allowBuilds:
+  esbuild: false
+  "@parcel/watcher": false
