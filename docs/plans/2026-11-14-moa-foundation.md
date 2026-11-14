@@ -364,7 +364,7 @@ git commit -m "ci: 타입·테스트·빌드 검사 워크플로와 PR 템플릿
 ### 레이아웃 (Row, Column, List, Card, Divider)
 
 **Files:**
-- Create: `packages/moa/src/components/{row,column,list,card,divider}/{<Name>.tsx,<Name>.test.tsx,index.ts}`, `packages/moa/src/components/layout.ts`(공통 매핑), `packages/storybook/stories/Layout.stories.tsx`
+- Create: `packages/moa/src/components/{row,column,list,card,divider}/{<Name>.tsx,index.ts}`, `packages/moa/src/components/layout.ts`(공통 매핑), `packages/moa/src/components/layout.test.tsx`(5종 테스트를 한 파일에), `packages/storybook/stories/Layout.stories.tsx`
 - Modify: `tsdown.config.ts`(entry 5개), `src/index.ts`
 
 **Interfaces:**
@@ -378,7 +378,7 @@ git commit -m "ci: 타입·테스트·빌드 검사 워크플로와 PR 템플릿
   - `Divider(props: BaseProps & { axis?: "horizontal" | "vertical" })`: `role="separator"`와 `aria-orientation`을 붙인다.
   - 매핑은 `spaceBetween→moa:justify-between`, `spaceAround→moa:justify-around`, `spaceEvenly→moa:justify-evenly`, `stretch→moa:justify-stretch`, align은 `moa:items-*`이다.
 
-- [ ] **MOA-2.1: 실패하는 테스트를 작성한다**
+- [x] **MOA-2.1: 실패하는 테스트를 작성한다**
 
 ```tsx
 test("Row maps justify and align to classes", () => {
@@ -406,25 +406,25 @@ test("Divider exposes orientation", () => {
 
   `toHaveClass` 같은 matcher를 쓰려면 `vitest.setup.ts`에 `@testing-library/jest-dom/vitest`가 필요하다. 이 Step에서 `@testing-library/jest-dom@7.0.1`을 devDependency로 추가한다.
 
-- [ ] **MOA-2.2: 테스트를 실행해 실패하는지 확인한다**
+- [x] **MOA-2.2: 테스트를 실행해 실패하는지 확인한다**
 
 Run: `pnpm --filter @dusunax/moa test -- layout row column list card divider`
 Expected: FAIL. 모듈이 없다는 오류가 난다.
 
-- [ ] **MOA-2.3: 5개 부품을 구현한다**
+- [x] **MOA-2.3: 5개 부품을 구현한다**
 
   `layout.ts`에 `justifyClass: Record<Justify, string>`와 `alignClass: Record<Align, string>`를 둔다. Card는 `moa:bg-surface moa:border moa:border-border moa:rounded-lg moa:p-4` 클래스를 쓴다.
 
-- [ ] **MOA-2.4: 테스트를 실행한다**
+- [x] **MOA-2.4: 테스트를 실행한다**
 
 Run: `pnpm --filter @dusunax/moa test`
 Expected: PASS
 
-- [ ] **MOA-2.5: `Layout.stories.tsx`를 작성한다**
+- [x] **MOA-2.5: `Layout.stories.tsx`를 작성한다**
 
   justify 7종, align 4종, weight 비교, Card 안의 Column을 보여 준다. 빌드가 통과하는지 확인한다(MOA-1.19 명령).
 
-- [ ] **MOA-2.6: 커밋한다** — `feat(moa): Row·Column·List·Card·Divider 레이아웃 부품 추가`
+- [x] **MOA-2.6: 커밋한다** — `feat(moa): Row·Column·List·Card·Divider 레이아웃 부품 추가`
 
 ---
 
@@ -441,7 +441,7 @@ Expected: PASS
   - `type InlineNode = { type: "text" | "strong" | "em" | "code"; value: string } | { type: "link"; value: string; href: string } | { type: "br" }`
   - 지원 문법: `**굵게**`, `*기울임*`, `` `코드` ``, `[라벨](url)`, 줄바꿈 `\n`. 링크는 `new URL(href).protocol`이 `http:`, `https:`, `mailto:`일 때만 허용한다. 문자열 앞부분 비교는 쓰지 않는다. 파싱에 실패하거나 다른 프로토콜이면 `text` 노드가 된다. 중첩 문법은 지원하지 않는다.
 
-- [ ] **MOA-2.7: 실패하는 테스트를 작성한다**
+- [x] **MOA-2.7: 실패하는 테스트를 작성한다**
 
 ```ts
 test("parses strong, em, code, link, br", () => {
@@ -477,14 +477,14 @@ test("caption variant uses caption size", () => {
 });
 ```
 
-- [ ] **MOA-2.8: 테스트를 실행해 실패하는지 확인한다** — `pnpm --filter @dusunax/moa test -- text`. FAIL이 나야 한다.
-- [ ] **MOA-2.9: `markdown.ts`의 `parseInline`과 `Text.tsx`를 구현한다**
+- [x] **MOA-2.8: 테스트를 실행해 실패하는지 확인한다** — `pnpm --filter @dusunax/moa test -- text`. FAIL이 나야 한다.
+- [x] **MOA-2.9: `markdown.ts`의 `parseInline`과 `Text.tsx`를 구현한다**
 
   `parseInline`은 정규식 하나로 토큰을 하나씩 읽는 방식으로 만든다. 본문은 부정 문자 클래스(`[^*]+` 등)로 잡고 수량자를 중첩하지 않는다. 링크는 `<a target="_blank" rel="noopener noreferrer">`로 렌더링한다. 감싸는 요소는 `<p>`를 쓴다.
 
-- [ ] **MOA-2.10: 테스트를 실행한다** — PASS가 나야 한다. `react blocks javascript: href`가 실패하면 SEC-1.1을 🟡로 되돌린다.
-- [ ] **MOA-2.11: 스토리를 작성한다** — body, caption, Markdown 문법 모음, 위험한 링크 예시
-- [ ] **MOA-2.12: 커밋한다** — `feat(moa): 간단한 Markdown을 지원하는 Text 추가`
+- [x] **MOA-2.10: 테스트를 실행한다** — PASS가 나야 한다. `react blocks javascript: href`가 실패하면 SEC-1.1을 🟡로 되돌린다.
+- [x] **MOA-2.11: 스토리를 작성한다** — body, caption, Markdown 문법 모음, 위험한 링크 예시
+- [x] **MOA-2.12: 커밋한다** — `feat(moa): 간단한 Markdown을 지원하는 Text 추가`
 
 ---
 
@@ -501,7 +501,7 @@ test("caption variant uses caption size", () => {
   - `Icon(props: BaseProps & { name: IconName | { svgPath: string }; size?: number; label?: string }): JSX.Element`. `size` 기본값은 24다. `label`이 없으면 `aria-hidden="true"`, 있으면 `role="img"`와 `aria-label`을 붙인다. `viewBox`는 `0 -960 960 960`(Material Symbols 기준)이고 `fill="currentColor"`다.
   - `scripts/gen-icons.mjs`: camelCase 이름을 snake_case로 바꿔서 `@material-symbols/svg-400/outlined/<snake>.svg`의 `d` 속성을 읽는다. 결과는 `paths.ts`에 `Record<IconName, string>`으로 쓴다. 파일이 없는 이름은 스크립트 안의 `OVERRIDES` 표(예: `favoriteOff → heart_broken`)로 대체한다. 그래도 없으면 이름 목록을 출력하고 exit 1로 끝낸다.
 
-- [ ] **MOA-2.13: 실패하는 테스트를 작성한다**
+- [x] **MOA-2.13: 실패하는 테스트를 작성한다**
 
 ```tsx
 test("every catalog name has a path", () => {
@@ -520,14 +520,14 @@ test("accepts custom svgPath", () => {
 });
 ```
 
-- [ ] **MOA-2.14: 테스트를 실행해 실패하는지 확인한다** — FAIL이 나야 한다.
-- [ ] **MOA-2.15: `names.ts`를 쓰고, `pnpm --filter @dusunax/moa gen:icons`로 `paths.ts`를 생성한다**
+- [x] **MOA-2.14: 테스트를 실행해 실패하는지 확인한다** — FAIL이 나야 한다.
+- [x] **MOA-2.15: `names.ts`를 쓰고, `pnpm --filter @dusunax/moa gen:icons`로 `paths.ts`를 생성한다**
 
   exit 1이 나면 출력된 이름마다 `OVERRIDES`에 Material Symbols 대체 이름을 하나씩 정한다. `paths.ts`는 생성 파일이지만 커밋한다. 런타임에 Material Symbols 패키지가 필요 없게 하기 위해서다. 파일 맨 위에 Apache-2.0 출처 주석을 단다.
 
-- [ ] **MOA-2.16: `Icon.tsx`를 구현하고 테스트를 실행한다** — PASS가 나야 한다.
-- [ ] **MOA-2.17: 스토리를 작성한다** — 59개 아이콘 격자에 이름을 함께 표시하고, size와 label 예시를 둔다.
-- [ ] **MOA-2.18: 커밋한다** — `feat(moa): catalog 59종 SVG path 기반 Icon 추가`
+- [x] **MOA-2.16: `Icon.tsx`를 구현하고 테스트를 실행한다** — PASS가 나야 한다.
+- [x] **MOA-2.17: 스토리를 작성한다** — 59개 아이콘 격자에 이름을 함께 표시하고, size와 label 예시를 둔다.
+- [x] **MOA-2.18: 커밋한다** — `feat(moa): catalog 59종 SVG path 기반 Icon 추가`
 
 ---
 
@@ -543,17 +543,17 @@ test("accepts custom svgPath", () => {
   - 크기: icon 24px, avatar 40px(원형), smallFeature 96px, mediumFeature 160px, largeFeature 240px. 앞의 값은 모두 정사각형이다. header는 너비 100%, 높이 200px다.
   - `alt`는 `description ?? ""`이고, `loading="lazy"`를 붙인다.
 
-- [ ] **MOA-2.19: 테스트를 작성한다**
+- [x] **MOA-2.19: 테스트를 작성한다**
 
   - `scaleDown fit maps to object-scale-down`
   - `avatar is round 40px`: `moa:size-10 moa:rounded-full` 클래스를 확인한다.
   - `alt falls back to empty string`
 
-- [ ] **MOA-2.20: 테스트를 실행해 실패하는지 확인한다**
-- [ ] **MOA-2.21: 구현한다**
-- [ ] **MOA-2.22: 테스트를 실행해 통과하는지 확인한다**
-- [ ] **MOA-2.23: 스토리를 작성한다** — variant 6종과 fit 5종
-- [ ] **MOA-2.24: 커밋한다** — `feat(moa): Image 추가`
+- [x] **MOA-2.20: 테스트를 실행해 실패하는지 확인한다**
+- [x] **MOA-2.21: 구현한다**
+- [x] **MOA-2.22: 테스트를 실행해 통과하는지 확인한다**
+- [x] **MOA-2.23: 스토리를 작성한다** — variant 6종과 fit 5종
+- [x] **MOA-2.24: 커밋한다** — `feat(moa): Image 추가`
 
 ---
 
@@ -567,17 +567,17 @@ test("accepts custom svgPath", () => {
 - Produces: `Button(props: BaseProps & Omit<ComponentPropsWithoutRef<"button">, "className"> & { variant?: "default" | "primary" | "borderless" })`
   - `type` 기본값은 `"button"`이다. 변형은 `cva`로 정의한다. `ref`는 React 19 방식대로 prop으로 전달한다.
 
-- [ ] **MOA-2.25: 테스트를 작성한다**
+- [x] **MOA-2.25: 테스트를 작성한다**
 
   - `defaults to type=button`
   - `primary uses primary tokens`: `moa:bg-primary moa:text-primary-fg` 클래스를 확인한다.
   - `calls onClick and respects disabled`: user-event로 클릭한다. disabled 상태에서는 호출되면 안 된다.
 
-- [ ] **MOA-2.26: 테스트를 실행해 실패하는지 확인한다**
-- [ ] **MOA-2.27: 구현한다**
-- [ ] **MOA-2.28: 테스트를 실행해 통과하는지 확인한다**
-- [ ] **MOA-2.29: 스토리를 작성한다** — variant 3종, disabled, Icon과 함께 쓴 예
-- [ ] **MOA-2.30: 커밋한다** — `feat(moa): Button 추가`
+- [x] **MOA-2.26: 테스트를 실행해 실패하는지 확인한다**
+- [x] **MOA-2.27: 구현한다**
+- [x] **MOA-2.28: 테스트를 실행해 통과하는지 확인한다**
+- [x] **MOA-2.29: 스토리를 작성한다** — variant 3종, disabled, Icon과 함께 쓴 예
+- [x] **MOA-2.30: 커밋한다** — `feat(moa): Button 추가`
 
 ---
 
@@ -592,7 +592,7 @@ test("accepts custom svgPath", () => {
   - variant별 요소: `shortText`는 `<input type="text">`, `longText`는 `<textarea rows={3}>`, `number`는 `<input type="number" inputMode="decimal">`, `obscured`는 `<input type="password">`다.
   - `label`은 `useId`로 연결한다. `onChange`는 이벤트가 아니라 문자열을 넘긴다.
 
-- [ ] **MOA-2.31: 테스트를 작성한다**
+- [x] **MOA-2.31: 테스트를 작성한다**
 
 ```tsx
 test("label is associated", () => {
@@ -608,11 +608,11 @@ test("number variant reports empty string when cleared", async () => {
 });
 ```
 
-- [ ] **MOA-2.32: 테스트를 실행해 실패하는지 확인한다**
-- [ ] **MOA-2.33: 구현한다**
-- [ ] **MOA-2.34: 테스트를 실행해 통과하는지 확인한다**
-- [ ] **MOA-2.35: 스토리를 작성한다** — variant 4종, disabled, controlled 예시
-- [ ] **MOA-2.36: 커밋한다** — `feat(moa): TextField 추가`
+- [x] **MOA-2.32: 테스트를 실행해 실패하는지 확인한다**
+- [x] **MOA-2.33: 구현한다**
+- [x] **MOA-2.34: 테스트를 실행해 통과하는지 확인한다**
+- [x] **MOA-2.35: 스토리를 작성한다** — variant 4종, disabled, controlled 예시
+- [x] **MOA-2.36: 커밋한다** — `feat(moa): TextField 추가`
 
 ---
 
@@ -629,18 +629,18 @@ test("number variant reports empty string when cleared", async () => {
   - `DateTimeInput(props: BaseProps & { label: string; value?: string; defaultValue?: string; onChange?: (iso: string) => void; enableDate?: boolean; enableTime?: boolean; min?: string; max?: string })`
     - 입력 type: 날짜와 시간이 모두 켜지면 `datetime-local`, 시간만 켜지면 `time`, 그 밖에는 `date`다. 둘 다 꺼진 경우도 `date`다.
 
-- [ ] **MOA-2.37: 테스트를 작성한다**
+- [x] **MOA-2.37: 테스트를 작성한다**
 
   - `CheckBox toggles and reports boolean`
   - `CheckBox is reachable by label`
   - `DateTimeInput picks input type from flags`: 네 가지 조합을 모두 확인한다.
   - `DateTimeInput passes min/max through`
 
-- [ ] **MOA-2.38: 테스트를 실행해 실패하는지 확인한다**
-- [ ] **MOA-2.39: 구현한다**
-- [ ] **MOA-2.40: 테스트를 실행해 통과하는지 확인한다**
-- [ ] **MOA-2.41: 스토리를 작성한다**
-- [ ] **MOA-2.42: 커밋한다** — `feat(moa): 네이티브 기반 CheckBox·DateTimeInput 추가`
+- [x] **MOA-2.38: 테스트를 실행해 실패하는지 확인한다**
+- [x] **MOA-2.39: 구현한다**
+- [x] **MOA-2.40: 테스트를 실행해 통과하는지 확인한다**
+- [x] **MOA-2.41: 스토리를 작성한다**
+- [x] **MOA-2.42: 커밋한다** — `feat(moa): 네이티브 기반 CheckBox·DateTimeInput 추가`
 
 ---
 
