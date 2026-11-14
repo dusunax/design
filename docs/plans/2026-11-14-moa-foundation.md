@@ -289,8 +289,9 @@ git commit -m "feat(moa): 토큰과 프리픽스 CSS·ESM 빌드 파이프라인
 - [ ] **MOA-1.16: 패키지를 만든다**
 
   - dependencies: `@dusunax/moa: "workspace:*"`
-  - devDependencies: `storybook@10.6.7`, `@storybook/react-vite@10.6.7`, `@storybook/addon-a11y@10.6.7`, `@chromatic-com/storybook@5.6.0`, `vite@8.3.8`, react 19 세트
-  - `main.ts`: `framework: "@storybook/react-vite"`, `stories: ["../stories/**/*.stories.tsx", "../docs/*.mdx"]`, addons는 a11y와 chromatic이다.
+  - devDependencies: `storybook@10.6.7`, `@storybook/react-vite@10.6.7`, `@storybook/addon-docs@10.6.7`, `@storybook/addon-a11y@10.6.7`, `@chromatic-com/storybook@5.6.0`, `vite@8.3.8`, react 19 세트
+  - `main.ts`: `framework: "@storybook/react-vite"`, `stories: ["../stories/**/*.stories.tsx", "../docs/*.mdx"]`, addons는 docs, a11y, chromatic이다. MDX와 설명 문서에는 addon-docs가 필요하다.
+  - 설명을 보여 줄 스토리는 meta에 `tags: ["autodocs"]`를 둔다.
   - `docs/Intro.mdx`: moa 소개와 사용법을 한국어로 쓴다.
 
 - [ ] **MOA-1.17: `preview.tsx`를 작성한다**
