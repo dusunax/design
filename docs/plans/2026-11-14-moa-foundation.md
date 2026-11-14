@@ -234,7 +234,7 @@ git commit -m "chore: init moa 디자인 시스템" -m "pnpm 모노레포와 @du
     @import "tailwindcss/utilities.css" layer(utilities) prefix(moa);
     @source "../components";
     ```
-  - `@theme`에 위 표의 light 값을 넣는다. `@theme` 안에서는 접두사 없이 `--color-primary`, `--radius-md`, `--text-caption`으로 쓴다. 그러면 출력 결과에서 `--moa-color-primary`로 바뀌고, `moa:bg-primary` 같은 유틸리티가 생긴다.
+  - `@theme static`에 위 표의 light 값을 넣는다. `static`이 없으면 쓰이지 않은 토큰이 출력에서 빠진다. `@theme` 안에서는 접두사 없이 `--color-primary`, `--radius-md`, `--text-caption`으로 쓴다. 그러면 출력 결과에서 `--moa-color-primary`로 바뀌고, `moa:bg-primary` 같은 유틸리티가 생긴다.
   - `[data-moa-theme="dark"]` 블록에서는 출력되는 이름(`--moa-color-*`)으로 dark 값을 덮어쓴다.
   - `prefix()`를 개별 import에 붙이는 문법이 4.3.5에서 동작하지 않으면 `@import "tailwindcss" prefix(moa);`를 쓰고 preflight만 제외하는 방식으로 바꾼다. 어느 쪽이든 MOA-1.13 검사를 통과해야 한다.
 
@@ -248,7 +248,7 @@ git commit -m "chore: init moa 디자인 시스템" -m "pnpm 모노레포와 @du
 - [ ] **MOA-1.12: 빌드 스크립트와 tsdown 설정을 추가한다**
 
   - devDependencies에 `tailwindcss@4.3.5`, `@tailwindcss/cli@4.3.5`, `tsdown@0.23.7`을 추가한다. dependencies에 `clsx@2.1.1`, `class-variance-authority@0.7.1`을 추가한다.
-  - `tsdown.config.ts`: `entry: { index: "src/index.ts" }`(부품을 추가할 때마다 entry를 하나씩 추가한다), `format: "esm"`, `dts: true`, `external: [/^react/, /^@radix-ui\//]`
+  - `tsdown.config.ts`: `entry: { index: "src/index.ts" }`(부품을 추가할 때마다 entry를 하나씩 추가한다), `format: "esm"`, `dts: true`, `fixedExtension: false`(`.js`/`.d.ts`로 출력), `deps: { neverBundle: [/^react/, /^@radix-ui\//] }`
   - scripts:
     - `build:js`: `tsdown`
     - `build:css`: `tailwindcss -i src/styles/index.css -o dist/styles.css --minify`
