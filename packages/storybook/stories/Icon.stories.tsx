@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Prop, PropGrid } from "./_Prop";
 
 const meta: Meta<typeof Icon> = {
-  title: "Components/Icon",
+  title: "Display/Icon",
   component: Icon,
   tags: ["autodocs"],
   args: { name: "send", size: 24 },

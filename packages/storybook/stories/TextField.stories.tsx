@@ -4,7 +4,7 @@ import { Prop } from "./_Prop";
 import { useState } from "react";
 
 const meta: Meta<typeof TextField> = {
-  title: "Components/TextField",
+  title: "Inputs/TextField",
   component: TextField,
   tags: ["autodocs"],
   args: { label: "라벨", placeholder: "입력값", variant: "shortText" },

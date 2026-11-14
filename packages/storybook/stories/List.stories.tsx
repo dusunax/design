@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Prop, PropGrid, SampleBox } from "./_Prop";
 
 const meta: Meta<typeof List> = {
-  title: "Components/List",
+  title: "Layout/List",
   component: List,
   tags: ["autodocs"],
   args: { direction: "vertical", align: "stretch" },

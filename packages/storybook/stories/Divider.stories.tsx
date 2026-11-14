@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Prop, PropGrid } from "./_Prop";
 
 const meta: Meta<typeof Divider> = {
-  title: "Components/Divider",
+  title: "Layout/Divider",
   component: Divider,
   tags: ["autodocs"],
   args: { axis: "horizontal" },

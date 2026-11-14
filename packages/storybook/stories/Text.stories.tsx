@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Prop } from "./_Prop";
 
 const meta: Meta<typeof Text> = {
-  title: "Components/Text",
+  title: "Display/Text",
   component: Text,
   tags: ["autodocs"],
   args: { text: "에이전트가 보낸 **문장**이다.", variant: "body" },

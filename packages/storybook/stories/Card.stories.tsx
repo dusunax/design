@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Prop, PropGrid } from "./_Prop";
 
 const meta: Meta<typeof Card> = {
-  title: "Components/Card",
+  title: "Layout/Card",
   component: Card,
   tags: ["autodocs"],
   args: { children: "카드 내용" },

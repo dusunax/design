@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Prop, PropGrid } from "./_Prop";
 
 const meta: Meta<typeof Button> = {
-  title: "Components/Button",
+  title: "Actions/Button",
   component: Button,
   tags: ["autodocs"],
   args: { children: "버튼", variant: "default" },

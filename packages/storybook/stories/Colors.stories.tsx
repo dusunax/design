@@ -42,7 +42,7 @@ function Swatch({ name }: { name: string }) {
 }
 
 const meta: Meta = {
-  title: "Foundations/Tokens",
+  title: "Foundations/Colors",
   tags: ["autodocs"],
   parameters: {
     docs: {

@@ -8,7 +8,7 @@ const SAMPLE = `data:image/svg+xml,${encodeURIComponent(
 )}`;
 
 const meta: Meta<typeof Image> = {
-  title: "Components/Image",
+  title: "Display/Image",
   component: Image,
   tags: ["autodocs"],
   args: { url: SAMPLE, description: "예시 이미지" },
