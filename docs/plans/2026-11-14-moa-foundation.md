@@ -334,7 +334,7 @@ Expected: `packages/storybook/storybook-static/index.html`이 생긴다.
   `.github/pull_request_template.md`. 본문은 `~다` 체로 쓰고, 섹션은 아래 순서다.
 
   ```markdown
-  ID: MOA-n
+  > ID: MOA-n
 
   ## 개요
   ## 변경 내용
