@@ -506,7 +506,7 @@ test("caption variant uses caption size", () => {
 ```tsx
 test("every catalog name has a path", () => {
   expect(ICON_NAMES).toHaveLength(59);
-  for (const n of ICON_NAMES) expect(ICON_PATHS[n]).toMatch(/^M/);
+  for (const n of ICON_NAMES) expect(ICON_PATHS[n]).toMatch(/^[Mm]/); // path는 moveto로 시작한다
 });
 test("decorative by default, labelled when label given", () => {
   const { container, rerender } = render(<Icon name="send" />);
