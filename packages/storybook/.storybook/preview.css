@@ -9,6 +9,8 @@
   gap: 6px;
   margin: 0;
   min-width: 0;
+  /* 한국어 캡션이 음절 중간에서 줄바꿈되지 않게 한다 */
+  word-break: keep-all;
 }
 
 .story-prop-sample {
