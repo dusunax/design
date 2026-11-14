@@ -15,3 +15,4 @@ export * from "./components/date-time-input";
 export * from "./components/modal";
 export * from "./components/tabs";
 export * from "./components/slider";
+export * from "./components/choice-picker";

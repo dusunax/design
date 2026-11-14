@@ -18,6 +18,7 @@ const config: UserConfig = defineConfig({
     modal: "src/components/modal/index.ts",
     tabs: "src/components/tabs/index.ts",
     slider: "src/components/slider/index.ts",
+    "choice-picker": "src/components/choice-picker/index.ts",
   },
   format: "esm",
   dts: true,

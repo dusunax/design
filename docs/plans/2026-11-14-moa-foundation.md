@@ -739,7 +739,7 @@ test("number variant reports empty string when cleared", async () => {
   - 단일 선택이어도 값은 길이 0\~1인 배열이다(catalog의 `DynamicStringList`).
   - `filterable`이면 label을 대소문자 구분 없이 부분 일치로 거른다. 그룹 이름은 `role="group"`(또는 radiogroup)에 `aria-label={label}`로 붙인다.
 
-- [ ] **MOA-3.13: 테스트를 작성한다**
+- [x] **MOA-3.13: 테스트를 작성한다**
 
   - `mutuallyExclusive checkbox is a radiogroup`
   - `multipleSelection chips toggles multiple values`: `onChange(["a","b"])`가 호출된다.
@@ -747,14 +747,14 @@ test("number variant reports empty string when cleared", async () => {
   - `filter narrows options case-insensitively`
   - `keeps selection hidden by filter`: `defaultValue=["b"]`인 상태에서 검색어를 입력해 b가 목록에서 사라져도 `onChange`가 호출되지 않는다. 검색어를 지우면 b가 여전히 선택되어 있다.
 
-- [ ] **MOA-3.14: 테스트를 실행해 실패하는지 확인한다**
-- [ ] **MOA-3.15: 구현한다**
+- [x] **MOA-3.14: 테스트를 실행해 실패하는지 확인한다**
+- [x] **MOA-3.15: 구현한다**
 
   선택 상태는 부품 하나에서 관리하고, 네 가지 렌더러는 그 상태를 표시만 한다.
 
-- [ ] **MOA-3.16: 테스트를 실행해 통과하는지 확인한다**
-- [ ] **MOA-3.17: 스토리를 작성한다** — 네 조합과 filterable
-- [ ] **MOA-3.18: 커밋한다** — `feat(moa): ChoicePicker 추가`
+- [x] **MOA-3.16: 테스트를 실행해 통과하는지 확인한다**
+- [x] **MOA-3.17: 스토리를 작성한다** — 네 조합과 filterable
+- [x] **MOA-3.18: 커밋한다** — `feat(moa): ChoicePicker 추가`
 
 ---
 
