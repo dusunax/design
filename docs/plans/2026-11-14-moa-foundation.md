@@ -215,6 +215,7 @@ git commit -m "chore: init moa 디자인 시스템" -m "pnpm 모노레포와 @du
   - 읽는 본문(Text body, 메시지)은 `text-prose`, 조작 요소는 `text-body`다.
   - 입력 라벨은 `text-body` `font-medium` `text-fg`다. 입력값보다 약하게 만들지 않는다.
   - 입력 오류는 prop 대신 네이티브 검증(`:user-invalid`)으로 `danger` 테두리를 보인다.
+  - 입력 포커스는 테두리를 `primary`로 바꾸고 같은 색 1px 외곽선(간격 0)을 붙여 2px 한 줄로 보인다. 회색 테두리 위에 외곽선을 겹치지 않는다. 버튼·체크박스는 `:focus-visible` 2px 외곽선, 간격 2px다.
   - 한 줄 입력과 버튼은 높이 36px(`h-9`)로 맞춘다. preflight가 없어 입력은 content-box로 계산되므로 `box-border`를 준다.
   - disabled는 투명도 대신 `surface` 배경, `fg-muted` 글자, `border` 테두리로 보인다.
   - dark 테마는 `color-scheme: dark`를 설정해 날짜 아이콘·스피너·스크롤바 같은 브라우저 기본 UI도 dark로 그린다.
