@@ -1,6 +1,14 @@
 import type { Preview } from "@storybook/react-vite";
 import "@dusunax/moa/styles.css";
 import "./preview.css";
+import isChromatic from "chromatic/isChromatic";
+
+// 커서 깜빡임과 실행 중 점 펄스가 찍히는 순간에 따라 스냅샷이 달라지지 않게 Chromatic에서는 애니메이션을 끈다.
+if (isChromatic()) {
+  const style = document.createElement("style");
+  style.textContent = "* { animation: none !important; }";
+  document.head.append(style);
+}
 
 const preview: Preview = {
   globalTypes: {

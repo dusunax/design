@@ -903,11 +903,11 @@ Expected: `dist/`, `package.json`, `README.md`만 포함되고 `src/`는 없다.
   - 사용자가 준비할 것: Chromatic 프로젝트 생성, 레포 secret `CHROMATIC_PROJECT_TOKEN` 등록
 
 - [ ] **MOA-5.6: Chromatic 팁을 사용자에게 알리고, Environment와 토큰을 준비한다** — 팁 주제: TurboSnap, 스냅샷 한도, 테마 모드 적용 범위, 애니메이션·스트리밍 스토리 고정. `chromatic` Environment를 만들어 배포 브랜치를 main과 MOA 브랜치로 제한하고, `CHROMATIC_PROJECT_TOKEN`은 레포 secret이 아니라 이 Environment에 넣는다. `chromatic` job에 `environment: chromatic`을 둔다.
-- [ ] **MOA-5.7: `preview.tsx`에 Chromatic 실행을 감지하는 코드를 추가한다**
+- [x] **MOA-5.7: `preview.tsx`에 Chromatic 실행을 감지하는 코드를 추가한다**
 
   `isChromatic()`이면 `* { animation: none !important; }`를 넣는다. StreamingText 커서와 RunStatus 펄스가 고정되는지 확인한다.
 
-- [ ] **MOA-5.8: `ci.yml`에 `pnpm size` 단계와 `chromatic` job을 추가한다**
+- [x] **MOA-5.8: `ci.yml`에 `pnpm size` 단계와 `chromatic` job을 추가한다**
 
   두 job의 `actions/checkout`에 `persist-credentials: false`를 둔다(SEC-2.4). `chromatic` 명령에 `--build-script-name build`를 붙여 공개 환경 변수 검사를 거친 빌드만 올린다(SEC-2.1).
 
