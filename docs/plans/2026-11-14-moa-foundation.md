@@ -841,6 +841,21 @@ test("number variant reports empty string when cleared", async () => {
 
 - [ ] **MOA-5.0: 게이트를 확인한다** — SEC-2. DOC-4의 게이트 확인을 따른다. SEC-2에서 나온 수정 Step은 MOA-5 안에 `MOA-5.0a`처럼 붙여 넣는다.
 
+### SEC-2 반영
+
+- [ ] **MOA-5.0a: Storybook 공개 환경 변수 검사를 빌드 스크립트 안으로 옮긴다** (SEC-2.1)
+
+  `packages/storybook/package.json`에서 `predev`·`prebuild`를 지우고, `dev`는 `node scripts/check-public-env.mjs && storybook dev -p 6013`, `build`는 `node scripts/check-public-env.mjs && storybook build`로 바꾼다. 루트 `pnpm build`(`pnpm -r build`)는 pre 스크립트를 실행하지 않기 때문이다.
+
+Run: `STORYBOOK_API_TOKEN=x pnpm build`
+Expected: "허용 목록에 없는 공개 환경 변수: STORYBOOK_API_TOKEN"을 출력하고 exit 1로 멈춘다. 변수 없이 다시 실행하면 통과한다.
+
+- [ ] **MOA-5.0b: Text 링크 정규식에 길이 상한을 둔다** (SEC-2.2)
+
+  `markdown.ts`의 링크 패턴을 `\[([^\]\n]{1,500})\]\((\S{0,2048})\)`로 바꾼다. 길이를 넘는 링크는 평문으로 남는다. 테스트 `does not linkify overly long links`를 먼저 추가해 실패를 확인한 뒤 고친다.
+
+- [ ] **MOA-5.0c: 커밋한다** — `fix: 공개 환경 변수 검사 경로와 Text 링크 길이 상한 수정`
+
 ### 크기 리포트와 npm 배포 설정
 
 **Files:**
@@ -852,7 +867,7 @@ test("number variant reports empty string when cleared", async () => {
   - `.size-limit.json` 항목: `core`(직접 구현 부품만 import, 5 kB), `all`(`dist/index.js`, 40 kB), `modal`, `tabs`, `slider`, `choice-picker`(각 15 kB), `css`(`dist/styles.css`, 10 kB). `react`는 ignore한다.
   - 루트 `pnpm size`: 리포트를 출력한다. CI에서는 실패로 처리하지 않는다(MOA-5의 CI와 Chromatic).
   - changeset `initial-release.md`: `@dusunax/moa`를 `minor`로 올려 `0.1.0`이 되게 한다.
-  - `packages/moa/README.md`(한국어)는 npm 페이지에 그대로 보인다. "보안" 절을 둔다. 내용은 Image와 Text 링크가 에이전트가 정한 URL을 불러오므로 프롬프트 인젝션으로 데이터가 새어 나갈 수 있다는 것, 이를 막으려면 쓰는 쪽이 CSP `img-src`나 출처 허용 목록을 둬야 한다는 것이다.
+  - `packages/moa/README.md`(한국어)는 npm 페이지에 그대로 보인다. "보안" 절을 둔다. 내용은 Image와 Text 링크가 에이전트가 정한 URL을 불러오므로 프롬프트 인젝션으로 데이터가 새어 나갈 수 있다는 것, 이를 막으려면 쓰는 쪽이 CSP `img-src`나 출처 허용 목록을 둬야 한다는 것이다. Text 링크는 보이는 글자와 실제 주소가 다를 수 있다는 것도 적는다(SEC-2.3).
 
 - [ ] **MOA-5.1: 설정 파일을 작성한다**
 - [ ] **MOA-5.2: 빌드와 크기 리포트를 실행한다**
@@ -893,6 +908,9 @@ Expected: `dist/`, `package.json`, `README.md`만 포함되고 `src/`는 없다.
   `isChromatic()`이면 `* { animation: none !important; }`를 넣는다. StreamingText 커서와 RunStatus 펄스가 고정되는지 확인한다.
 
 - [ ] **MOA-5.8: `ci.yml`에 `pnpm size` 단계와 `chromatic` job을 추가한다**
+
+  두 job의 `actions/checkout`에 `persist-credentials: false`를 둔다(SEC-2.4). `chromatic` 명령에 `--build-script-name build`를 붙여 공개 환경 변수 검사를 거친 빌드만 올린다(SEC-2.1).
+
 - [ ] **MOA-5.9: 로컬에서 Chromatic을 한 번 실행한다**
 
 Run: `pnpm --filter @dusunax/moa-storybook chromatic` (토큰은 `.env`의 `CHROMATIC_PROJECT_TOKEN`에서 읽는다. `.env*`는 이미 `.gitignore`에 있다)
