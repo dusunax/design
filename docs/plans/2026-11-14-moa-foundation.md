@@ -88,7 +88,7 @@ packages/storybook/
 
 ## MOA-1 init: 레포 정리, 토큰, Storybook
 
-- 브랜치 `MOA-1` · PR `chore: init moa 디자인 시스템` · **merge commit**. squash 하면 문서(MOA-1.0a), 제거(MOA-1.1), init(MOA-1.9) 커밋이 합쳐져 init 커밋이 시작점 역할을 못 한다.
+- 브랜치 `MOA-1` · PR `chore: [MOA-1] init moa 디자인 시스템` · **merge commit**. squash 하면 문서(MOA-1.0a), 제거(MOA-1.1), init(MOA-1.9) 커밋이 합쳐져 init 커밋이 시작점 역할을 못 한다.
 
 ### 게이트
 
@@ -378,7 +378,7 @@ git commit -m "ci: 타입·테스트·빌드 검사 워크플로와 PR 템플릿
 
 ## MOA-2 기본 부품
 
-- 브랜치 `MOA-2` · PR `feat(moa): 기본 부품 추가`
+- 브랜치 `MOA-2` · PR `feat(moa): [MOA-2] 기본 부품 추가`
 - 너무 크면 레이아웃\~Button과 TextField\~DateTimeInput으로 나눈다. 뒤쪽은 새 번호를 받고, 제목은 `feat(moa): 레이아웃·표시 기본 부품 추가`, `feat(moa): 입력 기본 부품 추가`로 쓴다.
 
 ### 레이아웃 (Row, Column, List, Card, Divider)
@@ -666,7 +666,7 @@ test("number variant reports empty string when cleared", async () => {
 
 ## MOA-3 의존성 있는 부품
 
-- 브랜치 `MOA-3` · PR `feat(moa): Modal·Tabs·Slider·ChoicePicker 의존성 있는 부품 추가`
+- 브랜치 `MOA-3` · PR `feat(moa): [MOA-3] 의존성 있는 부품 추가`
 
 ### Modal (Radix Dialog)
 
@@ -761,7 +761,7 @@ test("number variant reports empty string when cleared", async () => {
 
 ## MOA-4 에이전트 부품
 
-- 브랜치 `MOA-4` · PR `feat(moa): 에이전트 부품 추가`
+- 브랜치 `MOA-4` · PR `feat(moa): [MOA-4] 에이전트 부품 추가`
 
 ### 에이전트 부품 (MessageBubble, StreamingText, RunStatus)
 
@@ -830,7 +830,7 @@ test("number variant reports empty string when cleared", async () => {
 
 ## MOA-5 크기 리포트·배포·Chromatic
 
-- 브랜치 `MOA-5` · PR `chore(moa): 크기 리포트·배포·Chromatic 설정`
+- 브랜치 `MOA-5` · PR `chore(moa): [MOA-5] 크기 리포트·배포·Chromatic 설정`
 
 ### 게이트
 
@@ -899,7 +899,7 @@ Expected: 빌드가 업로드되고, 기준 스냅샷 승인을 기다리는 URL
 
 ## MOA-6 문서 영어 지원
 
-- 브랜치 `MOA-6` · PR `docs: 문서 영어 지원`
+- 브랜치 `MOA-6` · PR `docs: [MOA-6] 문서 영어 지원`
 
 ### README와 Storybook 영어 지원
 
