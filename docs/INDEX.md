@@ -33,7 +33,7 @@ ID의 순서와 상태는 이 문서에만 적는다. 다른 문서는 이 표�
 | MOA-2 | 구현 | 기본 부품 | MOA-1 | — | 완료 | 브랜치 `MOA-2`, Step은 DOC-6 | [#2](https://github.com/dusunax/design/pull/2) |
 | MOA-3 | 구현 | 의존성 있는 부품 | MOA-2 | — | 완료 | 브랜치 `MOA-3`, Step은 DOC-6 | [#3](https://github.com/dusunax/design/pull/3) |
 | MOA-4 | 구현 | 에이전트 부품 | MOA-3 | — | 완료 | 브랜치 `MOA-4`, Step은 DOC-6 | [#4](https://github.com/dusunax/design/pull/4) |
-| SEC-2 | review | 구현 코드 보안 점검 (첫 npm 배포 전) | MOA-4 | — | 대기 | — | — |
+| SEC-2 | review | 구현 코드 보안 점검 (첫 npm 배포 전) | MOA-4 | — | 진행 | — | — |
 | MOA-5 | 구현 | 크기 리포트·배포·Chromatic | MOA-4 | SEC-2 | 대기 | 브랜치 `MOA-5`, Step은 DOC-6 | — |
 | MOA-6 | 구현 | 문서 영어 지원 | MOA-5 | — | 대기 | 브랜치 `MOA-6`, Step은 DOC-6 | — |
 | DOC-7 | spec | 다음 패키지 설계 (`moa-stream`, `moa-render`, playground) | MOA-6 | — | 대기 | — | — |
