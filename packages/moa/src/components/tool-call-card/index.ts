@@ -1,1 +1,1 @@
-export { ToolCallCard, type ToolCallCardProps, type ToolCallState } from "./ToolCallCard";
+export { ToolCallCard, type ToolCallCardProps, type ToolCallState, type ToolCallLabel } from "./ToolCallCard";

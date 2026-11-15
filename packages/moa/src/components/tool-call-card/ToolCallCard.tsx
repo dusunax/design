@@ -15,9 +15,13 @@ export type ToolCallCardProps = BaseProps & {
   /** 원문 문자열. error 상태에서는 danger 색으로 보인다. */
   result?: string;
   defaultOpen?: boolean;
+  /** 상태 배지와 절 제목 문구를 바꾼다. 없는 항목은 기본 영어 문구를 쓴다. */
+  labels?: Partial<Record<ToolCallLabel, string>>;
 };
 
-const LABELS: Record<ToolCallState, string> = { pending: "Pending", running: "Running", finished: "Done", error: "Error" };
+export type ToolCallLabel = ToolCallState | "args" | "result";
+
+const DEFAULT_LABELS: Record<ToolCallLabel, string> = { pending: "Pending", running: "Running", finished: "Done", error: "Error", args: "Arguments", result: "Result" };
 
 // RunStatus와 같은 상태 색을 쓴다.
 const badgeClass: Record<ToolCallState, string> = {
@@ -35,10 +39,11 @@ function pretty(raw: string): string {
   }
 }
 
-const preClass = "moa:m-0 moa:rounded-sm moa:bg-surface moa:p-2 moa:font-mono moa:text-caption moa:whitespace-pre-wrap";
+const preClass = "moa:m-0 moa:rounded-sm moa:bg-surface moa:p-2 moa:font-mono moa:text-caption moa:whitespace-pre-wrap moa:wrap-anywhere";
 const sectionLabelClass = "moa:mb-1 moa:text-caption moa:text-fg-muted";
 
-export function ToolCallCard({ name, status, args, result, defaultOpen, weight, className }: ToolCallCardProps): JSX.Element {
+export function ToolCallCard({ name, status, args, result, defaultOpen, labels, weight, className }: ToolCallCardProps): JSX.Element {
+  const text = (key: ToolCallLabel) => labels?.[key] ?? DEFAULT_LABELS[key];
   return (
     <details
       open={defaultOpen}
@@ -50,19 +55,19 @@ export function ToolCallCard({ name, status, args, result, defaultOpen, weight, 
           <path d={CHEVRON_PATH} />
         </svg>
         <code className="moa:font-mono moa:text-body">{name}</code>
-        <span className={clsx("moa:ml-auto moa:rounded-full moa:border moa:px-2 moa:py-0.5 moa:text-caption moa:font-medium", badgeClass[status])}>{LABELS[status]}</span>
+        <span className={clsx("moa:ml-auto moa:rounded-full moa:border moa:px-2 moa:py-0.5 moa:text-caption moa:font-medium", badgeClass[status])}>{text(status)}</span>
       </summary>
       {(args || result) && (
         <div className="moa:flex moa:flex-col moa:gap-2 moa:border-t moa:border-border moa:px-3 moa:py-2">
           {args && (
             <div>
-              <div className={sectionLabelClass}>Arguments</div>
+              <div className={sectionLabelClass}>{text("args")}</div>
               <pre className={preClass}>{pretty(args)}</pre>
             </div>
           )}
           {result && (
             <div>
-              <div className={sectionLabelClass}>Result</div>
+              <div className={sectionLabelClass}>{text("result")}</div>
               <pre className={clsx(preClass, status === "error" && "moa:text-danger")}>{status === "error" ? result : pretty(result)}</pre>
             </div>
           )}

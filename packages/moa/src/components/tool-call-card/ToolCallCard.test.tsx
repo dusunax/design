@@ -19,3 +19,9 @@ test("defaultOpen opens details", () => {
   rerender(<ToolCallCard name="other" status="pending" defaultOpen key="b" />);
   expect(container.querySelector("details")).toHaveAttribute("open");
 });
+test("labels replace badge and section titles", () => {
+  render(<ToolCallCard name="search" status="running" args="{}" result="{}" defaultOpen labels={{ running: "실행 중", args: "인자" }} />);
+  expect(screen.getByText("실행 중")).toBeInTheDocument();
+  expect(screen.getByText("인자")).toBeInTheDocument();
+  expect(screen.getByText("Result")).toBeInTheDocument();
+});

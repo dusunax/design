@@ -16,7 +16,7 @@ export const Variants: Story = {
   parameters: {
     docs: {
       source: {
-        code: "<ToolCallCard name=\"search\" status=\"pending\" />\n<ToolCallCard name=\"search\" status=\"running\" args={partialJson} />\n<ToolCallCard name=\"search\" status=\"finished\" args={json} result={json} />\n<ToolCallCard name=\"search\" status=\"error\" result=\"Timeout\" />",
+        code: "<ToolCallCard name=\"search\" status=\"pending\" />\n<ToolCallCard name=\"search\" status=\"running\" args={partialJson} />\n<ToolCallCard name=\"search\" status=\"finished\" args={json} result={json} />\n<ToolCallCard name=\"search\" status=\"error\" result=\"Timeout\" />\n<ToolCallCard name=\"search\" status=\"running\" labels={{ running: \"실행 중\", args: \"인자\" }} />",
         language: "tsx",
       },
     },
@@ -34,6 +34,9 @@ export const Variants: Story = {
       </Prop>
       <Prop code='status="error" result="Timeout"'>
         <ToolCallCard name="search" status="error" args='{"query":"moa"}' result="Timeout" defaultOpen />
+      </Prop>
+      <Prop code={'labels={{ running: "실행 중", args: "인자" }}'} use="배지와 절 제목 문구를 바꿀 때">
+        <ToolCallCard name="search" status="running" args='{"query":"moa"}' labels={{ running: "실행 중", args: "인자" }} defaultOpen />
       </Prop>
     </div>
   ),

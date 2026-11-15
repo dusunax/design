@@ -24,7 +24,8 @@ const dotClass: Record<RunState, string> = {
 export function RunStatus({ status, message, labels, weight, className }: RunStatusProps): JSX.Element {
   return (
     <div role="status" className={clsx("moa:inline-flex moa:items-center moa:gap-2 moa:text-body moa:text-fg", className)} style={weightStyle(weight)}>
-      <span aria-hidden className={clsx("moa:size-2 moa:shrink-0 moa:rounded-full", dotClass[status])} />
+      {/* 글자 모양은 줄 상자 가운데보다 위에 있어서, 점을 1px 올려 글자 가운데에 맞춘다 */}
+      <span aria-hidden className={clsx("moa:size-2 moa:shrink-0 moa:-translate-y-px moa:rounded-full", dotClass[status])} />
       <span className="moa:font-medium">{labels?.[status] ?? DEFAULT_LABELS[status]}</span>
       {message && <span className="moa:text-fg-muted">{message}</span>}
     </div>
