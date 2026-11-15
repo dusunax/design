@@ -864,18 +864,18 @@ Expected: "허용 목록에 없는 공개 환경 변수: STORYBOOK_API_TOKEN"을
 
 **Interfaces:**
 - Produces:
-  - `.size-limit.json` 항목: `core`(직접 구현 부품만 import, 5 kB), `all`(`dist/index.js`, 40 kB), `modal`, `tabs`, `slider`, `choice-picker`(각 15 kB), `css`(`dist/styles.css`, 10 kB). `react`는 ignore한다.
+  - `.size-limit.json` 항목: `core`(직접 구현 부품만 import, 5 kB), `all`(`dist/index.js`, 40 kB), `modal`, `tabs`, `slider`, `choice-picker`(각 15 kB), `css`(`dist/styles.css`, 10 kB). `react`는 ignore한다. 스펙 예산이 gzip 기준이라 모든 항목에 `gzip: true`를 둔다. `core`는 Radix를 쓰지 않는 부품(기본 12종과 에이전트 4종)이다. `css`는 번들러가 CSS를 받지 않으므로 `rolldown: false`로 파일 크기만 잰다.
   - 루트 `pnpm size`: 리포트를 출력한다. CI에서는 실패로 처리하지 않는다(MOA-5의 CI와 Chromatic).
   - changeset `initial-release.md`: `@dusunax/moa`를 `minor`로 올려 `0.1.0`이 되게 한다.
   - `packages/moa/README.md`(한국어)는 npm 페이지에 그대로 보인다. "보안" 절을 둔다. 내용은 Image와 Text 링크가 에이전트가 정한 URL을 불러오므로 프롬프트 인젝션으로 데이터가 새어 나갈 수 있다는 것, 이를 막으려면 쓰는 쪽이 CSP `img-src`나 출처 허용 목록을 둬야 한다는 것이다. Text 링크는 보이는 글자와 실제 주소가 다를 수 있다는 것도 적는다(SEC-2.3).
 
-- [ ] **MOA-5.1: 설정 파일을 작성한다**
-- [ ] **MOA-5.2: 빌드와 크기 리포트를 실행한다**
+- [x] **MOA-5.1: 설정 파일을 작성한다**
+- [x] **MOA-5.2: 빌드와 크기 리포트를 실행한다**
 
 Run: `pnpm build && pnpm size`
 Expected: 항목 7개의 크기가 출력된다. 예산을 넘은 항목이 있으면 리포트에 그 이름과 차이를 적어 둔다. 실패로 처리하지는 않는다.
 
-- [ ] **MOA-5.3: 배포 결과물을 미리 확인한다**
+- [x] **MOA-5.3: 배포 결과물을 미리 확인한다**
 
 Run: `pnpm --filter @dusunax/moa pack --dry-run`
 Expected: `dist/`, `package.json`, `README.md`만 포함되고 `src/`는 없다.
@@ -884,7 +884,7 @@ Expected: `dist/`, `package.json`, `README.md`만 포함되고 `src/`는 없다.
 
   배포는 사용자가 로컬에서 `pnpm release`로 하고, CI 배포는 두지 않는다. `npm profile get`의 2FA 모드가 여전히 `auth-and-writes`인지 확인한다. 바뀌었으면 SEC-1.5를 🟡로 되돌린다. README의 배포 절에 "로컬에서 2FA OTP를 넣어 배포한다"를 적는다.
 
-- [ ] **MOA-5.5: 커밋한다** — `chore(moa): size-limit 리포트와 changesets 배포 설정 추가`
+- [x] **MOA-5.5: 커밋한다** — `chore(moa): size-limit 리포트와 changesets 배포 설정 추가`
 
   실제 `pnpm release`(npm publish)는 이 플랜에서 실행하지 않는다. 사용자가 따로 승인하면 실행한다.
 
