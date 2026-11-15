@@ -35,7 +35,7 @@ function pretty(raw: string): string {
   }
 }
 
-const preClass = "moa:m-0 moa:overflow-x-auto moa:rounded-sm moa:bg-surface moa:p-2 moa:font-mono moa:text-caption moa:whitespace-pre-wrap";
+const preClass = "moa:m-0 moa:rounded-sm moa:bg-surface moa:p-2 moa:font-mono moa:text-caption moa:whitespace-pre-wrap";
 const sectionLabelClass = "moa:mb-1 moa:text-caption moa:text-fg-muted";
 
 export function ToolCallCard({ name, status, args, result, defaultOpen, weight, className }: ToolCallCardProps): JSX.Element {
@@ -50,7 +50,7 @@ export function ToolCallCard({ name, status, args, result, defaultOpen, weight, 
           <path d={CHEVRON_PATH} />
         </svg>
         <code className="moa:font-mono moa:text-body">{name}</code>
-        <span className={clsx("moa:ml-auto moa:rounded-full moa:border moa:px-2 moa:text-caption moa:font-medium", badgeClass[status])}>{LABELS[status]}</span>
+        <span className={clsx("moa:ml-auto moa:rounded-full moa:border moa:px-2 moa:py-0.5 moa:text-caption moa:font-medium", badgeClass[status])}>{LABELS[status]}</span>
       </summary>
       {(args || result) && (
         <div className="moa:flex moa:flex-col moa:gap-2 moa:border-t moa:border-border moa:px-3 moa:py-2">

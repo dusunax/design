@@ -14,7 +14,7 @@ export function StreamingText({ text, streaming, weight, className }: StreamingT
     <div
       aria-live="polite"
       aria-busy={streaming}
-      className={clsx("moa:whitespace-pre-wrap moa:text-prose moa:text-fg", className)}
+      className={clsx("moa:whitespace-pre-wrap moa:text-prose", className)}
       style={weightStyle(weight)}
     >
       {text}

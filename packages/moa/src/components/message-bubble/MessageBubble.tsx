@@ -16,8 +16,8 @@ const rowClass: Record<MessageRole, string> = {
 };
 
 const bubbleClass: Record<MessageRole, string> = {
-  user: "moa:max-w-[80%] moa:rounded-lg moa:bg-primary moa:px-3 moa:py-2 moa:text-body moa:text-primary-fg",
-  assistant: "moa:max-w-[80%] moa:rounded-lg moa:bg-surface moa:px-3 moa:py-2 moa:text-body moa:text-fg",
+  user: "moa:max-w-[80%] moa:rounded-lg moa:bg-primary moa:px-3 moa:py-2 moa:text-prose moa:text-primary-fg",
+  assistant: "moa:max-w-[80%] moa:rounded-lg moa:bg-surface moa:px-3 moa:py-2 moa:text-prose moa:text-fg",
   system: "moa:text-caption moa:text-fg-muted",
 };
 
