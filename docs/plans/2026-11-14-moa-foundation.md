@@ -88,7 +88,7 @@ packages/storybook/
 
 ## MOA-1 init: 레포 정리, 토큰, Storybook
 
-- 브랜치 `MOA-1` · PR `chore: init moa 디자인 시스템` · **merge commit**. squash 하면 문서(MOA-1.0a), 제거(MOA-1.1), init(MOA-1.9) 커밋이 합쳐져 init 커밋이 시작점 역할을 못 한다.
+- 브랜치 `MOA-1` · PR `chore: [MOA-1] init moa 디자인 시스템` · **merge commit**. squash 하면 문서(MOA-1.0a), 제거(MOA-1.1), init(MOA-1.9) 커밋이 합쳐져 init 커밋이 시작점 역할을 못 한다.
 
 ### 게이트
 
@@ -378,7 +378,7 @@ git commit -m "ci: 타입·테스트·빌드 검사 워크플로와 PR 템플릿
 
 ## MOA-2 기본 부품
 
-- 브랜치 `MOA-2` · PR `feat(moa): 기본 부품 추가`
+- 브랜치 `MOA-2` · PR `feat(moa): [MOA-2] 기본 부품 추가`
 - 너무 크면 레이아웃\~Button과 TextField\~DateTimeInput으로 나눈다. 뒤쪽은 새 번호를 받고, 제목은 `feat(moa): 레이아웃·표시 기본 부품 추가`, `feat(moa): 입력 기본 부품 추가`로 쓴다.
 
 ### 레이아웃 (Row, Column, List, Card, Divider)
@@ -666,7 +666,7 @@ test("number variant reports empty string when cleared", async () => {
 
 ## MOA-3 의존성 있는 부품
 
-- 브랜치 `MOA-3` · PR `feat(moa): Modal·Tabs·Slider·ChoicePicker 의존성 있는 부품 추가`
+- 브랜치 `MOA-3` · PR `feat(moa): [MOA-3] 의존성 있는 부품 추가`
 
 ### Modal (Radix Dialog)
 
@@ -761,41 +761,44 @@ test("number variant reports empty string when cleared", async () => {
 
 ## MOA-4 에이전트 부품
 
-- 브랜치 `MOA-4` · PR `feat(moa): 에이전트 부품 추가`
+- 브랜치 `MOA-4` · PR `feat(moa): [MOA-4] 에이전트 부품 추가`
 
 ### 에이전트 부품 (MessageBubble, StreamingText, RunStatus)
 
 **Files:**
-- Create: `src/components/{message-bubble,streaming-text,run-status}/*`, `stories/Agent.stories.tsx`
+- Create: `src/components/{message-bubble,streaming-text,run-status}/*`, `stories/{MessageBubble,StreamingText,RunStatus,Conversation}.stories.tsx`(사이드바 `Agent/*`)
 - Modify: `tsdown.config.ts`, `src/index.ts`
 
 **Interfaces:**
 - Produces:
-  - `MessageBubble(props: BaseProps & { role: "user" | "assistant" | "system"; children: ReactNode })`
+  - `MessageBubble(props: BaseProps & { role: "user" | "assistant" | "system"; children: ReactNode; labels?: Partial<Record<"user" | "assistant" | "system", string>> })`
     - user는 오른쪽 정렬 + primary 배경, assistant는 왼쪽 정렬 + surface 배경, system은 가운데 정렬 + caption 크기의 fg-muted다. `data-role` 속성을 붙인다.
+    - 발화자 이름(기본 `You`, `Assistant`, system은 없음)을 스크린리더에만 읽히게 붙인다. 위치와 색만으로는 화면을 보지 않는 사용자가 발화자를 알 수 없기 때문이다.
+    - 띄어쓰기 없는 긴 글자(URL 등)는 말풍선 안에서 줄을 바꾼다(`moa:wrap-anywhere`). StreamingText와 ToolCallCard `<pre>`도 같다.
   - `StreamingText(props: BaseProps & { text: string; streaming: boolean })`
     - 줄바꿈을 유지하는 평문으로 보여 준다(`moa:whitespace-pre-wrap`). 스트리밍 중에는 Markdown을 해석하지 않는다. 그래야 문법이 반쯤 들어왔을 때 화면이 깜빡이지 않는다.
     - 컨테이너에 `aria-live="polite"`와 `aria-busy={streaming}`을 붙인다. `streaming`일 때만 `aria-hidden` 커서(`▍`, 깜빡임 애니메이션)를 붙인다. `prefers-reduced-motion`이면 깜빡이지 않는다.
   - `RunStatus(props: BaseProps & { status: "idle" | "running" | "finished" | "error"; message?: string; labels?: Partial<Record<"idle" | "running" | "finished" | "error", string>> })`
     - `role="status"`를 붙인다. 기본 라벨은 `Idle`, `Running`, `Done`, `Error`다. 상태 점 색은 fg-muted, primary, success, danger다. running이면 점이 펄스한다.
 
-- [ ] **MOA-4.1: 테스트를 작성한다**
+- [x] **MOA-4.1: 테스트를 작성한다**
 
   - `MessageBubble marks role`
+  - `MessageBubble names the speaker for screen readers`
   - `StreamingText shows cursor only while streaming`
   - `StreamingText is aria-busy while streaming`
   - `StreamingText keeps markdown literal`: `"**a"`가 그대로 보여야 한다.
   - `RunStatus renders default and custom labels`
   - `RunStatus error shows message`
 
-- [ ] **MOA-4.2: 테스트를 실행해 실패하는지 확인한다**
-- [ ] **MOA-4.3: 구현한다**
-- [ ] **MOA-4.4: 테스트를 실행해 통과하는지 확인한다**
-- [ ] **MOA-4.5: 스토리를 작성한다**
+- [x] **MOA-4.2: 테스트를 실행해 실패하는지 확인한다**
+- [x] **MOA-4.3: 구현한다**
+- [x] **MOA-4.4: 테스트를 실행해 통과하는지 확인한다**
+- [x] **MOA-4.5: 스토리를 작성한다**
 
   대화 예시(user → assistant 스트리밍 → finished)를 만든다. 스트리밍 스토리는 `args.text`와 `args.streaming`으로 상태를 고정한 정적 스냅샷이다. 타이머는 쓰지 않는다.
 
-- [ ] **MOA-4.6: 커밋한다** — `feat(moa): MessageBubble·StreamingText·RunStatus 에이전트 부품 추가`
+- [x] **MOA-4.6: 커밋한다** — `feat(moa): MessageBubble·StreamingText·RunStatus 에이전트 부품 추가`
 
 ---
 
@@ -803,33 +806,36 @@ test("number variant reports empty string when cleared", async () => {
 
 **Files:**
 - Create: `src/components/tool-call-card/*`
-- Modify: `stories/Agent.stories.tsx`, `tsdown.config.ts`, `src/index.ts`
+- Create: `stories/ToolCallCard.stories.tsx`
+- Modify: `tsdown.config.ts`, `src/index.ts`
 
 **Interfaces:**
-- Consumes: MOA-4 에이전트 부품의 `RunStatus` 색 규칙, `Icon`
-- Produces: `ToolCallCard(props: BaseProps & { name: string; status: "pending" | "running" | "finished" | "error"; args?: string; result?: string; defaultOpen?: boolean })`
+- Consumes: MOA-4 에이전트 부품의 `RunStatus` 색 규칙
+- Produces: `ToolCallCard(props: BaseProps & { name: string; status: "pending" | "running" | "finished" | "error"; args?: string; result?: string; defaultOpen?: boolean; labels?: Partial<Record<"pending" | "running" | "finished" | "error" | "args" | "result", string>> })`
   - 상태 이름은 RunStatus와 맞춘다. 대기 상태만 `idle` 대신 `pending`을 쓴다. 배지 색은 pending fg-muted, running primary, finished success, error danger다.
   - 네이티브 `<details>`/`<summary>`로 만든다. summary에는 도구 이름과 상태 배지를 넣는다.
   - `args`와 `result`는 원문 문자열이다. `JSON.parse`에 성공하면 들여쓰기 2칸으로 다시 출력한다. 실패하면 원문을 그대로 `<pre>`로 보여 준다.
+  - 배지와 절 제목의 기본 문구는 `Pending`, `Running`, `Done`, `Error`, `Arguments`, `Result`이고 `labels`로 바꾼다.
 
-- [ ] **MOA-4.7: 테스트를 작성한다**
+- [x] **MOA-4.7: 테스트를 작성한다**
 
   - `pretty-prints valid JSON args`
   - `shows raw args when JSON is partial`: `args='{"city":"Seo'`일 때 오류 없이 원문이 보여야 한다.
   - `error status shows result in danger color`
   - `defaultOpen opens details`
+  - `labels replace badge and section titles`
 
-- [ ] **MOA-4.8: 테스트를 실행해 실패하는지 확인한다**
-- [ ] **MOA-4.9: 구현한다**
-- [ ] **MOA-4.10: 테스트를 실행해 통과하는지 확인한다**
-- [ ] **MOA-4.11: 스토리를 작성한다** — Agent 스토리에 pending, 인자 스트리밍 중, finished, error를 추가한다.
-- [ ] **MOA-4.12: 커밋한다** — `feat(moa): ToolCallCard 추가`
+- [x] **MOA-4.8: 테스트를 실행해 실패하는지 확인한다**
+- [x] **MOA-4.9: 구현한다**
+- [x] **MOA-4.10: 테스트를 실행해 통과하는지 확인한다**
+- [x] **MOA-4.11: 스토리를 작성한다** — ToolCallCard 스토리에 pending, 인자 스트리밍 중, finished, error, `labels`를 추가한다.
+- [x] **MOA-4.12: 커밋한다** — `feat(moa): ToolCallCard 추가`
 
 ---
 
 ## MOA-5 크기 리포트·배포·Chromatic
 
-- 브랜치 `MOA-5` · PR `chore(moa): 크기 리포트·배포·Chromatic 설정`
+- 브랜치 `MOA-5` · PR `chore(moa): [MOA-5] 크기 리포트·배포·Chromatic 설정`
 
 ### 게이트
 
@@ -898,7 +904,7 @@ Expected: 빌드가 업로드되고, 기준 스냅샷 승인을 기다리는 URL
 
 ## MOA-6 문서 영어 지원
 
-- 브랜치 `MOA-6` · PR `docs: 문서 영어 지원`
+- 브랜치 `MOA-6` · PR `docs: [MOA-6] 문서 영어 지원`
 
 ### README와 Storybook 영어 지원
 

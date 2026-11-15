@@ -16,3 +16,7 @@ export * from "./components/modal";
 export * from "./components/tabs";
 export * from "./components/slider";
 export * from "./components/choice-picker";
+export * from "./components/message-bubble";
+export * from "./components/streaming-text";
+export * from "./components/run-status";
+export * from "./components/tool-call-card";
