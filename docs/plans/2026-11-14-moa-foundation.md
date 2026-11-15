@@ -839,7 +839,7 @@ test("number variant reports empty string when cleared", async () => {
 
 ### 게이트
 
-- [ ] **MOA-5.0: 게이트를 확인한다** — SEC-2. DOC-4의 게이트 확인을 따른다. SEC-2에서 나온 수정 Step은 MOA-5 안에 `MOA-5.0a`처럼 붙여 넣는다.
+- [x] **MOA-5.0: 게이트를 확인한다** — SEC-2. DOC-4의 게이트 확인을 따른다. SEC-2에서 나온 수정 Step은 MOA-5 안에 `MOA-5.0a`처럼 붙여 넣는다.
 
 ### SEC-2 반영
 
