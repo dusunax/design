@@ -6,7 +6,8 @@ export type InlineNode =
 const ALLOWED_PROTOCOLS = new Set(["http:", "https:", "mailto:"]);
 
 // 본문은 부정 문자 클래스로 잡고 수량자를 중첩하지 않는다(SEC-1.2).
-const TOKEN = /\*\*([^*\n]+)\*\*|\*([^*\n]+)\*|`([^`\n]+)`|\[([^\]\n]+)\]\((\S*)\)|\n/g;
+// 링크는 닫는 기호가 없으면 줄 끝까지 읽으므로 길이 상한을 둬 제곱 시간을 막는다(SEC-2.2).
+const TOKEN = /\*\*([^*\n]+)\*\*|\*([^*\n]+)\*|`([^`\n]+)`|\[([^\]\n]{1,500})\]\((\S{0,2048})\)|\n/g;
 
 function safeHref(href: string): string | undefined {
   try {

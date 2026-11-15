@@ -303,7 +303,7 @@ git commit -m "feat(moa): 토큰과 프리픽스 CSS·ESM 빌드 파이프라인
 **Interfaces:**
 - Consumes: MOA-1 토큰과 빌드의 `@dusunax/moa/styles.css`와 토큰 이름
 - Produces:
-  - `@dusunax/moa-storybook`(private) 스크립트: `dev`(`storybook dev -p 6013`), `build`(`storybook build`). `predev`와 `prebuild`는 `node scripts/check-public-env.mjs`다.
+  - `@dusunax/moa-storybook`(private) 스크립트: `dev`(`storybook dev -p 6013`), `build`(`storybook build`). `predev`와 `prebuild`는 `node scripts/check-public-env.mjs`다. MOA-5.0a에서 검사를 `dev`·`build` 스크립트 안으로 옮겼다(SEC-2.1).
   - `check-public-env.mjs`: 이름이 `STORYBOOK_`나 `VITE_`로 시작하는 환경 변수 중 허용 목록(`STORYBOOK_LOCALE`)에 없는 것이 있으면 그 이름을 출력하고 exit 1로 끝낸다. 값은 출력하지 않는다.
   - 스토리 설명은 `parameters.docs.description.component`와 `.story`에 한국어로 쓴다.
   - 툴바 global `theme: "light" | "dark"`: decorator가 스토리를 감싼 요소에 `data-moa-theme`를 붙인다.
@@ -843,18 +843,18 @@ test("number variant reports empty string when cleared", async () => {
 
 ### SEC-2 반영
 
-- [ ] **MOA-5.0a: Storybook 공개 환경 변수 검사를 빌드 스크립트 안으로 옮긴다** (SEC-2.1)
+- [x] **MOA-5.0a: Storybook 공개 환경 변수 검사를 빌드 스크립트 안으로 옮긴다** (SEC-2.1)
 
   `packages/storybook/package.json`에서 `predev`·`prebuild`를 지우고, `dev`는 `node scripts/check-public-env.mjs && storybook dev -p 6013`, `build`는 `node scripts/check-public-env.mjs && storybook build`로 바꾼다. 루트 `pnpm build`(`pnpm -r build`)는 pre 스크립트를 실행하지 않기 때문이다.
 
 Run: `STORYBOOK_API_TOKEN=x pnpm build`
 Expected: "허용 목록에 없는 공개 환경 변수: STORYBOOK_API_TOKEN"을 출력하고 exit 1로 멈춘다. 변수 없이 다시 실행하면 통과한다.
 
-- [ ] **MOA-5.0b: Text 링크 정규식에 길이 상한을 둔다** (SEC-2.2)
+- [x] **MOA-5.0b: Text 링크 정규식에 길이 상한을 둔다** (SEC-2.2)
 
   `markdown.ts`의 링크 패턴을 `\[([^\]\n]{1,500})\]\((\S{0,2048})\)`로 바꾼다. 길이를 넘는 링크는 평문으로 남는다. 테스트 `does not linkify overly long links`를 먼저 추가해 실패를 확인한 뒤 고친다.
 
-- [ ] **MOA-5.0c: 커밋한다** — `fix: 공개 환경 변수 검사 경로와 Text 링크 길이 상한 수정`
+- [x] **MOA-5.0c: 커밋한다** — `fix: 공개 환경 변수 검사 경로와 Text 링크 길이 상한 수정`
 
 ### 크기 리포트와 npm 배포 설정
 

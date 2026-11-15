@@ -20,6 +20,12 @@ test("blocks scheme bypasses", () => {
     expect(parseInline(`[x](${href})`).some((n) => n.type === "link")).toBe(false);
   }
 });
+test("does not linkify overly long links", () => {
+  // SEC-2.2: 길이 상한이 없으면 닫히지 않은 [ 반복에 제곱 시간이 걸린다
+  expect(parseInline(`[${"a".repeat(501)}](https://x.dev)`).some((n) => n.type === "link")).toBe(false);
+  expect(parseInline(`[a](https://x.dev/${"a".repeat(2048)})`).some((n) => n.type === "link")).toBe(false);
+  expect(parseInline(`[${"a".repeat(500)}](https://x.dev)`).some((n) => n.type === "link")).toBe(true);
+});
 test("react blocks javascript: href", () => {
   // SEC-1.1 근거. 실패하면 SEC-1.1을 🟡로 되돌린다
   const { container } = render(<a href="javascript:alert(1)">x</a>);

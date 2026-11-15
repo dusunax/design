@@ -4,10 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "predev": "node scripts/check-public-env.mjs",
-    "dev": "storybook dev -p 6013",
-    "prebuild": "node scripts/check-public-env.mjs",
-    "build": "storybook build"
+    "dev": "node scripts/check-public-env.mjs && storybook dev -p 6013",
+    "build": "node scripts/check-public-env.mjs && storybook build"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "5.6.0",
