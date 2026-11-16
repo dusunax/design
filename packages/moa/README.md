@@ -1,3 +1,5 @@
+한국어 | [English](https://github.com/dusunax/design/blob/main/packages/moa/README.en.md)
+
 # @dusunax/moa
 
 에이전트 UI를 위한 경량 React 부품 모음이다. 부품을 모아 화면을 조립한다는 뜻에서 이름을 "모아"로 지었다.

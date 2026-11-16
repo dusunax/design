@@ -959,14 +959,14 @@ Expected: PASS
 Run: `pnpm --filter @dusunax/moa-storybook build && pnpm --filter @dusunax/moa-storybook build:en`
 Expected: `storybook-static/index.html`과 `storybook-static/en/index.html`이 생긴다. 소개 페이지가 각각 한국어와 영어로 나오고, 툴바 링크로 서로 오갈 수 있다.
 
-- [ ] **MOA-6.4: README 영어판을 쓴다**
+- [x] **MOA-6.4: README 영어판을 쓴다**
 
   `README.md`와 `README.en.md`, `packages/moa/README.md`와 `README.en.md`를 짝으로 둔다. 각 파일 맨 위에 `한국어 | English` 전환 링크를 둔다. `packages/moa`의 링크는 상대 경로가 npm 페이지에서 깨지므로 GitHub 절대 URL로 건다. 이후 README를 고치면 두 언어를 같은 커밋에서 고친다.
 
 Run: `pnpm --filter @dusunax/moa pack --dry-run`
 Expected: `README.en.md`가 포함된다.
 
-- [ ] **MOA-6.5: 커밋한다** — `docs(storybook): 설명 문구를 사전으로 옮기고 영어 빌드 추가`, `docs: README 영어판 추가`
+- [x] **MOA-6.5: 커밋한다** — `docs(storybook): 설명 문구를 사전으로 옮기고 영어 빌드 추가`, `docs: README 영어판 추가`
 
 ---
 
