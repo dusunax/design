@@ -2,9 +2,10 @@ name: ci
 
 on:
   push:
-    # MOA-* push는 chromatic job을 위해 받는다. PR 이벤트의 ref(refs/pull/N/merge)는 chromatic Environment의 배포 브랜치 제한을 통과하지 못한다.
-    branches: [main, "MOA-*"]
+    branches: [main]
   pull_request:
+  # 부품 화면을 바꾼 브랜치는 머지 전에 Actions 탭에서 수동으로 돌려 Chromatic 비교를 본다.
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -31,8 +32,8 @@ jobs:
 
   chromatic:
     needs: check
-    # 토큰은 main·MOA-* 브랜치 push에서만 쓴다. Chromatic이 결과를 커밋에 붙이므로 PR에서도 보인다.
-    if: github.event_name == 'push'
+    # main 머지와 수동 실행에서만 돈다. PR 이벤트의 ref(refs/pull/N/merge)는 chromatic Environment의 배포 브랜치 제한을 통과하지 못한다.
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     environment: chromatic
     steps:
@@ -49,4 +50,5 @@ jobs:
       - run: pnpm install
       - run: pnpm --filter @dusunax/moa build
       # --build-script-name build: 공개 환경 변수 검사를 거친 빌드만 올린다(SEC-2.1).
-      - run: pnpm --filter @dusunax/moa-storybook exec chromatic --project-token=${{ secrets.CHROMATIC_PROJECT_TOKEN }} --build-script-name build --only-changed --exit-zero-on-changes
+      # --auto-accept-changes main: main 빌드를 기준 화면으로 바로 승인한다. 브랜치 빌드는 이 기준과 비교한다.
+      - run: pnpm --filter @dusunax/moa-storybook exec chromatic --project-token=${{ secrets.CHROMATIC_PROJECT_TOKEN }} --build-script-name build --only-changed --exit-zero-on-changes --auto-accept-changes main
