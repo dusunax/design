@@ -1,0 +1,49 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Intro" />
+
+# moa: a design system for agent UIs
+
+Component names and props follow the [A2UI v1.0 basic catalog](https://a2ui.org/specification/v1.0-a2ui/).
+
+## Component stories
+
+- **Playground**: change props in the Controls panel below
+- **Variants**: the main states on one screen
+  - Inside the bordered box: the component
+  - Gray code under the box: the props that made the example
+
+The text inside the examples stays in Korean. Only the descriptions are translated.
+
+## Dark mode
+
+Add `data-moa-theme="dark"` to a wrapping element, and every component inside switches to the dark tokens.
+
+```tsx
+<div data-moa-theme="dark">…</div>
+```
+
+In this documentation, switch between light and dark with Theme in the top toolbar.
+
+## Getting started
+
+1. Install
+
+   ```bash
+   pnpm add @dusunax/moa
+   ```
+
+2. Import the styles once at your app entry (no Tailwind needed)
+
+   ```tsx
+   import "@dusunax/moa/styles.css";
+   ```
+
+3. Use components (each one can also be imported on its own)
+
+   ```tsx
+   import { Button } from "@dusunax/moa";
+   import { TextField } from "@dusunax/moa/text-field";
+
+   <Button variant="primary">Send</Button>;
+   ```

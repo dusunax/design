@@ -1,6 +1,7 @@
 import { ChoicePicker } from "@dusunax/moa";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Prop } from "./_Prop";
+import { t } from "../i18n/t";
 
 const OPTIONS = [
   { label: "항목 1", value: "1" },
@@ -30,19 +31,19 @@ export const Variants: Story = {
   },
   render: () => (
     <div style={{ display: "grid", gap: 16, maxWidth: 360 }}>
-      <Prop code='variant="mutuallyExclusive" (기본값)' use="선택지가 적은 단일 선택">
+      <Prop code={`variant="mutuallyExclusive" (${t("common.default")})`} use={t("choicePicker.single")}>
         <ChoicePicker label="라벨" options={OPTIONS} defaultValue={["1"]} />
       </Prop>
-      <Prop code='displayStyle="chips"' use="필터처럼 가로로 짧게 둘 때">
+      <Prop code='displayStyle="chips"' use={t("choicePicker.chips")}>
         <ChoicePicker label="라벨" options={OPTIONS} displayStyle="chips" defaultValue={["1"]} />
       </Prop>
       <Prop code='variant="multipleSelection"'>
         <ChoicePicker label="라벨" options={OPTIONS} variant="multipleSelection" defaultValue={["1", "3"]} />
       </Prop>
-      <Prop code='variant="multipleSelection" displayStyle="chips"' use="태그 고르기">
+      <Prop code='variant="multipleSelection" displayStyle="chips"' use={t("choicePicker.multiChips")}>
         <ChoicePicker label="라벨" options={OPTIONS} variant="multipleSelection" displayStyle="chips" defaultValue={["1", "3"]} />
       </Prop>
-      <Prop code="filterable" use="선택지가 많을 때. 검색으로 가려진 항목도 선택은 유지">
+      <Prop code="filterable" use={t("choicePicker.filterable")}>
         <ChoicePicker label="라벨" options={MANY} variant="multipleSelection" filterable defaultValue={["2"]} />
       </Prop>
     </div>

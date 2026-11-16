@@ -2,10 +2,12 @@ import { fileURLToPath } from "node:url";
 import type { StorybookConfig } from "@storybook/react-vite";
 
 const moaSrc = fileURLToPath(new URL("../../moa/src/index.ts", import.meta.url));
+// 언어별로 따로 빌드한다(MOA-6). 소개 MDX만 언어에 맞는 파일을 고르고, 스토리 설명은 i18n/t.ts가 고른다.
+const locale = process.env.STORYBOOK_LOCALE === "en" ? "en" : "ko";
 
 const config: StorybookConfig = {
   framework: "@storybook/react-vite",
-  stories: ["../stories/**/*.stories.tsx", "../docs/*.mdx"],
+  stories: ["../stories/**/*.stories.tsx", `../docs/*.${locale}.mdx`],
   addons: ["@storybook/addon-docs", "@storybook/addon-a11y", "storybook-addon-pseudo-states", "@chromatic-com/storybook"],
   staticDirs: ["../public"],
   // TypeScript 7에는 JS 컴파일러 API가 없어 react-docgen-typescript가 동작하지 않는다. 기본 react-docgen을 쓴다.

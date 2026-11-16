@@ -1,10 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Prop, PropGrid } from "./_Prop";
+import { t } from "../i18n/t";
 
 const RADII = [
-  { name: "sm", use: "체크박스, 인라인 코드" },
-  { name: "md", use: "버튼, 입력, 카드" },
-  { name: "lg", use: "큰 표면" },
+  { name: "sm", use: t("radius.sm") },
+  { name: "md", use: t("radius.md") },
+  { name: "lg", use: t("radius.lg") },
 ] as const;
 
 const meta: Meta = {

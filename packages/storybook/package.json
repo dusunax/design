@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "node scripts/check-public-env.mjs && storybook dev -p 6013",
+    "dev:en": "node scripts/check-public-env.mjs && STORYBOOK_LOCALE=en storybook dev -p 6014",
     "build": "node scripts/check-public-env.mjs && storybook build",
+    "build:en": "node scripts/check-public-env.mjs && STORYBOOK_LOCALE=en storybook build -o storybook-static/en",
     "chromatic": "node --env-file-if-exists=../../.env node_modules/chromatic/dist/bin.cjs --build-script-name build --only-changed --exit-zero-on-changes"
   },
   "devDependencies": {

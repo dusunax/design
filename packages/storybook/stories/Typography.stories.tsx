@@ -1,10 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Prop } from "./_Prop";
+import { t } from "../i18n/t";
 
 const SIZES = [
-  { name: "prose", use: "읽는 본문 (Text body, 메시지)" },
-  { name: "body", use: "조작 요소 (버튼, 입력, 라벨)" },
-  { name: "caption", use: "보조 설명" },
+  { name: "prose", use: t("typography.prose") },
+  { name: "body", use: t("typography.body") },
+  { name: "caption", use: t("typography.caption") },
 ] as const;
 
 const meta: Meta = {

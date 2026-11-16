@@ -2,6 +2,7 @@ import { Button, Modal } from "@dusunax/moa";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import { Prop } from "./_Prop";
+import { t } from "../i18n/t";
 
 const meta: Meta<typeof Modal> = {
   title: "Layout/Modal",
@@ -54,13 +55,13 @@ export const Variants: Story = {
           내용
         </Modal>
       </Prop>
-      <Prop code="open + onOpenChange (controlled)" use="안의 버튼으로 닫을 때">
+      <Prop code="open + onOpenChange (controlled)" use={t("modal.controlled")}>
         <ControlledModal />
       </Prop>
-      <Prop code="hideClose" use="본문에 닫는 버튼이 있어 제목 옆 닫기 버튼이 겹칠 때">
+      <Prop code="hideClose" use={t("modal.hideClose")}>
         <ControlledModal hideClose />
       </Prop>
-      <Prop code="children={…}" use="내용이 길면 제목은 고정되고 본문만 스크롤">
+      <Prop code="children={…}" use={t("modal.long")}>
         <Modal trigger={<Button>열기</Button>} title="제목">
           {LONG.map((line) => (
             <p key={line} style={{ margin: "0 0 8px" }}>

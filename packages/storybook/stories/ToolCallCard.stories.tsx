@@ -1,6 +1,7 @@
 import { ToolCallCard } from "@dusunax/moa";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Prop } from "./_Prop";
+import { t } from "../i18n/t";
 
 const meta: Meta<typeof ToolCallCard> = {
   title: "Agent/ToolCallCard",
@@ -23,19 +24,19 @@ export const Variants: Story = {
   },
   render: () => (
     <div style={{ display: "grid", gap: 16, maxWidth: 480 }}>
-      <Prop code='status="pending"' use="호출 준비 중, 인자가 아직 없음">
+      <Prop code='status="pending"' use={t("toolCallCard.pending")}>
         <ToolCallCard name="search" status="pending" />
       </Prop>
-      <Prop code={'status="running" args=\'{"query":"mo\''} use="인자가 스트리밍 중. 끝나지 않은 JSON은 그대로">
+      <Prop code={'status="running" args=\'{"query":"mo\''} use={t("toolCallCard.running")}>
         <ToolCallCard name="search" status="running" args='{"query":"mo' defaultOpen />
       </Prop>
-      <Prop code='status="finished" args result' use="완료. JSON은 들여 써서">
+      <Prop code='status="finished" args result' use={t("toolCallCard.finished")}>
         <ToolCallCard name="search" status="finished" args='{"query":"moa"}' result='{"count":3,"items":["a","b","c"]}' defaultOpen />
       </Prop>
       <Prop code='status="error" result="Timeout"'>
         <ToolCallCard name="search" status="error" args='{"query":"moa"}' result="Timeout" defaultOpen />
       </Prop>
-      <Prop code={'labels={{ running: "실행 중", args: "인자" }}'} use="배지와 절 제목 문구를 바꿀 때">
+      <Prop code={'labels={{ running: "실행 중", args: "인자" }}'} use={t("toolCallCard.labels")}>
         <ToolCallCard name="search" status="running" args='{"query":"moa"}' labels={{ running: "실행 중", args: "인자" }} defaultOpen />
       </Prop>
     </div>

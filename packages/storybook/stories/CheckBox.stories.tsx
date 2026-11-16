@@ -1,6 +1,7 @@
 import { CheckBox } from "@dusunax/moa";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Prop } from "./_Prop";
+import { t } from "../i18n/t";
 
 const meta: Meta<typeof CheckBox> = {
   title: "Inputs/CheckBox",
@@ -16,7 +17,7 @@ export const Variants: Story = {
   parameters: { docs: { source: { code: "<CheckBox label=\"라벨\" />\n<CheckBox label=\"라벨\" defaultValue />\n<CheckBox label=\"라벨\" disabled />\n<CheckBox label=\"라벨\" disabled defaultValue />", language: "tsx" } } },
   render: () => (
     <div style={{ display: "grid", gap: 12 }}>
-      <Prop code="defaultValue={false} (기본값)">
+      <Prop code={`defaultValue={false} (${t("common.default")})`}>
         <CheckBox label="라벨" />
       </Prop>
       <Prop code="defaultValue">
