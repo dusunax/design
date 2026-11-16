@@ -4,10 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "predev": "node scripts/check-public-env.mjs",
-    "dev": "storybook dev -p 6013",
-    "prebuild": "node scripts/check-public-env.mjs",
-    "build": "storybook build"
+    "dev": "node scripts/check-public-env.mjs && storybook dev -p 6013",
+    "build": "node scripts/check-public-env.mjs && storybook build",
+    "chromatic": "node --env-file-if-exists=../../.env node_modules/chromatic/dist/bin.cjs --build-script-name build --only-changed --exit-zero-on-changes"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "5.6.0",
@@ -16,6 +15,7 @@
     "@storybook/react-vite": "10.6.7",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
+    "chromatic": "18.14.3",
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "storybook": "10.6.7",

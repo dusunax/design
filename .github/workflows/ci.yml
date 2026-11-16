@@ -2,7 +2,8 @@ name: ci
 
 on:
   push:
-    branches: [main]
+    # MOA-* push는 chromatic job을 위해 받는다. PR 이벤트의 ref(refs/pull/N/merge)는 chromatic Environment의 배포 브랜치 제한을 통과하지 못한다.
+    branches: [main, "MOA-*"]
   pull_request:
 
 permissions:
@@ -13,6 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
@@ -22,3 +25,28 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm test
       - run: pnpm build
+      # 크기 예산은 리포트만 한다. 넘어도 실패로 처리하지 않는다.
+      - run: pnpm size
+        continue-on-error: true
+
+  chromatic:
+    needs: check
+    # 토큰은 main·MOA-* 브랜치 push에서만 쓴다. Chromatic이 결과를 커밋에 붙이므로 PR에서도 보인다.
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    environment: chromatic
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # TurboSnap(--only-changed)이 바뀐 스토리를 찾으려면 전체 기록이 필요하다.
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install
+      - run: pnpm --filter @dusunax/moa build
+      # --build-script-name build: 공개 환경 변수 검사를 거친 빌드만 올린다(SEC-2.1).
+      - run: pnpm --filter @dusunax/moa-storybook exec chromatic --project-token=${{ secrets.CHROMATIC_PROJECT_TOKEN }} --build-script-name build --only-changed --exit-zero-on-changes

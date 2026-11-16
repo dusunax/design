@@ -303,7 +303,7 @@ git commit -m "feat(moa): 토큰과 프리픽스 CSS·ESM 빌드 파이프라인
 **Interfaces:**
 - Consumes: MOA-1 토큰과 빌드의 `@dusunax/moa/styles.css`와 토큰 이름
 - Produces:
-  - `@dusunax/moa-storybook`(private) 스크립트: `dev`(`storybook dev -p 6013`), `build`(`storybook build`). `predev`와 `prebuild`는 `node scripts/check-public-env.mjs`다.
+  - `@dusunax/moa-storybook`(private) 스크립트: `dev`(`storybook dev -p 6013`), `build`(`storybook build`). `predev`와 `prebuild`는 `node scripts/check-public-env.mjs`다. MOA-5.0a에서 검사를 `dev`·`build` 스크립트 안으로 옮겼다(SEC-2.1).
   - `check-public-env.mjs`: 이름이 `STORYBOOK_`나 `VITE_`로 시작하는 환경 변수 중 허용 목록(`STORYBOOK_LOCALE`)에 없는 것이 있으면 그 이름을 출력하고 exit 1로 끝낸다. 값은 출력하지 않는다.
   - 스토리 설명은 `parameters.docs.description.component`와 `.story`에 한국어로 쓴다.
   - 툴바 global `theme: "light" | "dark"`: decorator가 스토리를 감싼 요소에 `data-moa-theme`를 붙인다.
@@ -839,22 +839,22 @@ test("number variant reports empty string when cleared", async () => {
 
 ### 게이트
 
-- [ ] **MOA-5.0: 게이트를 확인한다** — SEC-2. DOC-4의 게이트 확인을 따른다. SEC-2에서 나온 수정 Step은 MOA-5 안에 `MOA-5.0a`처럼 붙여 넣는다.
+- [x] **MOA-5.0: 게이트를 확인한다** — SEC-2. DOC-4의 게이트 확인을 따른다. SEC-2에서 나온 수정 Step은 MOA-5 안에 `MOA-5.0a`처럼 붙여 넣는다.
 
 ### SEC-2 반영
 
-- [ ] **MOA-5.0a: Storybook 공개 환경 변수 검사를 빌드 스크립트 안으로 옮긴다** (SEC-2.1)
+- [x] **MOA-5.0a: Storybook 공개 환경 변수 검사를 빌드 스크립트 안으로 옮긴다** (SEC-2.1)
 
   `packages/storybook/package.json`에서 `predev`·`prebuild`를 지우고, `dev`는 `node scripts/check-public-env.mjs && storybook dev -p 6013`, `build`는 `node scripts/check-public-env.mjs && storybook build`로 바꾼다. 루트 `pnpm build`(`pnpm -r build`)는 pre 스크립트를 실행하지 않기 때문이다.
 
 Run: `STORYBOOK_API_TOKEN=x pnpm build`
 Expected: "허용 목록에 없는 공개 환경 변수: STORYBOOK_API_TOKEN"을 출력하고 exit 1로 멈춘다. 변수 없이 다시 실행하면 통과한다.
 
-- [ ] **MOA-5.0b: Text 링크 정규식에 길이 상한을 둔다** (SEC-2.2)
+- [x] **MOA-5.0b: Text 링크 정규식에 길이 상한을 둔다** (SEC-2.2)
 
   `markdown.ts`의 링크 패턴을 `\[([^\]\n]{1,500})\]\((\S{0,2048})\)`로 바꾼다. 길이를 넘는 링크는 평문으로 남는다. 테스트 `does not linkify overly long links`를 먼저 추가해 실패를 확인한 뒤 고친다.
 
-- [ ] **MOA-5.0c: 커밋한다** — `fix: 공개 환경 변수 검사 경로와 Text 링크 길이 상한 수정`
+- [x] **MOA-5.0c: 커밋한다** — `fix: 공개 환경 변수 검사 경로와 Text 링크 길이 상한 수정`
 
 ### 크기 리포트와 npm 배포 설정
 
@@ -864,27 +864,27 @@ Expected: "허용 목록에 없는 공개 환경 변수: STORYBOOK_API_TOKEN"을
 
 **Interfaces:**
 - Produces:
-  - `.size-limit.json` 항목: `core`(직접 구현 부품만 import, 5 kB), `all`(`dist/index.js`, 40 kB), `modal`, `tabs`, `slider`, `choice-picker`(각 15 kB), `css`(`dist/styles.css`, 10 kB). `react`는 ignore한다.
+  - `.size-limit.json` 항목: `core`(직접 구현 부품만 import, 5 kB), `all`(`dist/index.js`, 40 kB), `modal`, `tabs`, `slider`, `choice-picker`(각 15 kB), `css`(`dist/styles.css`, 10 kB). `react`는 ignore한다. 스펙 예산이 gzip 기준이라 모든 항목에 `gzip: true`를 둔다. `core`는 Radix를 쓰지 않는 부품(기본 12종과 에이전트 4종)이다. `css`는 번들러가 CSS를 받지 않으므로 `rolldown: false`로 파일 크기만 잰다.
   - 루트 `pnpm size`: 리포트를 출력한다. CI에서는 실패로 처리하지 않는다(MOA-5의 CI와 Chromatic).
   - changeset `initial-release.md`: `@dusunax/moa`를 `minor`로 올려 `0.1.0`이 되게 한다.
   - `packages/moa/README.md`(한국어)는 npm 페이지에 그대로 보인다. "보안" 절을 둔다. 내용은 Image와 Text 링크가 에이전트가 정한 URL을 불러오므로 프롬프트 인젝션으로 데이터가 새어 나갈 수 있다는 것, 이를 막으려면 쓰는 쪽이 CSP `img-src`나 출처 허용 목록을 둬야 한다는 것이다. Text 링크는 보이는 글자와 실제 주소가 다를 수 있다는 것도 적는다(SEC-2.3).
 
-- [ ] **MOA-5.1: 설정 파일을 작성한다**
-- [ ] **MOA-5.2: 빌드와 크기 리포트를 실행한다**
+- [x] **MOA-5.1: 설정 파일을 작성한다**
+- [x] **MOA-5.2: 빌드와 크기 리포트를 실행한다**
 
 Run: `pnpm build && pnpm size`
 Expected: 항목 7개의 크기가 출력된다. 예산을 넘은 항목이 있으면 리포트에 그 이름과 차이를 적어 둔다. 실패로 처리하지는 않는다.
 
-- [ ] **MOA-5.3: 배포 결과물을 미리 확인한다**
+- [x] **MOA-5.3: 배포 결과물을 미리 확인한다**
 
 Run: `pnpm --filter @dusunax/moa pack --dry-run`
 Expected: `dist/`, `package.json`, `README.md`만 포함되고 `src/`는 없다.
 
-- [ ] **MOA-5.4: 로컬 배포 조건을 확인한다**
+- [x] **MOA-5.4: 로컬 배포 조건을 확인한다**
 
   배포는 사용자가 로컬에서 `pnpm release`로 하고, CI 배포는 두지 않는다. `npm profile get`의 2FA 모드가 여전히 `auth-and-writes`인지 확인한다. 바뀌었으면 SEC-1.5를 🟡로 되돌린다. README의 배포 절에 "로컬에서 2FA OTP를 넣어 배포한다"를 적는다.
 
-- [ ] **MOA-5.5: 커밋한다** — `chore(moa): size-limit 리포트와 changesets 배포 설정 추가`
+- [x] **MOA-5.5: 커밋한다** — `chore(moa): size-limit 리포트와 changesets 배포 설정 추가`
 
   실제 `pnpm release`(npm publish)는 이 플랜에서 실행하지 않는다. 사용자가 따로 승인하면 실행한다.
 
@@ -899,24 +899,26 @@ Expected: `dist/`, `package.json`, `README.md`만 포함되고 `src/`는 없다.
 - Produces:
   - 워크플로 `ci`: push와 PR에서 실행한다.
     - `check` job: MOA-1에서 만든 단계 뒤에 `pnpm size`(`continue-on-error: true`)를 추가한다.
-    - `chromatic` job: `check` 다음에 실행한다. `pnpm --filter @dusunax/moa-storybook exec chromatic --project-token=${{ secrets.CHROMATIC_PROJECT_TOKEN }} --only-changed --exit-zero-on-changes`를 쓴다. `fetch-depth: 0`이 필요하다(TurboSnap 때문). fork PR에는 secret이 없으므로 `if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository` 조건을 둔다.
+    - `chromatic` job: `check` 다음에 실행한다. `pnpm --filter @dusunax/moa-storybook exec chromatic --project-token=${{ secrets.CHROMATIC_PROJECT_TOKEN }} --only-changed --exit-zero-on-changes`를 쓴다. `fetch-depth: 0`이 필요하다(TurboSnap 때문). fork PR에는 secret이 없으므로 `if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository` 조건을 둔다. 실제로는 PR 이벤트의 ref(`refs/pull/N/merge`)가 Environment 배포 브랜치 제한을 통과하지 못해, 트리거에 `MOA-*` push를 더하고 `chromatic` job은 `if: github.event_name == 'push'`로 push에서만 실행한다.
   - 사용자가 준비할 것: Chromatic 프로젝트 생성, 레포 secret `CHROMATIC_PROJECT_TOKEN` 등록
 
-- [ ] **MOA-5.6: Chromatic 팁을 사용자에게 알리고, Environment와 토큰을 준비한다** — 팁 주제: TurboSnap, 스냅샷 한도, 테마 모드 적용 범위, 애니메이션·스트리밍 스토리 고정. `chromatic` Environment를 만들어 배포 브랜치를 main과 MOA 브랜치로 제한하고, `CHROMATIC_PROJECT_TOKEN`은 레포 secret이 아니라 이 Environment에 넣는다. `chromatic` job에 `environment: chromatic`을 둔다.
-- [ ] **MOA-5.7: `preview.tsx`에 Chromatic 실행을 감지하는 코드를 추가한다**
+- [x] **MOA-5.6: Chromatic 팁을 사용자에게 알리고, Environment와 토큰을 준비한다** — 팁 주제: TurboSnap, 스냅샷 한도, 테마 모드 적용 범위, 애니메이션·스트리밍 스토리 고정. `chromatic` Environment를 만들어 배포 브랜치를 main과 MOA 브랜치로 제한하고, `CHROMATIC_PROJECT_TOKEN`은 레포 secret이 아니라 이 Environment에 넣는다. `chromatic` job에 `environment: chromatic`을 둔다.
+- [x] **MOA-5.7: `preview.tsx`에 Chromatic 실행을 감지하는 코드를 추가한다**
 
   `isChromatic()`이면 `* { animation: none !important; }`를 넣는다. StreamingText 커서와 RunStatus 펄스가 고정되는지 확인한다.
 
-- [ ] **MOA-5.8: `ci.yml`에 `pnpm size` 단계와 `chromatic` job을 추가한다**
+- [x] **MOA-5.8: `ci.yml`에 `pnpm size` 단계와 `chromatic` job을 추가한다**
 
   두 job의 `actions/checkout`에 `persist-credentials: false`를 둔다(SEC-2.4). `chromatic` 명령에 `--build-script-name build`를 붙여 공개 환경 변수 검사를 거친 빌드만 올린다(SEC-2.1).
 
-- [ ] **MOA-5.9: 로컬에서 Chromatic을 한 번 실행한다**
+- [x] **MOA-5.9: 로컬에서 Chromatic을 한 번 실행한다**
 
 Run: `pnpm --filter @dusunax/moa-storybook chromatic` (토큰은 `.env`의 `CHROMATIC_PROJECT_TOKEN`에서 읽는다. `.env*`는 이미 `.gitignore`에 있다)
 Expected: 빌드가 업로드되고, 기준 스냅샷 승인을 기다리는 URL이 출력된다.
 
-- [ ] **MOA-5.10: 커밋한다** — `ci(moa): 크기 리포트와 Chromatic 워크플로 추가`
+  Chromatic CLI는 빌드할 때 `STORYBOOK_INVOKED_BY=chromatic`을 넣는다. 값이 고정 문자열이라 공개 환경 변수 허용 목록에 추가한다.
+
+- [x] **MOA-5.10: 커밋한다** — `ci(moa): 크기 리포트와 Chromatic 워크플로 추가`
 
 ---
 

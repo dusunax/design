@@ -1,0 +1,70 @@
+[
+  {
+    "name": "core",
+    "path": "dist/index.js",
+    "import": "{ Text, Image, Icon, Row, Column, List, Card, Divider, Button, TextField, CheckBox, DateTimeInput, MessageBubble, StreamingText, RunStatus, ToolCallCard }",
+    "ignore": [
+      "react",
+      "react-dom"
+    ],
+    "limit": "5 kB",
+    "gzip": true
+  },
+  {
+    "name": "all",
+    "path": "dist/index.js",
+    "ignore": [
+      "react",
+      "react-dom"
+    ],
+    "limit": "40 kB",
+    "gzip": true
+  },
+  {
+    "name": "modal",
+    "path": "dist/modal.js",
+    "ignore": [
+      "react",
+      "react-dom"
+    ],
+    "limit": "15 kB",
+    "gzip": true
+  },
+  {
+    "name": "tabs",
+    "path": "dist/tabs.js",
+    "ignore": [
+      "react",
+      "react-dom"
+    ],
+    "limit": "15 kB",
+    "gzip": true
+  },
+  {
+    "name": "slider",
+    "path": "dist/slider.js",
+    "ignore": [
+      "react",
+      "react-dom"
+    ],
+    "limit": "15 kB",
+    "gzip": true
+  },
+  {
+    "name": "choice-picker",
+    "path": "dist/choice-picker.js",
+    "ignore": [
+      "react",
+      "react-dom"
+    ],
+    "limit": "15 kB",
+    "gzip": true
+  },
+  {
+    "name": "css",
+    "path": "dist/styles.css",
+    "rolldown": false,
+    "limit": "10 kB",
+    "gzip": true
+  }
+]

@@ -10,6 +10,12 @@
     "build": "pnpm -r build",
     "test": "pnpm -r test",
     "typecheck": "pnpm -r typecheck",
-    "storybook": "pnpm --filter @dusunax/moa-storybook dev"
+    "storybook": "pnpm --filter @dusunax/moa-storybook dev",
+    "size": "pnpm --filter @dusunax/moa size",
+    "changeset": "changeset",
+    "release": "pnpm build && changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "3.0.3"
   }
 }
