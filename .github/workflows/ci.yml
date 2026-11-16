@@ -2,7 +2,8 @@ name: ci
 
 on:
   push:
-    branches: [main]
+    # MOA-* push는 chromatic job을 위해 받는다. PR 이벤트의 ref(refs/pull/N/merge)는 chromatic Environment의 배포 브랜치 제한을 통과하지 못한다.
+    branches: [main, "MOA-*"]
   pull_request:
 
 permissions:
@@ -30,8 +31,8 @@ jobs:
 
   chromatic:
     needs: check
-    # fork PR에는 secret이 없으므로 같은 레포에서 온 push·PR에서만 실행한다.
-    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+    # 토큰은 main·MOA-* 브랜치 push에서만 쓴다. Chromatic이 결과를 커밋에 붙이므로 PR에서도 보인다.
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     environment: chromatic
     steps:

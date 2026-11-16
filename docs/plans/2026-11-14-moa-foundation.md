@@ -899,7 +899,7 @@ Expected: `dist/`, `package.json`, `README.md`만 포함되고 `src/`는 없다.
 - Produces:
   - 워크플로 `ci`: push와 PR에서 실행한다.
     - `check` job: MOA-1에서 만든 단계 뒤에 `pnpm size`(`continue-on-error: true`)를 추가한다.
-    - `chromatic` job: `check` 다음에 실행한다. `pnpm --filter @dusunax/moa-storybook exec chromatic --project-token=${{ secrets.CHROMATIC_PROJECT_TOKEN }} --only-changed --exit-zero-on-changes`를 쓴다. `fetch-depth: 0`이 필요하다(TurboSnap 때문). fork PR에는 secret이 없으므로 `if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository` 조건을 둔다.
+    - `chromatic` job: `check` 다음에 실행한다. `pnpm --filter @dusunax/moa-storybook exec chromatic --project-token=${{ secrets.CHROMATIC_PROJECT_TOKEN }} --only-changed --exit-zero-on-changes`를 쓴다. `fetch-depth: 0`이 필요하다(TurboSnap 때문). fork PR에는 secret이 없으므로 `if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository` 조건을 둔다. 실제로는 PR 이벤트의 ref(`refs/pull/N/merge`)가 Environment 배포 브랜치 제한을 통과하지 못해, 트리거에 `MOA-*` push를 더하고 `chromatic` job은 `if: github.event_name == 'push'`로 push에서만 실행한다.
   - 사용자가 준비할 것: Chromatic 프로젝트 생성, 레포 secret `CHROMATIC_PROJECT_TOKEN` 등록
 
 - [x] **MOA-5.6: Chromatic 팁을 사용자에게 알리고, Environment와 토큰을 준비한다** — 팁 주제: TurboSnap, 스냅샷 한도, 테마 모드 적용 범위, 애니메이션·스트리밍 스토리 고정. `chromatic` Environment를 만들어 배포 브랜치를 main과 MOA 브랜치로 제한하고, `CHROMATIC_PROJECT_TOKEN`은 레포 secret이 아니라 이 Environment에 넣는다. `chromatic` job에 `environment: chromatic`을 둔다.
