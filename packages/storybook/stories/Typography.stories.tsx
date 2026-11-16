@@ -27,7 +27,7 @@ export const Sizes: StoryObj = {
               lineHeight: `var(--moa-text-${name}--line-height)`,
             }}
           >
-            가나다라마바사 ABCDEFG abcdefg 0123456789
+            {t("sample.specimen")}
           </p>
         </Prop>
       ))}

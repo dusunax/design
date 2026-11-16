@@ -7,7 +7,7 @@ const meta: Meta<typeof StreamingText> = {
   title: "Agent/StreamingText",
   component: StreamingText,
   tags: ["autodocs"],
-  args: { text: "에이전트가 답을 쓰는 중이다", streaming: true },
+  args: { text: t("sample.agentWriting"), streaming: true },
 };
 export default meta;
 type Story = StoryObj<typeof StreamingText>;
@@ -18,13 +18,13 @@ export const Variants: Story = {
   render: () => (
     <div style={{ display: "grid", gap: 16, maxWidth: 480 }}>
       <Prop code="streaming" use={t("streamingText.streaming")}>
-        <StreamingText text="에이전트가 답을 쓰는 중이다" streaming />
+        <StreamingText text={t("sample.agentWriting")} streaming />
       </Prop>
       <Prop code="streaming={false}" use={t("streamingText.done")}>
-        <StreamingText text="에이전트가 답을 다 썼다." streaming={false} />
+        <StreamingText text={t("sample.agentDone")} streaming={false} />
       </Prop>
-      <Prop code='text="**굵게" streaming' use={t("streamingText.partial")}>
-        <StreamingText text="**굵게" streaming />
+      <Prop code={`text="**${t("sample.bold")}" streaming`} use={t("streamingText.partial")}>
+        <StreamingText text={`**${t("sample.bold")}`} streaming />
       </Prop>
     </div>
   ),

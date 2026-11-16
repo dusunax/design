@@ -14,7 +14,7 @@ type Story = StoryObj<typeof RunStatus>;
 
 export const Playground: Story = {};
 export const Variants: Story = {
-  parameters: { docs: { source: { code: "<RunStatus status=\"running\" />\n<RunStatus status=\"error\" message=\"Timeout\" />\n<RunStatus status=\"running\" labels={{ running: \"실행 중\" }} />", language: "tsx" } } },
+  parameters: { docs: { source: { code: `<RunStatus status="running" />\n<RunStatus status="error" message="Timeout" />\n<RunStatus status="running" labels={{ running: "${t("sample.inProgress")}" }} />`, language: "tsx" } } },
   render: () => (
     <div style={{ display: "grid", gap: 16 }}>
       <PropGrid min={160}>
@@ -28,8 +28,8 @@ export const Variants: Story = {
         <Prop code='status="error" message="Timeout"' use={t("runStatus.message")}>
           <RunStatus status="error" message="Timeout" />
         </Prop>
-        <Prop code='labels={{ running: "실행 중" }}' use={t("runStatus.labels")}>
-          <RunStatus status="running" labels={{ running: "실행 중" }} />
+        <Prop code={`labels={{ running: "${t("sample.inProgress")}" }}`} use={t("runStatus.labels")}>
+          <RunStatus status="running" labels={{ running: t("sample.inProgress") }} />
         </Prop>
       </PropGrid>
     </div>

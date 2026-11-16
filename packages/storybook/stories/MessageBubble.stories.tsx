@@ -8,7 +8,7 @@ const meta: Meta<typeof MessageBubble> = {
   component: MessageBubble,
   tags: ["autodocs"],
   argTypes: { children: { control: "text" } },
-  args: { role: "assistant", children: "메시지" },
+  args: { role: "assistant", children: t("sample.message") },
 };
 export default meta;
 type Story = StoryObj<typeof MessageBubble>;
@@ -19,13 +19,13 @@ export const Variants: Story = {
   render: () => (
     <div style={{ display: "grid", gap: 16, maxWidth: 480 }}>
       <Prop code='role="user"' use={t("messageBubble.user")}>
-        <MessageBubble role="user">사용자 메시지</MessageBubble>
+        <MessageBubble role="user">{t("sample.userMessage")}</MessageBubble>
       </Prop>
       <Prop code='role="assistant"' use={t("messageBubble.assistant")}>
-        <MessageBubble role="assistant">에이전트 메시지</MessageBubble>
+        <MessageBubble role="assistant">{t("sample.agentMessage")}</MessageBubble>
       </Prop>
       <Prop code='role="system"' use={t("messageBubble.system")}>
-        <MessageBubble role="system">안내 메시지</MessageBubble>
+        <MessageBubble role="system">{t("sample.notice")}</MessageBubble>
       </Prop>
     </div>
   ),

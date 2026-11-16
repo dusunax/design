@@ -17,7 +17,7 @@ export const Variants: Story = {
   parameters: {
     docs: {
       source: {
-        code: "<ToolCallCard name=\"search\" status=\"pending\" />\n<ToolCallCard name=\"search\" status=\"running\" args={partialJson} />\n<ToolCallCard name=\"search\" status=\"finished\" args={json} result={json} />\n<ToolCallCard name=\"search\" status=\"error\" result=\"Timeout\" />\n<ToolCallCard name=\"search\" status=\"running\" labels={{ running: \"실행 중\", args: \"인자\" }} />",
+        code: `<ToolCallCard name="search" status="pending" />\n<ToolCallCard name="search" status="running" args={partialJson} />\n<ToolCallCard name="search" status="finished" args={json} result={json} />\n<ToolCallCard name="search" status="error" result="Timeout" />\n<ToolCallCard name="search" status="running" labels={{ running: "${t("sample.inProgress")}", args: "${t("sample.params")}" }} />`,
         language: "tsx",
       },
     },
@@ -36,8 +36,8 @@ export const Variants: Story = {
       <Prop code='status="error" result="Timeout"'>
         <ToolCallCard name="search" status="error" args='{"query":"moa"}' result="Timeout" defaultOpen />
       </Prop>
-      <Prop code={'labels={{ running: "실행 중", args: "인자" }}'} use={t("toolCallCard.labels")}>
-        <ToolCallCard name="search" status="running" args='{"query":"moa"}' labels={{ running: "실행 중", args: "인자" }} defaultOpen />
+      <Prop code={`labels={{ running: "${t("sample.inProgress")}", args: "${t("sample.params")}" }}`} use={t("toolCallCard.labels")}>
+        <ToolCallCard name="search" status="running" args='{"query":"moa"}' labels={{ running: t("sample.inProgress"), args: t("sample.params") }} defaultOpen />
       </Prop>
     </div>
   ),

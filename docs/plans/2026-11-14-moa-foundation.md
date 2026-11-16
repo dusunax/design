@@ -935,13 +935,13 @@ Expected: 빌드가 업로드되고, 기준 스냅샷 승인을 기다리는 URL
 
 **Interfaces:**
 - Produces:
-  - `t(key: MessageKey): string`: `import.meta.env.STORYBOOK_LOCALE`(없으면 `"ko"`)에 맞는 사전에서 문구를 꺼낸다. `MessageKey`는 `ko.ts`의 키에서 만든 타입이라, `en.ts`에 키가 빠지면 타입 오류가 난다. 키 형식은 `<부품>.<설명할 대상>`이다(`button.description`, `image.fit.cover`, 공통 `common.default`). 부품 설명, 캡션의 용도 줄, 캡션 코드의 `(기본값)`을 옮기고, 예시 화면 안의 글자는 그대로 둔다.
+  - `t(key: MessageKey): string`: `import.meta.env.STORYBOOK_LOCALE`(없으면 `"ko"`)에 맞는 사전에서 문구를 꺼낸다. `MessageKey`는 `ko.ts`의 키에서 만든 타입이라, `en.ts`에 키가 빠지면 타입 오류가 난다. 키 형식은 `<부품>.<설명할 대상>`이다(`button.description`, `image.fit.cover`, 공통 `common.default`). 부품 설명, 캡션, 예시 화면 안의 글자(`sample.*`), 코드 예시, args 기본값을 모두 옮긴다. 한국어 빌드와 Chromatic 화면은 바뀌지 않는다.
   - 스크립트: `dev`(한국어), `dev:en`(`STORYBOOK_LOCALE=en`), `build`(한국어 → `storybook-static/`), `build:en`(영어 → `storybook-static/en/`)
   - `main.ts`의 `stories`는 `"../docs/*.<locale>.mdx"`로 언어에 맞는 MDX만 불러온다.
   - `manager.ts`: 툴바에 `한국어 ↔ English` 링크 하나를 둔다. 한국어 빌드는 `./en/`로, 영어 빌드는 `../`로 이동한다. 보고 있던 스토리(`?path=…`)는 유지한다.
   - 루트 `build`(`pnpm -r build && pnpm --filter @dusunax/moa-storybook build:en`)와 CI `check` job은 `build:en`도 실행한다. Chromatic에는 한국어 빌드만 올린다. 부품 화면은 언어와 무관해서 영어 빌드까지 올리면 스냅샷만 두 배가 된다.
 
-- 번역은 설명 문구만 한다. 사이드바 제목, 스토리 이름, args·prop 이름은 바꾸지 않는다. prop 표 설명은 부품 소스의 한국어 JSDoc에서 오므로, 영어 빌드에서만 `i18n/props.en.ts`의 문구로 바꾼다(`preview.tsx`의 `argTypesEnhancers`). 소스 주석을 고치면 이 파일도 같이 고친다.
+- 사이드바 제목, 스토리 이름, args·prop 이름은 번역하지 않는다. prop 표 설명은 부품 소스의 한국어 JSDoc에서 오므로, 영어 빌드에서만 `i18n/props.en.ts`의 문구로 바꾼다(`preview.tsx`의 `argTypesEnhancers`). 소스 주석을 고치면 이 파일도 같이 고친다.
 - 툴바 global로 언어를 바꾸는 방식은 쓰지 않는다. Docs 설명과 MDX가 바뀌지 않아 두 언어가 섞이기 때문이다.
 
 - [x] **MOA-6.1: 스토리 파일의 한국어 설명을 `ko.ts`로 옮기고 `t()` 키로 바꾼다**

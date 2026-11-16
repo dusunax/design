@@ -47,17 +47,17 @@ export const Variants: Story = {
       </Prop>
       <Prop code='direction="horizontal"' use={t("list.horizontal")}>
         <List direction="horizontal">
-          <SampleBox label="항목" />
-          <SampleBox label="긴 항목" />
-          <SampleBox label="가장 긴 항목" />
+          <SampleBox label={t("sample.item")} />
+          <SampleBox label={t("sample.longerItem")} />
+          <SampleBox label={t("sample.longestItem")} />
         </List>
       </Prop>
       <PropGrid min={200}>
         {H_ALIGN.map((a) => (
           <Prop key={a} code={`align="${a}"`}>
             <List direction="horizontal" align={a}>
-              <SampleBox label="높은 항목" tall />
-              <SampleBox label="항목" />
+              <SampleBox label={t("sample.tallItem")} tall />
+              <SampleBox label={t("sample.item")} />
             </List>
           </Prop>
         ))}

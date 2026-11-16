@@ -60,8 +60,8 @@ export const Variants: Story = {
         {ALIGN.map((a) => (
           <Prop key={a} code={`<Column align="${a}">${a === "stretch" ? ` (${t("common.default")})` : ""}`} use={ALIGN_USE[a]}>
             <Column align={a}>
-              <SampleBox label="짧음" />
-              <SampleBox label="조금 더 긴 항목" />
+              <SampleBox label={t("sample.short")} />
+              <SampleBox label={t("sample.aBitLonger")} />
             </Column>
           </Prop>
         ))}

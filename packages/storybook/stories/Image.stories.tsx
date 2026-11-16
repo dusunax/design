@@ -11,7 +11,7 @@ const meta: Meta<typeof Image> = {
   title: "Display/Image",
   component: Image,
   tags: ["autodocs"],
-  args: { url: SAMPLE, description: "예시 이미지" },
+  args: { url: SAMPLE, description: t("sample.image") },
 };
 export default meta;
 type Story = StoryObj<typeof Image>;
@@ -35,7 +35,7 @@ const FIT_USE: Record<ImageFit, string> = {
 };
 
 export const Variants: Story = {
-  parameters: { docs: { source: { code: "<Image url={url} description=\"설명\" variant=\"icon\" />\n<Image url={url} description=\"설명\" variant=\"avatar\" />\n<Image url={url} description=\"설명\" variant=\"smallFeature\" />\n<Image url={url} description=\"설명\" />  {/* mediumFeature */}\n<Image url={url} description=\"설명\" variant=\"largeFeature\" />\n<Image url={url} description=\"설명\" variant=\"header\" />", language: "tsx" } } },
+  parameters: { docs: { source: { code: `<Image url={url} description="${t("sample.description")}" variant="icon" />\n<Image url={url} description="${t("sample.description")}" variant="avatar" />\n<Image url={url} description="${t("sample.description")}" variant="smallFeature" />\n<Image url={url} description="${t("sample.description")}" />  {/* mediumFeature */}\n<Image url={url} description="${t("sample.description")}" variant="largeFeature" />\n<Image url={url} description="${t("sample.description")}" variant="header" />`, language: "tsx" } } },
   render: (args) => (
     <PropGrid min={280}>
       {(Object.keys(VARIANT_USE) as ImageVariant[]).map((v) => (
