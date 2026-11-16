@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useEffect, useRef, useState } from "react";
+import { t } from "../i18n/t";
 
 const COLORS = [
   "bg",
@@ -50,7 +51,7 @@ const meta: Meta = {
 export default meta;
 
 export const Colors: StoryObj = {
-  parameters: { docs: { source: { code: "/* 부품 밖에서도 같은 토큰을 쓸 수 있다 */\ncolor: var(--moa-color-fg);\nbackground: var(--moa-color-primary);", language: "css" } } },
+  parameters: { docs: { source: { code: `/* ${t("colors.outside")} */\ncolor: var(--moa-color-fg);\nbackground: var(--moa-color-primary);`, language: "css" } } },
   render: () => (
     <div style={{ display: "grid", gap: 8 }}>
       {COLORS.map((name) => (

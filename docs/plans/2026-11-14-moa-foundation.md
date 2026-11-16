@@ -899,7 +899,7 @@ Expected: `dist/`, `package.json`, `README.md`만 포함되고 `src/`는 없다.
 - Produces:
   - 워크플로 `ci`: push와 PR에서 실행한다.
     - `check` job: MOA-1에서 만든 단계 뒤에 `pnpm size`(`continue-on-error: true`)를 추가한다.
-    - `chromatic` job: `check` 다음에 실행한다. `pnpm --filter @dusunax/moa-storybook exec chromatic --project-token=${{ secrets.CHROMATIC_PROJECT_TOKEN }} --only-changed --exit-zero-on-changes`를 쓴다. `fetch-depth: 0`이 필요하다(TurboSnap 때문). fork PR에는 secret이 없으므로 `if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository` 조건을 둔다. 실제로는 PR 이벤트의 ref(`refs/pull/N/merge`)가 Environment 배포 브랜치 제한을 통과하지 못해, 트리거에 `MOA-*` push를 더하고 `chromatic` job은 `if: github.event_name == 'push'`로 push에서만 실행한다.
+    - `chromatic` job: `check` 다음에 실행한다. `pnpm --filter @dusunax/moa-storybook exec chromatic --project-token=${{ secrets.CHROMATIC_PROJECT_TOKEN }} --only-changed --exit-zero-on-changes`를 쓴다. `fetch-depth: 0`이 필요하다(TurboSnap 때문). fork PR에는 secret이 없으므로 `if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository` 조건을 둔다. 실제로는 PR 이벤트의 ref(`refs/pull/N/merge`)가 Environment 배포 브랜치 제한을 통과하지 못한다. 그래서 `chromatic` job은 main push와 수동 실행(`workflow_dispatch`)에서만 돌고, `--auto-accept-changes main`으로 main 빌드를 기준 화면으로 삼는다. 부품 화면을 바꾼 브랜치는 머지 전에 수동으로 돌린다(MOA-6에서 변경).
   - 사용자가 준비할 것: Chromatic 프로젝트 생성, 레포 secret `CHROMATIC_PROJECT_TOKEN` 등록
 
 - [x] **MOA-5.6: Chromatic 팁을 사용자에게 알리고, Environment와 토큰을 준비한다** — 팁 주제: TurboSnap, 스냅샷 한도, 테마 모드 적용 범위, 애니메이션·스트리밍 스토리 고정. `chromatic` Environment를 만들어 배포 브랜치를 main과 MOA 브랜치로 제한하고, `CHROMATIC_PROJECT_TOKEN`은 레포 secret이 아니라 이 Environment에 넣는다. `chromatic` job에 `environment: chromatic`을 둔다.
@@ -935,38 +935,38 @@ Expected: 빌드가 업로드되고, 기준 스냅샷 승인을 기다리는 URL
 
 **Interfaces:**
 - Produces:
-  - `t(key: MessageKey): string`: `import.meta.env.STORYBOOK_LOCALE`(없으면 `"ko"`)에 맞는 사전에서 문구를 꺼낸다. `MessageKey`는 `ko.ts`의 키에서 만든 타입이라, `en.ts`에 키가 빠지면 타입 오류가 난다. 키 형식은 `<name>.description`, `<name>.<story>`다.
+  - `t(key: MessageKey): string`: `import.meta.env.STORYBOOK_LOCALE`(없으면 `"ko"`)에 맞는 사전에서 문구를 꺼낸다. `MessageKey`는 `ko.ts`의 키에서 만든 타입이라, `en.ts`에 키가 빠지면 타입 오류가 난다. 키 형식은 `<부품>.<설명할 대상>`이다(`button.description`, `image.fit.cover`, 공통 `common.default`). 부품 설명, 캡션, 예시 화면 안의 글자(`sample.*`), 코드 예시, args 기본값을 모두 옮긴다. 한국어 빌드와 Chromatic 화면은 바뀌지 않는다.
   - 스크립트: `dev`(한국어), `dev:en`(`STORYBOOK_LOCALE=en`), `build`(한국어 → `storybook-static/`), `build:en`(영어 → `storybook-static/en/`)
   - `main.ts`의 `stories`는 `"../docs/*.<locale>.mdx"`로 언어에 맞는 MDX만 불러온다.
-  - `manager.ts`: 툴바에 `한국어 ↔ English` 링크 하나를 둔다. 한국어 빌드는 `./en/`로, 영어 빌드는 `../`로 이동한다.
-  - 루트 `build`와 CI `check` job은 `build:en`도 실행한다. Chromatic에는 한국어 빌드만 올린다. 부품 화면은 언어와 무관해서 영어 빌드까지 올리면 스냅샷만 두 배가 된다.
+  - `manager.ts`: 툴바에 `한국어 ↔ English` 링크 하나를 둔다. 한국어 빌드는 `./en/`로, 영어 빌드는 `../`로 이동한다. 보고 있던 스토리(`?path=…`)는 유지한다.
+  - 루트 `build`(`pnpm -r build && pnpm --filter @dusunax/moa-storybook build:en`)와 CI `check` job은 `build:en`도 실행한다. Chromatic에는 한국어 빌드만 올린다. 부품 화면은 언어와 무관해서 영어 빌드까지 올리면 스냅샷만 두 배가 된다.
 
-- 번역은 설명 문구만 한다. 사이드바 제목, 스토리 이름, args·prop 이름은 바꾸지 않는다.
+- 사이드바 제목, 스토리 이름, args·prop 이름은 번역하지 않는다. prop 표 설명은 부품 소스의 한국어 JSDoc에서 오므로, 영어 빌드에서만 `i18n/props.en.ts`의 문구로 바꾼다(`preview.tsx`의 `argTypesEnhancers`). 소스 주석을 고치면 이 파일도 같이 고친다.
 - 툴바 global로 언어를 바꾸는 방식은 쓰지 않는다. Docs 설명과 MDX가 바뀌지 않아 두 언어가 섞이기 때문이다.
 
-- [ ] **MOA-6.1: 스토리 파일의 한국어 설명을 `ko.ts`로 옮기고 `t()` 키로 바꾼다**
+- [x] **MOA-6.1: 스토리 파일의 한국어 설명을 `ko.ts`로 옮기고 `t()` 키로 바꾼다**
 
 Run: `pnpm --filter @dusunax/moa-storybook build`
 Expected: 한국어 빌드의 설명이 옮기기 전과 같다.
 
-- [ ] **MOA-6.2: `en.ts`를 채우고 타입 검사로 빠진 키가 없는지 확인한다**
+- [x] **MOA-6.2: `en.ts`를 채우고 타입 검사로 빠진 키가 없는지 확인한다**
 
 Run: `pnpm typecheck`
 Expected: PASS
 
-- [ ] **MOA-6.3: `Intro.en.mdx`, 스크립트, `main.ts`, `manager.ts`를 작성하고 두 언어를 빌드한다**
+- [x] **MOA-6.3: `Intro.en.mdx`, 스크립트, `main.ts`, `manager.ts`를 작성하고 두 언어를 빌드한다**
 
 Run: `pnpm --filter @dusunax/moa-storybook build && pnpm --filter @dusunax/moa-storybook build:en`
 Expected: `storybook-static/index.html`과 `storybook-static/en/index.html`이 생긴다. 소개 페이지가 각각 한국어와 영어로 나오고, 툴바 링크로 서로 오갈 수 있다.
 
-- [ ] **MOA-6.4: README 영어판을 쓴다**
+- [x] **MOA-6.4: README 영어판을 쓴다**
 
   `README.md`와 `README.en.md`, `packages/moa/README.md`와 `README.en.md`를 짝으로 둔다. 각 파일 맨 위에 `한국어 | English` 전환 링크를 둔다. `packages/moa`의 링크는 상대 경로가 npm 페이지에서 깨지므로 GitHub 절대 URL로 건다. 이후 README를 고치면 두 언어를 같은 커밋에서 고친다.
 
 Run: `pnpm --filter @dusunax/moa pack --dry-run`
 Expected: `README.en.md`가 포함된다.
 
-- [ ] **MOA-6.5: 커밋한다** — `docs(storybook): 설명 문구를 사전으로 옮기고 영어 빌드 추가`, `docs: README 영어판 추가`
+- [x] **MOA-6.5: 커밋한다** — `docs(storybook): 설명 문구를 사전으로 옮기고 영어 빌드 추가`, `docs: README 영어판 추가`
 
 ---
 

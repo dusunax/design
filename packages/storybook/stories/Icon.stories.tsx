@@ -1,6 +1,7 @@
 import { BRAND_ICON_PATHS, type BrandIconName, ICON_NAMES, Icon } from "@dusunax/moa";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Prop, PropGrid } from "./_Prop";
+import { t } from "../i18n/t";
 
 const meta: Meta<typeof Icon> = {
   title: "Display/Icon",
@@ -10,7 +11,7 @@ const meta: Meta<typeof Icon> = {
   parameters: {
     docs: {
       description: {
-        component: "글자 없이 아이콘만 쓰면 `label`을 준다. 글자와 함께 쓰면 장식용으로 숨긴다.",
+        component: t("icon.description"),
       },
     },
   },
@@ -20,28 +21,28 @@ type Story = StoryObj<typeof Icon>;
 
 export const Playground: Story = {};
 export const Variants: Story = {
-  parameters: { docs: { source: { code: "<Icon name=\"star\" size={16} />\n<Icon name=\"star\" size={20} />\n<Icon name=\"star\" />  {/* 24 */}\n<Icon name=\"star\" size={32} />\n<Icon name=\"warning\" label=\"경고\" />\n<Icon name=\"moa\" />\n<Icon name={{ svgPath: \"M480-80 80-480l400-400 400 400L480-80Z\" }} />", language: "tsx" } } },
+  parameters: { docs: { source: { code: `<Icon name="star" size={16} />\n<Icon name="star" size={20} />\n<Icon name="star" />  {/* 24 */}\n<Icon name="star" size={32} />\n<Icon name="warning" label="${t("sample.warning")}" />\n<Icon name="moa" />\n<Icon name={{ svgPath: "M480-80 80-480l400-400 400 400L480-80Z" }} />`, language: "tsx" } } },
   render: () => (
     <PropGrid min={140}>
-      {([[16, "버튼, 글자 옆"], [20, "목록 항목"], [24, "단독 (기본값)"], [32, "빈 상태 강조"]] as const).map(([s, use]) => (
+      {([[16, t("icon.size16")], [20, t("icon.size20")], [24, `${t("icon.size24")} (${t("common.default")})`], [32, t("icon.size32")]] as const).map(([s, use]) => (
         <Prop key={s} code={`size={${s}}`} use={use}>
           <Icon name="star" size={s} />
         </Prop>
       ))}
-      <Prop code='label="경고"' use="글자 없이 아이콘만 쓸 때">
-        <Icon name="warning" label="경고" />
+      <Prop code={`label="${t("sample.warning")}"`} use={t("icon.label")}>
+        <Icon name="warning" label={t("sample.warning")} />
       </Prop>
-      <Prop code='name="moa"' use="moa 로고 자리 (catalog 밖 이름)">
+      <Prop code='name="moa"' use={t("icon.brand")}>
         <Icon name="moa" />
       </Prop>
-      <Prop code="{ svgPath }" use="catalog에 없는 아이콘">
+      <Prop code="{ svgPath }" use={t("icon.custom")}>
         <Icon name={{ svgPath: "M480-80 80-480l400-400 400 400L480-80Z" }} />
       </Prop>
     </PropGrid>
   ),
 };
 export const All: Story = {
-  parameters: { docs: { source: { code: "import { BRAND_ICON_PATHS, ICON_NAMES, Icon } from \"@dusunax/moa\";\n\n// catalog 59개 + moa 전용\n[...ICON_NAMES, ...Object.keys(BRAND_ICON_PATHS)].map((name) => <Icon key={name} name={name} />)", language: "tsx" } } },
+  parameters: { docs: { source: { code: `import { BRAND_ICON_PATHS, ICON_NAMES, Icon } from "@dusunax/moa";\n\n// ${t("icon.allComment")}\n[...ICON_NAMES, ...Object.keys(BRAND_ICON_PATHS)].map((name) => <Icon key={name} name={name} />)`, language: "tsx" } } },
   render: () => (
     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))", gap: 12 }}>
       {[...ICON_NAMES, ...(Object.keys(BRAND_ICON_PATHS) as BrandIconName[])].map((n) => (

@@ -12,7 +12,8 @@
     "directory": "packages/moa"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.en.md"
   ],
   "publishConfig": {
     "access": "public"

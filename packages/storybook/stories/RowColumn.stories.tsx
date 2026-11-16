@@ -2,6 +2,7 @@ import { Card, Column, Row } from "@dusunax/moa";
 import type { Align, Justify } from "@dusunax/moa";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Prop, PropGrid, SampleBox } from "./_Prop";
+import { t } from "../i18n/t";
 
 const meta: Meta<typeof Row> = {
   title: "Layout/Row·Column",
@@ -26,16 +27,16 @@ const JUSTIFY: Justify[] = ["start", "center", "end", "spaceBetween", "spaceArou
 const ALIGN: Align[] = ["start", "center", "end", "stretch"];
 
 const JUSTIFY_USE: Partial<Record<Justify, string>> = {
-  center: "빈 상태 안내처럼 가운데 둘 때",
-  end: "확인·취소 버튼 묶음",
-  spaceBetween: "제목과 동작 버튼을 양끝에",
-  stretch: "항목이 늘어나지 않으면 start와 같다. 항목에 weight를 줄 때",
+  center: t("rowColumn.justify.center"),
+  end: t("rowColumn.justify.end"),
+  spaceBetween: t("rowColumn.justify.spaceBetween"),
+  stretch: t("rowColumn.justify.stretch"),
 };
 
 const ALIGN_USE: Partial<Record<Align, string>> = {
-  start: "길이가 다른 항목을 왼쪽에 맞출 때",
-  center: "아이콘과 글자를 가운데 맞출 때",
-  stretch: "입력 폼처럼 너비를 채울 때",
+  start: t("rowColumn.align.start"),
+  center: t("rowColumn.align.center"),
+  stretch: t("rowColumn.align.stretch"),
 };
 
 export const Playground: Story = {};
@@ -46,7 +47,7 @@ export const Variants: Story = {
     <div style={{ display: "grid", gap: 24 }}>
       <div style={{ display: "grid", gap: 16 }}>
         {JUSTIFY.map((j) => (
-          <Prop key={j} code={`<Row justify="${j}">${j === "start" ? " (기본값)" : ""}`} use={JUSTIFY_USE[j]}>
+          <Prop key={j} code={`<Row justify="${j}">${j === "start" ? ` (${t("common.default")})` : ""}`} use={JUSTIFY_USE[j]}>
             <Row justify={j}>
               <SampleBox label="A" />
               <SampleBox label="B" />
@@ -57,15 +58,15 @@ export const Variants: Story = {
       </div>
       <PropGrid>
         {ALIGN.map((a) => (
-          <Prop key={a} code={`<Column align="${a}">${a === "stretch" ? " (기본값)" : ""}`} use={ALIGN_USE[a]}>
+          <Prop key={a} code={`<Column align="${a}">${a === "stretch" ? ` (${t("common.default")})` : ""}`} use={ALIGN_USE[a]}>
             <Column align={a}>
-              <SampleBox label="짧음" />
-              <SampleBox label="조금 더 긴 항목" />
+              <SampleBox label={t("sample.short")} />
+              <SampleBox label={t("sample.aBitLonger")} />
             </Column>
           </Prop>
         ))}
       </PropGrid>
-      <Prop code="<Card weight={1}> <Card weight={2}>" use="본문과 사이드처럼 공간을 비율로 나눌 때">
+      <Prop code="<Card weight={1}> <Card weight={2}>" use={t("rowColumn.weight")}>
         <Row>
           <Card weight={1}>weight 1</Card>
           <Card weight={2}>weight 2</Card>

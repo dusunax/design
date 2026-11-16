@@ -1,5 +1,6 @@
 import { Tabs } from "@dusunax/moa";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { t } from "../i18n/t";
 
 const meta: Meta<typeof Tabs> = {
   title: "Layout/Tabs",
@@ -7,9 +8,9 @@ const meta: Meta<typeof Tabs> = {
   tags: ["autodocs"],
   args: {
     tabs: [
-      { title: "탭 1", child: "첫 번째 내용" },
-      { title: "탭 2", child: "두 번째 내용" },
-      { title: "탭 3", child: "세 번째 내용" },
+      { title: `${t("sample.tab")} 1`, child: t("sample.firstContent") },
+      { title: `${t("sample.tab")} 2`, child: t("sample.secondContent") },
+      { title: `${t("sample.tab")} 3`, child: t("sample.thirdContent") },
     ],
     defaultIndex: 0,
   },

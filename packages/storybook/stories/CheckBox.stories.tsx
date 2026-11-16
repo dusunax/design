@@ -1,32 +1,33 @@
 import { CheckBox } from "@dusunax/moa";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Prop } from "./_Prop";
+import { t } from "../i18n/t";
 
 const meta: Meta<typeof CheckBox> = {
   title: "Inputs/CheckBox",
   component: CheckBox,
   tags: ["autodocs"],
-  args: { label: "라벨" },
+  args: { label: t("sample.label") },
 };
 export default meta;
 type Story = StoryObj<typeof CheckBox>;
 
 export const Playground: Story = {};
 export const Variants: Story = {
-  parameters: { docs: { source: { code: "<CheckBox label=\"라벨\" />\n<CheckBox label=\"라벨\" defaultValue />\n<CheckBox label=\"라벨\" disabled />\n<CheckBox label=\"라벨\" disabled defaultValue />", language: "tsx" } } },
+  parameters: { docs: { source: { code: `<CheckBox label="${t("sample.label")}" />\n<CheckBox label="${t("sample.label")}" defaultValue />\n<CheckBox label="${t("sample.label")}" disabled />\n<CheckBox label="${t("sample.label")}" disabled defaultValue />`, language: "tsx" } } },
   render: () => (
     <div style={{ display: "grid", gap: 12 }}>
-      <Prop code="defaultValue={false} (기본값)">
-        <CheckBox label="라벨" />
+      <Prop code={`defaultValue={false} (${t("common.default")})`}>
+        <CheckBox label={t("sample.label")} />
       </Prop>
       <Prop code="defaultValue">
-        <CheckBox label="라벨" defaultValue />
+        <CheckBox label={t("sample.label")} defaultValue />
       </Prop>
       <Prop code="disabled">
-        <CheckBox label="라벨" disabled />
+        <CheckBox label={t("sample.label")} disabled />
       </Prop>
       <Prop code="disabled defaultValue">
-        <CheckBox label="라벨" disabled defaultValue />
+        <CheckBox label={t("sample.label")} disabled defaultValue />
       </Prop>
     </div>
   ),

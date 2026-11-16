@@ -1,6 +1,7 @@
 import { RunStatus } from "@dusunax/moa";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Prop, PropGrid } from "./_Prop";
+import { t } from "../i18n/t";
 
 const meta: Meta<typeof RunStatus> = {
   title: "Agent/RunStatus",
@@ -13,7 +14,7 @@ type Story = StoryObj<typeof RunStatus>;
 
 export const Playground: Story = {};
 export const Variants: Story = {
-  parameters: { docs: { source: { code: "<RunStatus status=\"running\" />\n<RunStatus status=\"error\" message=\"Timeout\" />\n<RunStatus status=\"running\" labels={{ running: \"실행 중\" }} />", language: "tsx" } } },
+  parameters: { docs: { source: { code: `<RunStatus status="running" />\n<RunStatus status="error" message="Timeout" />\n<RunStatus status="running" labels={{ running: "${t("sample.inProgress")}" }} />`, language: "tsx" } } },
   render: () => (
     <div style={{ display: "grid", gap: 16 }}>
       <PropGrid min={160}>
@@ -24,11 +25,11 @@ export const Variants: Story = {
         ))}
       </PropGrid>
       <PropGrid min={240}>
-        <Prop code='status="error" message="Timeout"' use="오류 원인을 함께 보일 때">
+        <Prop code='status="error" message="Timeout"' use={t("runStatus.message")}>
           <RunStatus status="error" message="Timeout" />
         </Prop>
-        <Prop code='labels={{ running: "실행 중" }}' use="상태 이름을 바꿀 때">
-          <RunStatus status="running" labels={{ running: "실행 중" }} />
+        <Prop code={`labels={{ running: "${t("sample.inProgress")}" }}`} use={t("runStatus.labels")}>
+          <RunStatus status="running" labels={{ running: t("sample.inProgress") }} />
         </Prop>
       </PropGrid>
     </div>
