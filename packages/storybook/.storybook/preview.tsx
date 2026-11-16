@@ -1,6 +1,7 @@
 import type { Preview } from "@storybook/react-vite";
 import "@dusunax/moa/styles.css";
 import "./preview.css";
+import { propsEn } from "../i18n/props.en";
 import isChromatic from "chromatic/isChromatic";
 
 // 커서 깜빡임과 실행 중 점 펄스가 찍히는 순간에 따라 스냅샷이 달라지지 않게 Chromatic에서는 애니메이션을 끈다.
@@ -11,6 +12,21 @@ if (isChromatic()) {
 }
 
 const preview: Preview = {
+  // 영어 빌드에서 prop 표 설명(부품 소스의 한국어 JSDoc)을 영어로 바꾼다. 사전에 없는 prop은 원문을 둔다.
+  argTypesEnhancers:
+    import.meta.env.STORYBOOK_LOCALE === "en"
+      ? [
+          ({ argTypes, component }) => {
+            // 배포 빌드에서는 함수 이름이 줄어들므로 react-docgen이 붙인 이름을 쓴다.
+            const name = (component as { __docgenInfo?: { displayName?: string } } | undefined)?.__docgenInfo?.displayName;
+            for (const [prop, argType] of Object.entries(argTypes)) {
+              const en = propsEn[`${name}.${prop}`] ?? propsEn[`*.${prop}`];
+              if (en) argType.description = en;
+            }
+            return argTypes;
+          },
+        ]
+      : [],
   globalTypes: {
     theme: {
       description: "moa 테마",
