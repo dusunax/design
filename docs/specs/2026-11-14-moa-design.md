@@ -27,7 +27,7 @@ pnpm workspace 모노레포로 구성한다. 루트에는 workspace 설정만 �
 
 | 경로 | 패키지 | 배포 | 역할 | 작업 ID |
 |---|---|---|---|---|
-| `packages/moa` | `@dusunax/moa` | npm | 프레젠테이션 부품. 프로토콜을 모른다 | MOA-1\~MOA-6 |
+| `packages/moa` | `@dusunax/moa` | npm | 프레젠테이션 부품. 프로토콜을 모른다 | MOA-1\~MOA-7 |
 | `packages/storybook` | `@dusunax/moa-storybook` | private | 문서, Chromatic | MOA-1\~MOA-6 |
 | `packages/moa-render` | `@dusunax/moa-render` | npm | 에이전트가 보낸 UI 명세 → moa 부품 렌더러 | DOC-7, DOC-8에서 정한다 |
 | `packages/moa-stream` | `@dusunax/moa-stream` | npm | 에이전트 이벤트 스트림(AG-UI) → UI 상태 훅 | DOC-7, DOC-8에서 정한다 |

@@ -27,7 +27,7 @@ ID의 순서와 상태는 이 문서에만 적는다. 다른 문서는 이 표�
 | ID | 종류 | 내용 | 선행 | 게이트 | 상태 | 위치 | PR |
 |---|---|---|---|---|---|---|---|
 | DOC-5 | spec | moa 디자인 시스템 설계 | — | — | 완료 | `specs/2026-11-14-moa-design.md` | — |
-| DOC-6 | plan | MOA-1\~MOA-6 구현 플랜 | DOC-5 | — | 완료 | `plans/2026-11-14-moa-foundation.md` | — |
+| DOC-6 | plan | MOA-1\~MOA-7 구현 플랜 | DOC-5 | — | 완료 | `plans/2026-11-14-moa-foundation.md` | — |
 | SEC-1 | review | 플랜 보안 검토 | DOC-5, DOC-6 | — | 완료 | `reviews/2026-11-14-SEC-1.md` | — |
 | MOA-1 | 구현 | init: 레포 정리, 토큰, Storybook | — | SEC-1 | 완료 | 브랜치 `MOA-1`, Step은 DOC-6 | [#1](https://github.com/dusunax/design/pull/1) |
 | MOA-2 | 구현 | 기본 부품 | MOA-1 | — | 완료 | 브랜치 `MOA-2`, Step은 DOC-6 | [#2](https://github.com/dusunax/design/pull/2) |
@@ -36,6 +36,7 @@ ID의 순서와 상태는 이 문서에만 적는다. 다른 문서는 이 표�
 | SEC-2 | review | 구현 코드 보안 점검 (첫 npm 배포 전) | MOA-4 | — | 완료 | `reviews/2026-11-15-SEC-2.md` | — |
 | MOA-5 | 구현 | 크기 리포트·배포·Chromatic | MOA-4 | SEC-2 | 완료 | 브랜치 `MOA-5`, Step은 DOC-6 | [#5](https://github.com/dusunax/design/pull/5) |
 | MOA-6 | 구현 | 문서 영어 지원 | MOA-5 | — | 대기 | 브랜치 `MOA-6`, Step은 DOC-6 | — |
+| MOA-7 | 구현 | 첫 npm 배포 | MOA-6 | — | 대기 | 브랜치 `MOA-7`, Step은 DOC-6 | — |
 | DOC-7 | spec | 다음 패키지 설계 (`moa-stream`, `moa-render`, playground) | MOA-6 | — | 대기 | — | — |
 | DOC-8 | plan | 다음 패키지 구현 플랜 | DOC-7 | — | 대기 | — | — |
 | SEC-3 | review | 다음 패키지 설계 보안 점검 | DOC-8 | — | 대기 | — | — |

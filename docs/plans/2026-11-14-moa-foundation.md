@@ -3,7 +3,7 @@ id: DOC-6
 type: plan
 title: moa Implementation Plan
 description: >
-  MOA-1~MOA-6의 Step(할 일, 파일, 인터페이스, 검증 명령)을 ID별로 정한다.
+  MOA-1~MOA-7의 Step(할 일, 파일, 인터페이스, 검증 명령)을 ID별로 정한다.
   MOA ID를 진행하면서 다음 Step을 확인할 때 읽는다.
 ---
 
@@ -886,7 +886,7 @@ Expected: `dist/`, `package.json`, `README.md`만 포함되고 `src/`는 없다.
 
 - [x] **MOA-5.5: 커밋한다** — `chore(moa): size-limit 리포트와 changesets 배포 설정 추가`
 
-  실제 `pnpm release`(npm publish)는 이 플랜에서 실행하지 않는다. 사용자가 따로 승인하면 실행한다.
+  실제 `pnpm release`(npm publish)는 MOA-5에서 실행하지 않는다. 배포는 MOA-7에서 한다.
 
 ---
 
@@ -967,3 +967,52 @@ Run: `pnpm --filter @dusunax/moa pack --dry-run`
 Expected: `README.en.md`가 포함된다.
 
 - [ ] **MOA-6.5: 커밋한다** — `docs(storybook): 설명 문구를 사전으로 옮기고 영어 빌드 추가`, `docs: README 영어판 추가`
+
+---
+
+## MOA-7 첫 npm 배포
+
+- 브랜치 `MOA-7` · PR `chore(moa): [MOA-7] 첫 npm 배포`
+- 배포는 PR을 머지한 뒤 `main`에서 한다. DOC-3 상태는 머지가 아니라 배포 확인(MOA-7.6)이 끝난 뒤 `완료`로 바꾼다.
+
+### 버전과 라이선스
+
+**Files:**
+- Create: `LICENSE`, `packages/moa/LICENSE`
+- Modify(`changeset version`이 만든다): `packages/moa/package.json`(`version`), `packages/moa/CHANGELOG.md`, `.changeset/initial-release.md`(삭제)
+
+**Interfaces:**
+- Produces:
+  - `LICENSE`: MIT, 저작권자 `dusunax`
+  - `packages/moa/LICENSE`: 같은 MIT 본문 뒤에 Icon SVG path의 출처(Material Symbols, Apache-2.0)와 라이선스 원문 링크를 붙인다. 빌드 결과물에는 출처 주석이 남지 않으므로 패키지에 함께 넣는다. npm은 `files`와 관계없이 패키지 폴더의 `LICENSE`를 넣는다.
+
+- [ ] **MOA-7.1: `LICENSE`를 추가한다**
+
+Run: `pnpm --filter @dusunax/moa pack --dry-run`
+Expected: `dist/`, `package.json`, `README.md`(MOA-6 뒤라면 `README.en.md`도), `LICENSE`가 들어 있다.
+
+- [ ] **MOA-7.2: 버전을 올린다**
+
+Run: `pnpm changeset version`
+Expected: `@dusunax/moa`가 `0.1.0`이 되고, `packages/moa/CHANGELOG.md`가 생기고, `.changeset/initial-release.md`가 지워진다. Storybook 패키지 버전은 바뀌지 않는다.
+
+- [ ] **MOA-7.3: 커밋한다** — `chore(moa): 0.1.0 버전과 LICENSE 추가`
+
+### 배포
+
+- [ ] **MOA-7.4: 배포 직전 조건을 확인한다** — 머지한 뒤 최신 `main`에서 한다.
+
+  - `npm profile get`의 2FA 모드가 `auth-and-writes`다(SEC-1.5 유지 조건). 바뀌었으면 배포하지 않고 SEC-1.5를 🟡로 되돌린다.
+  - `pnpm build`가 통과하고, `pnpm --filter @dusunax/moa pack --dry-run` 결과가 MOA-7.1과 같다.
+  - `npm view @dusunax/moa`에 `0.1.0`이 없다.
+
+- [ ] **MOA-7.5: 배포한다** — 사용자 승인 후 사용자가 로컬에서 `pnpm release`를 실행하고 OTP를 넣는다. CI에서는 배포하지 않는다.
+
+- [ ] **MOA-7.6: 배포 결과를 확인한다**
+
+  - `npm view @dusunax/moa version`이 `0.1.0`이다.
+  - 레포 밖 빈 폴더에서 `pnpm add @dusunax/moa react react-dom`으로 설치하고, `@dusunax/moa`, `@dusunax/moa/button`, `@dusunax/moa/styles.css`를 불러올 수 있다.
+  - npm 페이지에 README와 라이선스가 보인다.
+  - `changeset publish`가 만든 태그 `@dusunax/moa@0.1.0`을 push한다.
+
+- [ ] **MOA-7.7: DOC-3 상태를 `완료`로 바꾸고 배포 버전을 적는다** — `docs: MOA-7 완료와 0.1.0 배포를 INDEX에 반영`
