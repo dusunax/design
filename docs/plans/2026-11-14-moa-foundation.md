@@ -880,7 +880,7 @@ Expected: 항목 7개의 크기가 출력된다. 예산을 넘은 항목이 있�
 Run: `pnpm --filter @dusunax/moa pack --dry-run`
 Expected: `dist/`, `package.json`, `README.md`만 포함되고 `src/`는 없다.
 
-- [ ] **MOA-5.4: 로컬 배포 조건을 확인한다**
+- [x] **MOA-5.4: 로컬 배포 조건을 확인한다**
 
   배포는 사용자가 로컬에서 `pnpm release`로 하고, CI 배포는 두지 않는다. `npm profile get`의 2FA 모드가 여전히 `auth-and-writes`인지 확인한다. 바뀌었으면 SEC-1.5를 🟡로 되돌린다. README의 배포 절에 "로컬에서 2FA OTP를 넣어 배포한다"를 적는다.
 
