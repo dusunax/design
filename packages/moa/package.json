@@ -1,6 +1,7 @@
 {
   "name": "@dusunax/moa",
   "version": "0.1.0",
+  "description": "Lightweight React components for agent UIs",
   "type": "module",
   "sideEffects": [
     "*.css"
