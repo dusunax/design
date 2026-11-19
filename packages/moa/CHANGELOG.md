@@ -1,5 +1,11 @@
 # @dusunax/moa
 
+## 0.1.1
+
+### Patch Changes
+
+- c4f1f93: npm 검색 결과에 보일 패키지 설명(`description`)을 추가한다.
+
 ## 0.1.0
 
 ### Minor Changes
