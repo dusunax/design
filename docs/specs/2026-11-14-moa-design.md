@@ -162,6 +162,6 @@ catalog에는 없지만 AG-UI 이벤트를 화면에 보여 주려면 필요하�
 
 - Storybook 10 + `@storybook/react-vite`
 - light/dark 전환은 툴바로 한다.
-- 문서는 한국어가 기본이고 영어를 함께 둔다. Storybook은 언어별로 따로 빌드한다(한국어 `/`, 영어 `/en/`). 번역은 설명 문구만 하고, 스토리 이름과 prop 이름은 영어로 둔다. README도 `README.md`(한국어)와 `README.en.md`(영어)를 짝으로 둔다. 영어 지원은 MOA-6에서 한 번에 한다.
+- 문서는 한국어가 기본이고 영어를 함께 둔다. Storybook은 언어별로 따로 빌드한다(한국어 `/`, 영어 `/en/`). 번역은 설명 문구만 하고, 스토리 이름과 prop 이름은 영어로 둔다. README도 두 언어를 짝으로 둔다. 레포 루트는 `README.md`(한국어)와 `README.en.md`(영어), npm에 보이는 `packages/moa`는 `README.md`(영어)와 `README.ko.md`(한국어)다. 영어 지원은 MOA-6에서 한 번에 한다.
 - 부품 UI 기본 문구는 영어다. `moa`에 번역 사전을 넣지 않고, 문구 prop으로 바꾼다.
 - Chromatic 배포는 MOA-5에서 설정한다.
