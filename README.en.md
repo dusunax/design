@@ -14,4 +14,8 @@ pnpm install
 pnpm storybook
 ```
 
-Design and progress are tracked in [`docs/INDEX.md`](docs/INDEX.md) (Korean).
+## Design
+
+- [moa design system](docs/specs/2026-11-14-moa-design.en.md): package layout and boundaries, styling, components
+- [AG-UI event for UI specs](docs/decisions/2026-11-19-ui-spec-event.en.md): screens sent by the agent arrive as `ACTIVITY` events (`activityType: "moa-ui"`)
+- [ID index](docs/INDEX.en.md): work order and progress

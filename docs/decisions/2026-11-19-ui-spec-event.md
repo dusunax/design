@@ -7,6 +7,8 @@ description: >
   moa-stream이나 playground 서버에서 UI 명세를 주고받는 코드를 짜거나, 이 선택을 바꿀지 검토할 때 읽는다.
 ---
 
+한국어 | [English](2026-11-19-ui-spec-event.en.md)
+
 # UI 명세를 실어 보낼 AG-UI 이벤트
 
 ```mermaid
