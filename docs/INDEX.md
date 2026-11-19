@@ -37,7 +37,7 @@ ID의 순서와 상태는 이 문서에만 적는다. 다른 문서는 이 표�
 | MOA-5 | 구현 | 크기 리포트·배포·Chromatic | MOA-4 | SEC-2 | 완료 | 브랜치 `MOA-5`, Step은 DOC-6 | [#5](https://github.com/dusunax/design/pull/5) |
 | MOA-6 | 구현 | 문서 영어 지원 | MOA-5 | — | 완료 | 브랜치 `MOA-6`, Step은 DOC-6 | [#6](https://github.com/dusunax/design/pull/6) |
 | MOA-7 | 구현 | 첫 npm 배포 | MOA-6 | — | 완료 | 브랜치 `MOA-7`, Step은 DOC-6, [`@dusunax/moa@0.1.0`](https://www.npmjs.com/package/@dusunax/moa/v/0.1.0) | [#7](https://github.com/dusunax/design/pull/7) |
-| DOC-7 | spec | 다음 패키지 설계 (`moa-stream`, `moa-render`, playground) | MOA-6 | — | 대기 | — | — |
+| DOC-7 | spec | 다음 패키지 설계 (`moa-stream`, `moa-render`, playground) | MOA-6 | — | 진행 | — | — |
 | DOC-8 | plan | 다음 패키지 구현 플랜 | DOC-7 | — | 대기 | — | — |
 | SEC-3 | review | 다음 패키지 설계 보안 점검 | DOC-8 | — | 대기 | — | — |
 
