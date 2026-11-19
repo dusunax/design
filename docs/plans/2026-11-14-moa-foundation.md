@@ -1000,19 +1000,19 @@ Expected: `@dusunax/moa`가 `0.1.0`이 되고, `packages/moa/CHANGELOG.md`가 �
 
 ### 배포
 
-- [ ] **MOA-7.4: 배포 직전 조건을 확인한다** — 머지한 뒤 최신 `main`에서 한다.
+- [x] **MOA-7.4: 배포 직전 조건을 확인한다** — 머지한 뒤 최신 `main`에서 한다.
 
   - `npm profile get`의 2FA 모드가 `auth-and-writes`다(SEC-1.5 유지 조건). 바뀌었으면 배포하지 않고 SEC-1.5를 🟡로 되돌린다.
   - `pnpm build`가 통과하고, `pnpm --filter @dusunax/moa pack --dry-run` 결과가 MOA-7.1과 같다.
   - `npm view @dusunax/moa`에 `0.1.0`이 없다.
 
-- [ ] **MOA-7.5: 배포한다** — 사용자 승인 후 사용자가 로컬에서 `pnpm release`를 실행하고 OTP를 넣는다. CI에서는 배포하지 않는다.
+- [x] **MOA-7.5: 배포한다** — 사용자 승인 후 사용자가 로컬에서 `pnpm release`를 실행하고 OTP를 넣는다. CI에서는 배포하지 않는다.
 
-- [ ] **MOA-7.6: 배포 결과를 확인한다**
+- [x] **MOA-7.6: 배포 결과를 확인한다**
 
   - `npm view @dusunax/moa version`이 `0.1.0`이다.
   - 레포 밖 빈 폴더에서 `pnpm add @dusunax/moa react react-dom`으로 설치하고, `@dusunax/moa`, `@dusunax/moa/button`, `@dusunax/moa/styles.css`를 불러올 수 있다.
   - npm 페이지에 README와 라이선스가 보인다.
   - `changeset publish`가 만든 태그 `@dusunax/moa@0.1.0`을 push한다.
 
-- [ ] **MOA-7.7: DOC-3 상태를 `완료`로 바꾸고 배포 버전을 적는다** — `docs: MOA-7 완료와 0.1.0 배포를 INDEX에 반영`
+- [x] **MOA-7.7: DOC-3 상태를 `완료`로 바꾸고 배포 버전을 적는다** — `docs: MOA-7 완료와 0.1.0 배포를 INDEX에 반영`
