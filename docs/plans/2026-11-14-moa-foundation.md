@@ -984,19 +984,19 @@ Expected: `README.en.md`가 포함된다.
 **Interfaces:**
 - Produces:
   - `LICENSE`: MIT, 저작권자 `dusunax`
-  - `packages/moa/LICENSE`: 같은 MIT 본문 뒤에 Icon SVG path의 출처(Material Symbols, Apache-2.0)와 라이선스 원문 링크를 붙인다. 빌드 결과물에는 출처 주석이 남지 않으므로 패키지에 함께 넣는다. npm은 `files`와 관계없이 패키지 폴더의 `LICENSE`를 넣는다.
+  - `packages/moa/LICENSE`: 같은 MIT 본문 뒤에 Icon SVG path의 출처(Material Symbols, `@material-symbols/svg-400@0.48.3`)와 Apache-2.0 원문 전체를 붙인다. Apache-2.0은 재배포할 때 라이선스 사본을 함께 주도록 요구한다. 빌드 결과물에는 출처 주석이 남지 않으므로 패키지에 함께 넣는다. npm은 `files`와 관계없이 패키지 폴더의 `LICENSE`를 넣는다.
 
-- [ ] **MOA-7.1: `LICENSE`를 추가한다**
+- [x] **MOA-7.1: `LICENSE`를 추가한다**
 
 Run: `pnpm --filter @dusunax/moa pack --dry-run`
 Expected: `dist/`, `package.json`, `README.md`(MOA-6 뒤라면 `README.en.md`도), `LICENSE`가 들어 있다.
 
-- [ ] **MOA-7.2: 버전을 올린다**
+- [x] **MOA-7.2: 버전을 올린다**
 
 Run: `pnpm changeset version`
 Expected: `@dusunax/moa`가 `0.1.0`이 되고, `packages/moa/CHANGELOG.md`가 생기고, `.changeset/initial-release.md`가 지워진다. Storybook 패키지 버전은 바뀌지 않는다.
 
-- [ ] **MOA-7.3: 커밋한다** — `chore(moa): 0.1.0 버전과 LICENSE 추가`
+- [x] **MOA-7.3: 커밋한다** — `chore(moa): 0.1.0 버전과 LICENSE 추가`
 
 ### 배포
 
