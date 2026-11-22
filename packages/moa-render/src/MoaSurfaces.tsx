@@ -16,7 +16,7 @@ import {
   Text,
   TextField,
 } from "@dusunax/moa";
-import { Fragment, isValidElement, type ReactNode, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { cloneElement, Fragment, isValidElement, type ReactNode, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { applyEdits, bindingPath, resolve, resolveContext, resolveString } from "./bind";
 import { CATALOG_DEFAULTS, isSensitive, oneOf, pickProps } from "./catalog";
 import { labelLinks } from "./links";
@@ -61,7 +61,13 @@ export function MoaSurfaces({ messages, onAction, onError, isAllowedUrl = defaul
     const model = applyEdits(s.dataModel, edits.get(s.id) ?? new Map());
     let count = 0;
 
+    // key를 props와 함께 spread하면 React가 경고하므로 그린 뒤 cloneElement로 붙인다.
     const node = (id: unknown, depth: number, key?: string): ReactNode => {
+      const el = draw(id, depth);
+      return key !== undefined && isValidElement(el) ? cloneElement(el, { key }) : el;
+    };
+
+    const draw = (id: unknown, depth: number): ReactNode => {
       const c = typeof id === "string" ? s.components.get(id) : undefined;
       // 없는 id와 깊이 초과는 checkSurfaces가 알린다.
       if (!c || depth > MAX_DEPTH) return null;
@@ -79,7 +85,7 @@ export function MoaSurfaces({ messages, onAction, onError, isAllowedUrl = defaul
         renderErrors.push({ code: "SENSITIVE_COMPONENT", message: `blocked sensitive component: ${c.component}`, surfaceId: s.id, componentId: c.id });
         return null;
       }
-      const base = { key, weight: num(p.weight) };
+      const base = { weight: num(p.weight) };
       const children = (list: unknown) => ids(list).map((cid, i) => node(cid, depth + 1, `${cid}:${i}`));
       const str = (v: unknown) => resolveString(v, model);
       const path = bindingPath(p.value);

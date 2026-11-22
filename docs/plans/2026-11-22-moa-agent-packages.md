@@ -285,14 +285,14 @@ Expected: `core.js`가 출력된다. `core`에 React import가 없다는 뜻이�
 
   `pnpm-workspace.yaml`에 `apps/*`를 넣고 `apps/playground`를 Vite + React로 만든다. `private: true`. `moa`, `moa-stream`, `moa-render`, `moa-fixtures`는 `workspace:*`.
 
-- [ ] **MOA-10.2: fixture 재생 화면을 만든다**
+- [x] **MOA-10.2: fixture 재생 화면을 만든다**
 
   첫 화면은 `moa-fixtures`의 `replay`로 `ui-card.json`을 재생한다. 메시지 목록은 DOC-7 "앱"대로 그린다. 화면 위에 데이터 기록 안내를 둔다.
 
 Run: `pnpm --filter playground dev`
 Expected: 키 없이 열면 대화와 카드가 차례로 그려지고, 카드 버튼을 누르면 `onAction`이 콘솔에 찍힌다.
 
-- [ ] **MOA-10.3: 커밋한다** — `feat: playground 앱과 fixture 재생 추가`
+- [x] **MOA-10.3: 커밋한다** — `feat: playground 앱과 fixture 재생 추가`
 
 ### 서버 핸들러
 
