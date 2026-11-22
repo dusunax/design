@@ -155,19 +155,21 @@ Expected: `dist/index.js`와 `dist/index.d.ts`가 생긴다.
 - Produces: `sseEvents(url, init?): AsyncIterable<BaseEvent>`, `useAgentStream(): { state; run(source, newMessages?); abort() }`
 - `sseEvents`는 `fetch(url, { method: "POST", ...init })`로 요청하고, `data:` 줄을 모아 빈 줄에서 `JSON.parse`한다. HTTP 오류는 `RUN_ERROR` 이벤트 하나로 바꿔 내보낸다.
 
-- [ ] **MOA-8.9: 테스트를 작성한다**
+- [x] **MOA-8.9: 테스트를 작성한다**
 
   - `parses SSE data lines`
   - `joins events split across chunks`: 한 이벤트를 세 청크로 나눠도 한 번만 나옴
+  - `turns malformed data into RUN_ERROR`
   - `turns HTTP errors into RUN_ERROR`
+  - `turns thrown errors into error state`
   - `run appends new messages before events`
   - `run aborts the previous run`
   - `abort returns to idle`
 
-- [ ] **MOA-8.10: 테스트를 실행해 실패하는지 확인한다**
-- [ ] **MOA-8.11: 구현한다**
-- [ ] **MOA-8.12: 테스트를 실행해 통과하는지 확인한다**
-- [ ] **MOA-8.13: 커밋한다** — `feat(moa-stream): SSE 파서와 useAgentStream 추가`
+- [x] **MOA-8.10: 테스트를 실행해 실패하는지 확인한다**
+- [x] **MOA-8.11: 구현한다**
+- [x] **MOA-8.12: 테스트를 실행해 통과하는지 확인한다**
+- [x] **MOA-8.13: 커밋한다** — `feat(moa-stream): SSE 파서와 useAgentStream 추가`
 
 ### 크기와 문서
 
