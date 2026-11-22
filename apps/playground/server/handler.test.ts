@@ -1,7 +1,7 @@
 import type { BaseEvent } from "@ag-ui/core";
 import { parseSse } from "@dusunax/moa-stream";
-import { handleAgent } from "./handler";
-import { DEFAULT_MODEL } from "./model";
+import { handleAgent } from "./handler.ts";
+import { DEFAULT_MODEL } from "./model.ts";
 
 const KEY = "sk-or-v1-test-secret-key";
 const OPENROUTER = "https://openrouter.ai/api/v1/chat/completions";
@@ -177,7 +177,7 @@ test("passes upstream 429 limit_source as RUN_ERROR code", async () => {
   const res = await handleAgent(request(input()), upstream(body, { status: 429, headers: { "Content-Type": "application/json" } }));
   expect(res.status).toBe(200);
   const list = await events(res);
-  expect(list.at(-1)).toMatchObject({ type: "RUN_ERROR", code: "upstream_provider_shared_pool" });
+  expect(list.at(-1)).toMatchObject({ type: "RUN_ERROR", code: "openrouter_429:upstream_provider_shared_pool" });
 });
 
 test("ends with RUN_ERROR when the upstream stream is cut off", async () => {

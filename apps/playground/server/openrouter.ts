@@ -1,6 +1,6 @@
 // OpenRouter chat/completions 스트림(OpenAI 호환 SSE)을 AG-UI 이벤트로 바꾼다.
 import { type BaseEvent, EventType } from "@ag-ui/core";
-import { checkRenderUi } from "./validate";
+import { checkRenderUi } from "./validate.ts";
 
 export const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
 
@@ -92,8 +92,8 @@ export async function* toAgUiEvents(body: ReadableStream<Uint8Array>, runId: str
   if (!finished) {
     yield ev(
       upstreamError
-        ? { type: EventType.RUN_ERROR, message: "The model provider returned an error.", code: "upstream_error" }
-        : { type: EventType.RUN_ERROR, message: "The model response was cut off.", code: "upstream_incomplete" },
+        ? { type: EventType.RUN_ERROR, message: "The model provider returned an error.", code: "openrouter_error" }
+        : { type: EventType.RUN_ERROR, message: "The model response was cut off.", code: "openrouter_incomplete" },
     );
     return false;
   }

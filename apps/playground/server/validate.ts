@@ -1,6 +1,6 @@
 // 요청 검증과 render_ui 인자 검증. A2UI 형식과 id 참조는 moa-render/core로 본다.
 import { type A2uiMessage, checkSurfaces, type MoaAction, type MoaRenderError, toSurfaces } from "@dusunax/moa-render/core";
-import { DEFAULT_MODEL, isModelName } from "./model";
+import { DEFAULT_MODEL, isModelName } from "./model.ts";
 
 export const MAX_BODY_BYTES = 256 * 1024;
 export const MAX_MESSAGES = 100;

@@ -1,9 +1,9 @@
 // /api/agent 핸들러. 방문자 키로 OpenRouter를 부르고 응답을 AG-UI 이벤트 SSE로 돌려준다.
 // 키는 OpenRouter 호출에만 쓴다. 로그를 남기지 않고, 오류 문구는 고정한다.
 import { type BaseEvent, EventType } from "@ag-ui/core";
-import { OPENROUTER_URL, toAgUiEvents } from "./openrouter";
-import { RENDER_UI_TOOL, SYSTEM_PROMPT } from "./prompt";
-import { type AgentInput, type InputMessage, MAX_BODY_BYTES, parseInput } from "./validate";
+import { OPENROUTER_URL, toAgUiEvents } from "./openrouter.ts";
+import { RENDER_UI_TOOL, SYSTEM_PROMPT } from "./prompt.ts";
+import { type AgentInput, type InputMessage, MAX_BODY_BYTES, parseInput } from "./validate.ts";
 
 type Deps = { fetch: typeof fetch };
 type ModelMessage = { role: "system" | "user" | "assistant"; content: string };
@@ -79,13 +79,13 @@ function modelMessages(input: AgentInput): ModelMessage[] {
 
 const LIMIT_SOURCE = /^[a-z_]{1,64}$/;
 
-/** OpenRouter의 HTTP 오류를 RUN_ERROR로. 429는 앱이 Firewall 429와 구분하도록 limit_source를 code에 담는다. */
+/** OpenRouter의 HTTP 오류를 RUN_ERROR로. code는 `openrouter_<상태>`이고, 429에는 limit_source를 붙인다. 앱은 이것으로 Firewall 429(code "429")와 구분한다. */
 async function upstreamError(res: Response): Promise<BaseEvent> {
-  let code = `upstream_${res.status}`;
+  let code = `openrouter_${res.status}`;
   if (res.status === 429) {
     const body: unknown = await res.json().catch(() => undefined);
     const source = isRecord(body) && isRecord(body.error) && isRecord(body.error.metadata) ? body.error.metadata.limit_source : undefined;
-    if (typeof source === "string" && LIMIT_SOURCE.test(source)) code = source;
+    if (typeof source === "string" && LIMIT_SOURCE.test(source)) code += `:${source}`;
   }
   return { type: EventType.RUN_ERROR, message: `The model provider returned HTTP ${res.status}.`, code } as BaseEvent;
 }
@@ -101,7 +101,7 @@ async function* run(input: AgentInput, key: string, deps: Deps): AsyncGenerator<
       body: JSON.stringify({ model: input.model, stream: true, messages: modelMessages(input), tools: [RENDER_UI_TOOL], tool_choice: "auto" }),
     });
   } catch {
-    yield { type: EventType.RUN_ERROR, message: "Could not reach the model provider.", code: "upstream_unreachable" } as BaseEvent;
+    yield { type: EventType.RUN_ERROR, message: "Could not reach the model provider.", code: "openrouter_unreachable" } as BaseEvent;
     return;
   }
   if (!res.ok || !res.body) {

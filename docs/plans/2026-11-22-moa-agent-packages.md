@@ -341,8 +341,8 @@ Expected: 키 없이 열면 대화와 카드가 차례로 그려지고, 카드 �
 
   `docs/decisions/data/2026-11-22-model-eval/eval-models.mjs`를 `apps/playground/scripts/eval-models.mjs`로 옮기고, 스크립트 안의 프롬프트·검사 대신 실제 `server/prompt.ts`와 `server/validate.ts`를 쓰게 바꾼다. 프롬프트 다섯 개를 모델마다 6번씩, 모델은 추천 모델 두 개. 키는 `OPENROUTER_API_KEY` 환경 변수에서만 읽고 출력하지 않는다. 실행은 사용자가 자기 터미널에서 한다. DOC-12의 통과율보다 낮아지면 원인을 찾고, 결과 표를 PR 리뷰 참고에 남긴다. 60회에 약 $0.02다.
 
-- [ ] **MOA-10.10: 로컬 개발 서버에 핸들러를 붙인다** — `server/dev-plugin.ts`의 Vite 플러그인을 `vite.config.ts`에 등록한다. 플러그인은 `/api/agent` 요청을 `Request`로 바꿔 `handleAgent`에 넘긴다.
-- [ ] **MOA-10.11: 키 입력과 모델 선택을 만든다** — `KeyInput`은 `type="password"`이고 값은 React 상태에만 둔다. 모델 선택은 DOC-7 "앱"대로 추천 버튼 두 개와 직접 입력 칸이다. 키가 있으면 `sseEvents("/api/agent", { headers: { Authorization } })`로 실행하고 고른 모델은 `forwardedProps.model`로 보낸다. DOC-7 "앱"의 안내 문구 넷(402, OpenRouter 429, Firewall 429, 도구 미호출)을 붙인다.
+- [x] **MOA-10.10: 로컬 개발 서버에 핸들러를 붙인다** — `server/dev-plugin.ts`의 Vite 플러그인을 `vite.config.ts`에 등록한다. 플러그인은 `/api/agent` 요청을 `Request`로 바꿔 `handleAgent`에 넘긴다.
+- [x] **MOA-10.11: 키 입력과 모델 선택을 만든다** — `KeyInput`은 `type="password"`이고 값은 React 상태에만 둔다. 모델 선택은 DOC-7 "앱"대로 추천 버튼 두 개와 직접 입력 칸이다. 키가 있으면 `sseEvents("/api/agent", { headers: { Authorization } })`로 실행하고 고른 모델은 `forwardedProps.model`로 보낸다. DOC-7 "앱"의 안내 문구 넷(402, OpenRouter 429, Firewall 429, 도구 미호출)을 붙인다.
 - [ ] **MOA-10.12: 사용자가 실제 키로 확인한다** — 에이전트는 키를 다루지 않는다. 사용자가 로컬에서 대화, 카드, 버튼 왕복을 확인하고 결과를 알려 준다.
 - [ ] **MOA-10.13: 커밋한다** — `feat: playground 서버 핸들러, 키 입력, 모델 선택 추가`
 
