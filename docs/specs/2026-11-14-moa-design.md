@@ -31,11 +31,12 @@ pnpm workspace 모노레포로 구성한다. 루트에는 workspace 설정만 �
 |---|---|---|---|---|
 | `packages/moa` | `@dusunax/moa` | npm | 프레젠테이션 부품. 프로토콜을 모른다 | MOA-1\~MOA-7 |
 | `packages/storybook` | `@dusunax/moa-storybook` | private | 문서, Chromatic | MOA-1\~MOA-6 |
-| `packages/moa-render` | `@dusunax/moa-render` | npm | 에이전트가 보낸 UI 명세 → moa 부품 렌더러 | DOC-7, DOC-8에서 정한다 |
-| `packages/moa-stream` | `@dusunax/moa-stream` | npm | 에이전트 이벤트 스트림(AG-UI) → UI 상태 훅 | DOC-7, DOC-8에서 정한다 |
-| `apps/playground` | — | private | 실제 에이전트를 연결하는 PoC | DOC-7, DOC-8에서 정한다 |
+| `packages/moa-render` | `@dusunax/moa-render` | npm | 에이전트가 보낸 UI 명세 → moa 부품 렌더러 | MOA-9 |
+| `packages/moa-stream` | `@dusunax/moa-stream` | npm | 에이전트 이벤트 스트림(AG-UI) → UI 상태 훅 | MOA-8 |
+| `packages/moa-fixtures` | `@dusunax/moa-fixtures` | private | 이벤트 fixture와 재생 도우미. 테스트·스토리·playground가 같이 씀 | MOA-8 |
+| `apps/playground` | — | private | 실제 에이전트를 연결하는 PoC | MOA-10\~MOA-11 |
 
-`moa-render`, `moa-stream`, playground는 DOC-7(스펙)과 DOC-8(플랜)에서 자세히 정한다. 작업 순서와 상태는 DOC-3에 있다.
+`moa-render`, `moa-stream`, playground의 자세한 내용은 DOC-7(스펙)과 DOC-8(플랜)에 있다. 작업 순서와 상태는 DOC-3에 있다.
 
 **이름 규칙**
 

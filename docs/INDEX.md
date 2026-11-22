@@ -39,12 +39,14 @@ ID의 순서와 상태는 이 문서에만 적는다. 다른 문서는 이 표�
 | MOA-5 | 구현 | 크기 리포트·배포·Chromatic | MOA-4 | SEC-2 | 완료 | 브랜치 `MOA-5`, Step은 DOC-6 | [#5](https://github.com/dusunax/design/pull/5) |
 | MOA-6 | 구현 | 문서 영어 지원 | MOA-5 | — | 완료 | 브랜치 `MOA-6`, Step은 DOC-6 | [#6](https://github.com/dusunax/design/pull/6) |
 | MOA-7 | 구현 | 첫 npm 배포 | MOA-6 | — | 완료 | 브랜치 `MOA-7`, Step은 DOC-6, [`@dusunax/moa@0.1.0`](https://www.npmjs.com/package/@dusunax/moa/v/0.1.0) | [#7](https://github.com/dusunax/design/pull/7) |
-| DOC-7 | spec | 에이전트 연결 패키지 설계 (`moa-stream`, `moa-render`, playground) | MOA-6 | — | 완료 | `specs/2026-11-22-moa-agent-packages.md` | — |
+| DOC-7 | spec | 에이전트 연결 패키지 설계 (`moa-stream`, `moa-render`, playground) | MOA-6 | — | 완료 | `specs/2026-11-22-moa-agent-packages-design.md` | — |
 | DOC-9 | decision | UI 명세를 실어 보낼 AG-UI 이벤트 (DOC-7 중 결정) | — | — | 완료 | `decisions/2026-11-19-ui-spec-event.md` | — |
 | DOC-10 | decision | moa-stream의 AG-UI 의존 범위 (DOC-7 중 결정) | — | — | 완료 | `decisions/2026-11-22-moa-stream-agui-dependency.md` | — |
 | DOC-11 | decision | playground 공개 방식과 모델 키 (DOC-7 중 결정) | — | — | 완료 | `decisions/2026-11-22-playground-deploy-key.md` | — |
-| DOC-8 | plan | 에이전트 연결 패키지 구현 플랜 | DOC-7 | — | 진행 | `plans/2026-11-22-moa-agent-packages.md` | — |
-| SEC-3 | review | 에이전트 연결 패키지 설계 보안 점검 | DOC-8 | — | 대기 | — | — |
+| DOC-12 | decision | playground 모델 선택 (DOC-7 중 결정) | — | — | 완료 | `decisions/2026-11-22-playground-model.md` | — |
+| DOC-13 | decision | `render_ui` 도구 인자 형식 (DOC-7 중 결정) | — | — | 완료 | `decisions/2026-11-22-render-ui-args.md` | — |
+| DOC-8 | plan | 에이전트 연결 패키지 구현 플랜 | DOC-7 | — | 완료 | `plans/2026-11-22-moa-agent-packages.md` | — |
+| SEC-3 | review | 에이전트 연결 패키지 설계 보안 점검 | DOC-8 | — | 완료 | `reviews/2026-11-22-SEC-3.md` | — |
 | MOA-8 | 구현 | `moa-stream` | DOC-8 | SEC-3 | 대기 | 브랜치 `MOA-8`, Step은 DOC-8 | — |
 | MOA-9 | 구현 | `moa-render` | DOC-8 | SEC-3 | 대기 | 브랜치 `MOA-9`, Step은 DOC-8 | — |
 | MOA-10 | 구현 | playground (로컬) | MOA-8, MOA-9 | SEC-3 | 대기 | 브랜치 `MOA-10`, Step은 DOC-8 | — |

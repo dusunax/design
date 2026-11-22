@@ -31,11 +31,12 @@ A pnpm workspace monorepo. The root holds only workspace configuration.
 |---|---|---|---|---|
 | `packages/moa` | `@dusunax/moa` | npm | Presentational components. Knows no protocol | MOA-1\~MOA-7 |
 | `packages/storybook` | `@dusunax/moa-storybook` | private | Docs, Chromatic | MOA-1\~MOA-6 |
-| `packages/moa-render` | `@dusunax/moa-render` | npm | Renders UI specs sent by an agent as moa components | Set in DOC-7, DOC-8 |
-| `packages/moa-stream` | `@dusunax/moa-stream` | npm | Hooks that turn an agent event stream (AG-UI) into UI state | Set in DOC-7, DOC-8 |
-| `apps/playground` | — | private | PoC connected to a real agent | Set in DOC-7, DOC-8 |
+| `packages/moa-render` | `@dusunax/moa-render` | npm | Renders UI specs sent by an agent as moa components | MOA-9 |
+| `packages/moa-stream` | `@dusunax/moa-stream` | npm | Hooks that turn an agent event stream (AG-UI) into UI state | MOA-8 |
+| `packages/moa-fixtures` | `@dusunax/moa-fixtures` | private | Event fixtures and a replay helper, shared by tests, stories, and the playground | MOA-8 |
+| `apps/playground` | — | private | PoC connected to a real agent | MOA-10\~MOA-11 |
 
-`moa-render`, `moa-stream`, and the playground are detailed in DOC-7 (spec) and DOC-8 (plan). Work order and status are in DOC-3.
+Details of `moa-render`, `moa-stream`, and the playground are in DOC-7 (spec) and DOC-8 (plan). Work order and status are in DOC-3.
 
 **Naming rules**
 

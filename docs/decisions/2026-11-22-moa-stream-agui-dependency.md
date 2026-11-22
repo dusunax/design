@@ -38,7 +38,7 @@ flowchart LR
 
 hook은 이벤트 스트림 `AsyncIterable<BaseEvent>`를 입력으로 받는다. 기본 입력은 `moa-stream`의 SSE 파서가 만들고, `@ag-ui/client`나 fixture를 쓰려는 앱은 자기 스트림을 넣는다.
 
-JSON Patch는 신뢰할 수 없는 입력이다. 경로에 `__proto__`, `constructor`, `prototype`이 있거나 지원하지 않는 op가 오면 적용하지 않고 오류로 알린다. `@ag-ui/core`의 peer dependency인 zod를 어떻게 걸지는 DOC-7에서 정한다.
+JSON Patch는 신뢰할 수 없는 입력이다. 경로에 `__proto__`, `constructor`, `prototype`이 있거나 지원하지 않는 op가 오면 적용하지 않고 오류로 알린다. zod는 `@ag-ui/core`의 선택적 peer dependency라 따로 걸지 않는다.
 
 ## 대안
 
@@ -78,4 +78,4 @@ JSON Patch는 신뢰할 수 없는 입력이다. 경로에 `__proto__`, `constru
 실행 중 성능은 두 방식이 거의 같고, 차이는 첫 로딩 크기와 직접 만들 코드 양이다.
 
 - `@ag-ui/client`의 이점인 공식 연동 => 입력을 스트림으로 열어 두어 앱 쪽에서 살림
-- DOC-5의 "`moa-stream`은 `@ag-ui/client`에 의존한다" => DOC-7에서 이 결정에 맞게 고침
+- DOC-5의 패키지 경계 규칙 => "`moa-stream`은 `@ag-ui/core` 타입에만 의존"
