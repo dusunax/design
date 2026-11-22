@@ -1,7 +1,9 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "types": ["vitest/globals", "@testing-library/jest-dom"]
+    "types": ["vitest/globals", "@testing-library/jest-dom"],
+    // CI는 빌드 전에 typecheck를 돌린다. moa의 dist 대신 소스로 타입을 본다.
+    "paths": { "@dusunax/moa": ["../moa/src/index.ts"] }
   },
   "include": ["src", "vitest.setup.ts"]
 }
