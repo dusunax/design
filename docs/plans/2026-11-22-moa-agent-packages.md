@@ -231,6 +231,7 @@ Expected: `core.js`가 출력된다. `core`에 React import가 없다는 뜻이�
 
   - `renders root tree with moa components`
   - `maps child, children, trigger and content`
+  - `puts a Text child of Button as plain label`
   - `passes catalog defaults`: Image `fit`이 없으면 `fill`
   - `binds values and writes input back to path`
   - `user input wins over server values`

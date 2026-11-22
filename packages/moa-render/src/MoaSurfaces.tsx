@@ -123,9 +123,13 @@ export function MoaSurfaces({ messages, onAction, onError, isAllowedUrl = defaul
                     ...(event.userMessage === undefined ? {} : { userMessage: str(event.userMessage) }),
                   })
               : undefined;
+          // 버튼 글자는 보통 Text 부품이다. moa Text는 본문 글자색을 직접 칠해 primary 버튼의 글자색을 덮으므로 글자만 넣는다.
+          const label = typeof p.child === "string" ? s.components.get(p.child) : undefined;
+          const content =
+            label?.component === "Text" && ++count <= MAX_COMPONENTS ? str(pickProps(label)?.text) : node(p.child, depth + 1);
           return (
             <Button {...base} variant={oneOf(p.variant, ["default", "primary", "borderless"] as const)} onClick={click}>
-              {node(p.child, depth + 1)}
+              {content}
             </Button>
           );
         }

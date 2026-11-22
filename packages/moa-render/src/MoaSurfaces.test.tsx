@@ -20,6 +20,16 @@ test("renders root tree with moa components", () => {
   expect(screen.getByRole("button", { name: "Go" })).toBeInTheDocument();
 });
 
+test("puts a Text child of Button as plain label", () => {
+  const { container } = render(<MoaSurfaces messages={surface([
+    { id: "root", component: "Button", variant: "primary", child: "label" },
+    { id: "label", component: "Text", text: "Sign up" },
+  ])} />);
+  const button = screen.getByRole("button", { name: "Sign up" });
+  expect(button.querySelector("p")).toBeNull();
+  expect(container.querySelectorAll("p")).toHaveLength(0);
+});
+
 test("maps child, children, trigger and content", async () => {
   render(<MoaSurfaces allowSensitive messages={surface([
     { id: "root", component: "Row", children: ["modal", "tabs"] },

@@ -157,7 +157,7 @@ A2UI 라이브러리는 쓰지 않고, A2UI v1.0 메시지 중 아래 범위만 
 | A2UI | moa | 바꾸는 방법 |
 |:---|:---|:---|
 | Row·Column·List `children` | `children` | id 배열을 React 요소로 |
-| Card·Button `child` | `children` | id를 React 요소로 |
+| Card·Button `child` | `children` | id를 React 요소로. Button의 `child`가 Text면 글자만 넣음. moa Text는 본문 글자색을 직접 칠해 primary 버튼 글자색을 덮음 |
 | Modal `trigger` · `content` | `trigger` · `children` | id를 React 요소로. moa가 필수로 받는 `title`은 A2UI에 없어 빈 문자열 |
 | Tabs `tabs[].child` | `tabs[].child` | id를 React 요소로 |
 | Button `action` | `onClick` | 누르면 `onAction` 호출 |
