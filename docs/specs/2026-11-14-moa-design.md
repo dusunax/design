@@ -35,7 +35,7 @@ pnpm workspace 모노레포로 구성한다. 루트에는 workspace 설정만 �
 | `packages/moa-stream` | `@dusunax/moa-stream` | npm | 에이전트 이벤트 스트림(AG-UI) → UI 상태 훅 | DOC-7, DOC-8에서 정한다 |
 | `apps/playground` | — | private | 실제 에이전트를 연결하는 PoC | DOC-7, DOC-8에서 정한다 |
 
-`moa-render`, `moa-stream`, playground는 DOC-7(스펙)과 DOC-8(플랜)에서 자세히 정한다. 그때 다룰 입력은 다음과 같다: `moa-stream`은 `@ag-ui/client@1.0.4` 기반 훅과 이벤트 fixture 재생 스토리, playground는 OpenRouter `:free` 모델만 쓴다. 작업 순서와 상태는 DOC-3에 있다.
+`moa-render`, `moa-stream`, playground는 DOC-7(스펙)과 DOC-8(플랜)에서 자세히 정한다. 작업 순서와 상태는 DOC-3에 있다.
 
 **이름 규칙**
 
@@ -48,7 +48,7 @@ pnpm workspace 모노레포로 구성한다. 루트에는 workspace 설정만 �
 
 | | `moa-stream` | `moa-render` |
 |---|---|---|
-| 입력 | AG-UI 이벤트 (`RUN_*`, `TEXT_MESSAGE_*`, `TOOL_CALL_*`, `STATE_*`) | UI 명세 (id로 서로 참조하는 부품 목록, 데이터 모델, action) |
+| 입력 | AG-UI 이벤트 (`RUN_*`, `TEXT_MESSAGE_*`, `TOOL_CALL_*`, `STATE_*`, `ACTIVITY_*`) | UI 명세 (id로 서로 참조하는 부품 목록, 데이터 모델, action) |
 | 출력 | 상태: `messages`, `toolCalls`, `runStatus`, `state` | moa 부품 트리 |
 | 아는 것 | AG-UI 프로토콜, 전송 | moa catalog, 명세 형식 |
 | 모르는 것 | 화면 구성 | 명세가 어떤 경로로 왔는지 |
@@ -56,24 +56,28 @@ pnpm workspace 모노레포로 구성한다. 루트에는 workspace 설정만 �
 
 **데이터 흐름**
 
+```mermaid
+flowchart LR
+  agent["에이전트"] -->|AG-UI 이벤트| stream["moa-stream"]
+  stream -->|messages · toolCalls · runStatus| chat["MessageBubble, StreamingText, RunStatus, ToolCallCard"]
+  stream -->|"activity 메시지 (activityType moa-ui)"| render["moa-render"]
+  render --> parts["Row, Card, Button, TextField …"]
+  render -->|onAction| app["앱"]
+  app -->|다음 실행 입력| agent
 ```
-에이전트 ─AG-UI 이벤트→ moa-stream ─messages·toolCalls·runStatus→ MessageBubble, StreamingText, RunStatus, ToolCallCard
-                          │
-                          └─state.ui→ moa-render ─→ Row, Card, Button, TextField …
-                                          │
-              moa-stream이 에이전트로 전송 ←─onAction
-```
+
+UI 명세는 `ACTIVITY` 이벤트로 온다(DOC-9).
 
 **규칙**
 
 - 두 패키지는 서로 의존하지 않는다. 둘을 연결하는 일은 쓰는 쪽 앱(`apps/playground`)이 한다.
 - `moa`는 두 패키지 어느 쪽도 모른다. 공개 API에 AG-UI 타입이나 명세 타입을 노출하지 않는다.
-- `moa-render`는 `moa`에만 의존한다. `moa-stream`은 `@ag-ui/client`에 의존하고 `moa`에는 의존하지 않는다.
+- `moa-render`는 `moa`에만 의존한다. `moa-stream`은 `@ag-ui/core` 타입에만 의존하고 `moa`에는 의존하지 않는다(DOC-10).
 
 **나누는 이유**
 
 1. 따로 쓰는 경우가 있다. 채팅만 필요하면 `moa-stream`만 쓴다. UI 명세가 MCP 도구 결과, 서버 API, 고정 JSON처럼 AG-UI가 아닌 경로로 오면 `moa-render`만 쓴다.
-2. 의존성 크기가 다르다. `@ag-ui/client`와 그 의존성을 명세만 그리는 쪽에 강제하지 않는다.
+2. 의존성이 다르다. AG-UI 관련 의존을 명세만 그리는 쪽에 강제하지 않는다.
 3. 변경 원인이 다르다. `moa-stream`은 AG-UI 스펙이 바뀔 때, `moa-render`는 명세 형식이나 catalog가 바뀔 때 고친다. 버전도 따로 올린다.
 4. 테스트가 단순하다. 이벤트 배열 → 상태, 명세 → DOM을 각각 네트워크 mock 없이 검증한다.
 

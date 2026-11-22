@@ -41,12 +41,12 @@ Documents that keep being revised, in no particular order. They have no status.
 | MOA-5 | Implementation | Size report, release, Chromatic | MOA-4 | SEC-2 | Done | Branch `MOA-5`, steps in DOC-6 | [#5](https://github.com/dusunax/design/pull/5) |
 | MOA-6 | Implementation | English docs | MOA-5 | — | Done | Branch `MOA-6`, steps in DOC-6 | [#6](https://github.com/dusunax/design/pull/6) |
 | MOA-7 | Implementation | First npm release | MOA-6 | — | Done | Branch `MOA-7`, steps in DOC-6, [`@dusunax/moa@0.1.0`](https://www.npmjs.com/package/@dusunax/moa/v/0.1.0) | [#7](https://github.com/dusunax/design/pull/7) |
-| DOC-7 | spec | Next packages (`moa-stream`, `moa-render`, playground) | MOA-6 | — | In progress | — | — |
+| DOC-7 | spec | Agent integration packages (`moa-stream`, `moa-render`, playground) | MOA-6 | — | Done | `specs/2026-11-22-moa-agent-packages.md` | — |
 | DOC-9 | decision | AG-UI event for UI specs (decided during DOC-7) | — | — | Done | `decisions/2026-11-19-ui-spec-event.md` | — |
 | DOC-10 | decision | AG-UI dependency scope of moa-stream (decided during DOC-7) | — | — | Done | `decisions/2026-11-22-moa-stream-agui-dependency.md` | — |
 | DOC-11 | decision | Playground deployment and model key (decided during DOC-7) | — | — | Done | `decisions/2026-11-22-playground-deploy-key.md` | — |
-| DOC-8 | plan | Next packages implementation plan | DOC-7 | — | Waiting | — | — |
-| SEC-3 | review | Next packages design security review | DOC-8 | — | Waiting | — | — |
+| DOC-8 | plan | Agent integration packages implementation plan | DOC-7 | — | Waiting | — | — |
+| SEC-3 | review | Agent integration packages design security review | DOC-8 | — | Waiting | — | — |
 
 ## Columns
 

@@ -35,7 +35,7 @@ A pnpm workspace monorepo. The root holds only workspace configuration.
 | `packages/moa-stream` | `@dusunax/moa-stream` | npm | Hooks that turn an agent event stream (AG-UI) into UI state | Set in DOC-7, DOC-8 |
 | `apps/playground` | — | private | PoC connected to a real agent | Set in DOC-7, DOC-8 |
 
-`moa-render`, `moa-stream`, and the playground are detailed in DOC-7 (spec) and DOC-8 (plan). Inputs for that work: `moa-stream` covers hooks based on `@ag-ui/client@1.0.4` and stories that replay event fixtures; the playground uses only OpenRouter `:free` models. Work order and status are in DOC-3.
+`moa-render`, `moa-stream`, and the playground are detailed in DOC-7 (spec) and DOC-8 (plan). Work order and status are in DOC-3.
 
 **Naming rules**
 
@@ -48,7 +48,7 @@ A pnpm workspace monorepo. The root holds only workspace configuration.
 
 | | `moa-stream` | `moa-render` |
 |---|---|---|
-| Input | AG-UI events (`RUN_*`, `TEXT_MESSAGE_*`, `TOOL_CALL_*`, `STATE_*`) | UI spec (a list of components referencing each other by id, a data model, actions) |
+| Input | AG-UI events (`RUN_*`, `TEXT_MESSAGE_*`, `TOOL_CALL_*`, `STATE_*`, `ACTIVITY_*`) | UI spec (a list of components referencing each other by id, a data model, actions) |
 | Output | State: `messages`, `toolCalls`, `runStatus`, `state` | A moa component tree |
 | Knows | The AG-UI protocol, transport | The moa catalog, the spec format |
 | Does not know | Screen layout | How the spec arrived |
@@ -56,24 +56,28 @@ A pnpm workspace monorepo. The root holds only workspace configuration.
 
 **Data flow**
 
+```mermaid
+flowchart LR
+  agent["Agent"] -->|AG-UI events| stream["moa-stream"]
+  stream -->|messages · toolCalls · runStatus| chat["MessageBubble, StreamingText, RunStatus, ToolCallCard"]
+  stream -->|"activity message (activityType moa-ui)"| render["moa-render"]
+  render --> parts["Row, Card, Button, TextField …"]
+  render -->|onAction| app["App"]
+  app -->|Input for the next run| agent
 ```
-agent ─AG-UI events→ moa-stream ─messages·toolCalls·runStatus→ MessageBubble, StreamingText, RunStatus, ToolCallCard
-                          │
-                          └─state.ui→ moa-render ─→ Row, Card, Button, TextField …
-                                          │
-                moa-stream sends to agent ←─onAction
-```
+
+UI specs arrive in `ACTIVITY` events (DOC-9).
 
 **Rules**
 
 - The two packages do not depend on each other. The consuming app (`apps/playground`) connects them.
 - `moa` knows neither package. Its public API exposes no AG-UI or spec types.
-- `moa-render` depends only on `moa`. `moa-stream` depends on `@ag-ui/client` and not on `moa`.
+- `moa-render` depends only on `moa`. `moa-stream` depends only on `@ag-ui/core` types and not on `moa` (DOC-10).
 
 **Why split them**
 
 1. They are used separately. Chat alone needs only `moa-stream`. When UI specs arrive by a path other than AG-UI (MCP tool results, a server API, fixed JSON), only `moa-render` is needed.
-2. Their dependency sizes differ. `@ag-ui/client` and its dependencies are not forced on code that only draws specs.
+2. Their dependencies differ. AG-UI dependencies are not forced on code that only draws specs.
 3. They change for different reasons. `moa-stream` changes with the AG-UI spec; `moa-render` changes with the spec format or catalog. Versions are bumped separately.
 4. Tests stay simple. Event array → state and spec → DOM are each verified without network mocks.
 
