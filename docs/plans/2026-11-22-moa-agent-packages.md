@@ -185,15 +185,15 @@ Expected: `dist/index.js`와 `dist/index.d.ts`가 생긴다.
 
 ### 게이트
 
-- [ ] **MOA-9.0: 게이트를 확인한다** — SEC-3.
+- [x] **MOA-9.0: 게이트를 확인한다** — SEC-3.
 
 ### 패키지 뼈대
 
-- [ ] **MOA-9.1: 패키지를 만든다** — MOA-8.1과 같다. entry는 `src/index.ts`와 `src/core.ts` 두 개이고, `exports`에 `.`과 `./core`를 둔다. `peerDependencies: { "@dusunax/moa": "^0.1.1", react: "^19", "react-dom": "^19" }`, devDependency로 `@dusunax/moa: "workspace:*"`. 테스트 환경은 jsdom.
+- [x] **MOA-9.1: 패키지를 만든다** — MOA-8.1과 같다. entry는 `src/index.ts`와 `src/core.ts` 두 개이고, `exports`에 `.`과 `./core`를 둔다. `peerDependencies: { "@dusunax/moa": "^0.1.1", react: "^19", "react-dom": "^19" }`, devDependency로 `@dusunax/moa: "workspace:*"`. 테스트 환경은 jsdom.
 
 Run: `pnpm --filter @dusunax/moa-render build && grep -L react packages/moa-render/dist/core.js`
 Expected: `core.js`가 출력된다. `core`에 React import가 없다는 뜻이다.
-- [ ] **MOA-9.2: 커밋한다** — `chore(moa-render): 패키지 뼈대 추가`
+- [x] **MOA-9.2: 커밋한다** — `chore(moa-render): 패키지 뼈대 추가`
 
 ### surface 계산
 
