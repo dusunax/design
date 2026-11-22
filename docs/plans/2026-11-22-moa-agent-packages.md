@@ -227,7 +227,7 @@ Expected: `core.js`가 출력된다. `core`에 React import가 없다는 뜻이�
 - DOC-7 "부품"의 대응 표, "값과 바인딩", "action", "갱신", "보안"을 구현한다. 허용 목록·기본값·이름 바꾸기·민감 부품 판정은 `catalog.ts`, 값 읽기·쓰기·action context는 `bind.ts`, 트리 그리기는 `MoaSurfaces.tsx`에 둔다.
 - `onError`는 같은 오류를 렌더마다 다시 보내지 않는다. `messages`가 바뀔 때 한 번씩만 보낸다.
 
-- [ ] **MOA-9.8: 테스트를 작성한다**
+- [x] **MOA-9.8: 테스트를 작성한다**
 
   - `renders root tree with moa components`
   - `maps child, children, trigger and content`
@@ -237,6 +237,7 @@ Expected: `core.js`가 출력된다. `core`에 React import가 없다는 뜻이�
   - `resolves action context and calls onAction`
   - `leaves unknown components and missing ids empty`
   - `stops cyclic references at depth limit`
+  - `stops rendering at the component limit when children are shared`: 여러 부모가 같은 부품을 가리켜도 그리는 수가 상한에서 멈춤 (SEC-3.8)
   - `does not render images by default`
   - `renders images allowed by isAllowedUrl`
   - `appends link domain`
@@ -246,11 +247,12 @@ Expected: `core.js`가 출력된다. `core`에 React import가 없다는 뜻이�
   - `passes only catalog props`: 모델이 붙이는 `props` 객체가 있어도 catalog prop만 넘어감 (SEC-3.9)
   - `drops dangerouslySetInnerHTML, style, className and event props`: Button에 넣어도 `<button>`에 그 속성이 없음 (SEC-3.9)
   - `renders strings as text, not HTML`: Text·라벨·옵션에 `<img src=x onerror=…>`를 넣어도 요소가 생기지 않음 (SEC-3.1)
+  - `reports errors once per messages change`
 
-- [ ] **MOA-9.9: 테스트를 실행해 실패하는지 확인한다**
-- [ ] **MOA-9.10: 구현한다**
-- [ ] **MOA-9.11: 테스트를 실행해 통과하는지 확인한다**
-- [ ] **MOA-9.12: 커밋한다** — `feat(moa-render): MoaSurfaces 렌더러 추가`
+- [x] **MOA-9.9: 테스트를 실행해 실패하는지 확인한다**
+- [x] **MOA-9.10: 구현한다**
+- [x] **MOA-9.11: 테스트를 실행해 통과하는지 확인한다**
+- [x] **MOA-9.12: 커밋한다** — `feat(moa-render): MoaSurfaces 렌더러 추가`
 
 ### 스토리, 크기, 문서
 
