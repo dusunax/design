@@ -43,8 +43,13 @@ ID의 순서와 상태는 이 문서에만 적는다. 다른 문서는 이 표�
 | DOC-9 | decision | UI 명세를 실어 보낼 AG-UI 이벤트 (DOC-7 중 결정) | — | — | 완료 | `decisions/2026-11-19-ui-spec-event.md` | — |
 | DOC-10 | decision | moa-stream의 AG-UI 의존 범위 (DOC-7 중 결정) | — | — | 완료 | `decisions/2026-11-22-moa-stream-agui-dependency.md` | — |
 | DOC-11 | decision | playground 공개 방식과 모델 키 (DOC-7 중 결정) | — | — | 완료 | `decisions/2026-11-22-playground-deploy-key.md` | — |
-| DOC-8 | plan | 에이전트 연결 패키지 구현 플랜 | DOC-7 | — | 대기 | — | — |
+| DOC-8 | plan | 에이전트 연결 패키지 구현 플랜 | DOC-7 | — | 진행 | `plans/2026-11-22-moa-agent-packages.md` | — |
 | SEC-3 | review | 에이전트 연결 패키지 설계 보안 점검 | DOC-8 | — | 대기 | — | — |
+| MOA-8 | 구현 | `moa-stream` | DOC-8 | SEC-3 | 대기 | 브랜치 `MOA-8`, Step은 DOC-8 | — |
+| MOA-9 | 구현 | `moa-render` | DOC-8 | SEC-3 | 대기 | 브랜치 `MOA-9`, Step은 DOC-8 | — |
+| MOA-10 | 구현 | playground (로컬) | MOA-8, MOA-9 | SEC-3 | 대기 | 브랜치 `MOA-10`, Step은 DOC-8 | — |
+| SEC-4 | review | 에이전트 연결 패키지 코드 보안 점검 (배포·공개 전) | MOA-10 | — | 대기 | — | — |
+| MOA-11 | 구현 | `moa-stream`·`moa-render` 배포와 playground 공개 | MOA-10 | SEC-4 | 대기 | 브랜치 `MOA-11`, Step은 DOC-8 | — |
 
 ## 열
 

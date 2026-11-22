@@ -45,8 +45,13 @@ Documents that keep being revised, in no particular order. They have no status.
 | DOC-9 | decision | AG-UI event for UI specs (decided during DOC-7) | — | — | Done | `decisions/2026-11-19-ui-spec-event.md` | — |
 | DOC-10 | decision | AG-UI dependency scope of moa-stream (decided during DOC-7) | — | — | Done | `decisions/2026-11-22-moa-stream-agui-dependency.md` | — |
 | DOC-11 | decision | Playground deployment and model key (decided during DOC-7) | — | — | Done | `decisions/2026-11-22-playground-deploy-key.md` | — |
-| DOC-8 | plan | Agent integration packages implementation plan | DOC-7 | — | Waiting | — | — |
+| DOC-8 | plan | Agent integration packages implementation plan | DOC-7 | — | In progress | `plans/2026-11-22-moa-agent-packages.md` | — |
 | SEC-3 | review | Agent integration packages design security review | DOC-8 | — | Waiting | — | — |
+| MOA-8 | Implementation | `moa-stream` | DOC-8 | SEC-3 | Waiting | Branch `MOA-8`, steps in DOC-8 | — |
+| MOA-9 | Implementation | `moa-render` | DOC-8 | SEC-3 | Waiting | Branch `MOA-9`, steps in DOC-8 | — |
+| MOA-10 | Implementation | Playground (local) | MOA-8, MOA-9 | SEC-3 | Waiting | Branch `MOA-10`, steps in DOC-8 | — |
+| SEC-4 | review | Agent integration packages code security review (before release) | MOA-10 | — | Waiting | — | — |
+| MOA-11 | Implementation | `moa-stream`·`moa-render` release and public playground | MOA-10 | SEC-4 | Waiting | Branch `MOA-11`, steps in DOC-8 | — |
 
 ## Columns
 
