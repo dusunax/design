@@ -1,0 +1,49 @@
+{
+  "name": "@dusunax/moa-stream",
+  "version": "0.0.0",
+  "description": "React hook that turns an agent event stream into UI state",
+  "type": "module",
+  "sideEffects": false,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dusunax/design.git",
+    "directory": "packages/moa-stream"
+  },
+  "files": [
+    "dist",
+    "README.ko.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsdown",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^19"
+  },
+  "dependencies": {
+    "@ag-ui/core": "1.0.4"
+  },
+  "devDependencies": {
+    "@dusunax/moa-fixtures": "workspace:*",
+    "@testing-library/react": "16.3.3",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "jsdom": "31.0.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "tsdown": "0.23.7",
+    "typescript": "7.0.2",
+    "vitest": "5.1.0"
+  }
+}

@@ -110,19 +110,19 @@ apps/playground/
 
 ### 게이트
 
-- [ ] **MOA-8.0: 게이트를 확인한다** — SEC-3. DOC-4의 게이트 확인을 따른다. SEC-3에서 나온 수정 Step은 `MOA-8.0a`처럼 붙인다.
+- [x] **MOA-8.0: 게이트를 확인한다** — SEC-3. DOC-4의 게이트 확인을 따른다. SEC-3에서 나온 수정 Step은 `MOA-8.0a`처럼 붙인다.
 
 ### 패키지 뼈대
 
-- [ ] **MOA-8.1: 패키지를 만든다**
+- [x] **MOA-8.1: 패키지를 만든다**
 
   `packages/moa/`의 `tsconfig.json`, `tsdown.config.ts`, `vitest.config.ts`를 본떠 `packages/moa-stream/`을 만든다. entry는 `src/index.ts` 하나다. `package.json`은 `version: "0.0.0"`, `files: ["dist", "README.ko.md"]`, `peerDependencies: { react: "^19" }`, `dependencies: { "@ag-ui/core": "1.0.4" }`다. devDependency 버전은 moa와 같게 둔다.
 
 Run: `pnpm install && pnpm --filter @dusunax/moa-stream build`
 Expected: `dist/index.js`와 `dist/index.d.ts`가 생긴다.
 
-- [ ] **MOA-8.2: fixture 패키지를 만든다** — `packages/moa-fixtures`를 `private: true`로 만들고 File Structure의 이벤트 네 파일과 `replay(events, delayMs)`를 둔다. 각 파일은 `BaseEvent[]` JSON이고 `ui-card.json`은 DOC-9 예시 모양을 따른다. `moa-stream`은 이 패키지를 devDependency(`workspace:*`)로만 쓴다.
-- [ ] **MOA-8.3: 커밋한다** — `chore: moa-stream 뼈대와 moa-fixtures 추가`
+- [x] **MOA-8.2: fixture 패키지를 만든다** — `packages/moa-fixtures`를 `private: true`로 만들고 File Structure의 이벤트 네 파일과 `replay(events, delayMs)`를 둔다. 각 파일은 `BaseEvent[]` JSON이고 `ui-card.json`은 DOC-9 예시 모양을 따른다. `moa-stream`은 이 패키지를 devDependency(`workspace:*`)로만 쓴다.
+- [x] **MOA-8.3: 커밋한다** — `chore: moa-stream 뼈대와 moa-fixtures 추가`
 
 ### reducer와 JSON Patch
 

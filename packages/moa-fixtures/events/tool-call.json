@@ -1,0 +1,12 @@
+[
+  { "type": "RUN_STARTED", "threadId": "thread-1", "runId": "run-2" },
+  { "type": "TOOL_CALL_START", "toolCallId": "t1", "toolCallName": "get_weather", "parentMessageId": "m2" },
+  { "type": "TOOL_CALL_ARGS", "toolCallId": "t1", "delta": "{\"city\":" },
+  { "type": "TOOL_CALL_ARGS", "toolCallId": "t1", "delta": "\"Seoul\"}" },
+  { "type": "TOOL_CALL_END", "toolCallId": "t1" },
+  { "type": "TOOL_CALL_RESULT", "messageId": "m3", "toolCallId": "t1", "content": "Sunny, 18°C" },
+  { "type": "TEXT_MESSAGE_START", "messageId": "m4", "role": "assistant" },
+  { "type": "TEXT_MESSAGE_CONTENT", "messageId": "m4", "delta": "It is sunny in Seoul." },
+  { "type": "TEXT_MESSAGE_END", "messageId": "m4" },
+  { "type": "RUN_FINISHED", "threadId": "thread-1", "runId": "run-2" }
+]

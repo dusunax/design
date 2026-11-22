@@ -1,0 +1,17 @@
+{
+  "name": "@dusunax/moa-fixtures",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Agent event fixtures and a replay helper for tests, stories, and the playground",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./events/*": "./events/*"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2"
+  }
+}
