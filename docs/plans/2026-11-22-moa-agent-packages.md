@@ -173,9 +173,9 @@ Expected: `dist/index.js`와 `dist/index.d.ts`가 생긴다.
 
 ### 크기와 문서
 
-- [ ] **MOA-8.14: size-limit을 설정하고 잰다** — 예산 4KB. 넘으면 PR 리뷰 참고에 원인을 적는다.
-- [ ] **MOA-8.15: README 두 벌과 changeset을 쓴다** — 설치, `useAgentStream` 예시, 이벤트 배열을 async generator로 넣는 법, `@ag-ui/client`를 넣는 법. changeset은 `minor`(첫 배포 0.1.0).
-- [ ] **MOA-8.16: 커밋한다** — `docs(moa-stream): README와 크기 예산 추가`
+- [x] **MOA-8.14: size-limit을 설정하고 잰다** — 예산 4KB. 넘으면 PR 리뷰 참고에 원인을 적는다.
+- [x] **MOA-8.15: README 두 벌과 changeset을 쓴다** — 설치, `useAgentStream` 예시, 이벤트 배열을 async generator로 넣는 법, `@ag-ui/client`를 넣는 법. changeset은 `minor`(첫 배포 0.1.0).
+- [x] **MOA-8.16: 커밋한다** — `docs(moa-stream): README와 크기 예산 추가`
 
 ---
 

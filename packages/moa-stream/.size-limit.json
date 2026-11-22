@@ -1,0 +1,12 @@
+[
+  {
+    "name": "all",
+    "path": "dist/index.js",
+    "ignore": [
+      "react",
+      "react-dom"
+    ],
+    "limit": "4 kB",
+    "gzip": true
+  }
+]
