@@ -46,7 +46,7 @@ const preview: Preview = {
     options: {
       // 사이드바 순서: 소개 → 토큰 → 역할별 부품
       storySort: {
-        order: ["Intro", "Foundations", ["Colors", "Typography", "Radius"], "Layout", ["Row·Column"], "Display", "Actions", "Inputs", "Agent", ["MessageBubble", "StreamingText", "RunStatus", "ToolCallCard", "Conversation"], "*"],
+        order: ["Intro", "Foundations", ["Colors", "Typography", "Radius"], "Layout", ["Row·Column"], "Display", "Actions", "Inputs", "Agent", ["MessageBubble", "StreamingText", "RunStatus", "ToolCallCard", "Conversation", "Chat"], "Render", "*"],
       },
     },
   },

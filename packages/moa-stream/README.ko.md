@@ -2,7 +2,7 @@
 
 # @dusunax/moa-stream
 
-에이전트 이벤트 스트림을 UI 상태로 바꾸는 React hook이다. [AG-UI](https://docs.ag-ui.com) 이벤트를 읽어 `messages`, `toolCalls`, `runStatus`, 공유 `state`를 갱신한다. `@ag-ui/core`에서는 타입과 이벤트 이름만 가져온다.
+에이전트 이벤트 스트림을 UI 상태로 바꾸는 React hook이다. [AG-UI](https://github.com/ag-ui-protocol/ag-ui) 이벤트를 읽어 `messages`, `toolCalls`, `runStatus`, 공유 `state`를 갱신한다. `@ag-ui/core`에서는 타입과 이벤트 이름만 가져온다.
 
 ## 설치
 

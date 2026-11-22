@@ -185,15 +185,15 @@ Expected: `dist/index.js`와 `dist/index.d.ts`가 생긴다.
 
 ### 게이트
 
-- [ ] **MOA-9.0: 게이트를 확인한다** — SEC-3.
+- [x] **MOA-9.0: 게이트를 확인한다** — SEC-3.
 
 ### 패키지 뼈대
 
-- [ ] **MOA-9.1: 패키지를 만든다** — MOA-8.1과 같다. entry는 `src/index.ts`와 `src/core.ts` 두 개이고, `exports`에 `.`과 `./core`를 둔다. `peerDependencies: { "@dusunax/moa": "^0.1.1", react: "^19", "react-dom": "^19" }`, devDependency로 `@dusunax/moa: "workspace:*"`. 테스트 환경은 jsdom.
+- [x] **MOA-9.1: 패키지를 만든다** — MOA-8.1과 같다. entry는 `src/index.ts`와 `src/core.ts` 두 개이고, `exports`에 `.`과 `./core`를 둔다. `peerDependencies: { "@dusunax/moa": "^0.1.1", react: "^19", "react-dom": "^19" }`, devDependency로 `@dusunax/moa: "workspace:*"`. 테스트 환경은 jsdom.
 
 Run: `pnpm --filter @dusunax/moa-render build && grep -L react packages/moa-render/dist/core.js`
 Expected: `core.js`가 출력된다. `core`에 React import가 없다는 뜻이다.
-- [ ] **MOA-9.2: 커밋한다** — `chore(moa-render): 패키지 뼈대 추가`
+- [x] **MOA-9.2: 커밋한다** — `chore(moa-render): 패키지 뼈대 추가`
 
 ### surface 계산
 
@@ -201,7 +201,7 @@ Expected: `core.js`가 출력된다. `core`에 React import가 없다는 뜻이�
 - Produces (`./core`): `A2uiMessage`, `Surface = { id: string; components: Map<string, A2uiComponent>; dataModel: unknown }`, `Surfaces = Surface[]`(만든 순서), `toSurfaces(messages): { surfaces: Surfaces; errors: MoaRenderError[] }`, `checkSurfaces(surfaces): MoaRenderError[]`
 - DOC-7 "메시지"를 구현한다. 오류는 던지지 않고 `errors`에 모은다. `checkSurfaces`는 root, 없는 id 참조, 깊이·부품 수 상한을 본다. playground 서버도 이 둘로 검증한다.
 
-- [ ] **MOA-9.3: 테스트를 작성한다**
+- [x] **MOA-9.3: 테스트를 작성한다**
 
   - `creates surface with inline components and data`
   - `updates components by id`
@@ -212,11 +212,12 @@ Expected: `core.js`가 출력된다. `core`에 React import가 없다는 뜻이�
   - `reports non-array input`
   - `checkSurfaces reports missing root and missing id references`
   - `checkSurfaces reports depth and component limits`
+  - `checkSurfaces stays fast when many parents share children`: 여러 부모가 같은 부품을 가리켜 경로가 지수적으로 늘어나도 바로 끝남 (SEC-3.8)
 
-- [ ] **MOA-9.4: 테스트를 실행해 실패하는지 확인한다**
-- [ ] **MOA-9.5: 구현한다**
-- [ ] **MOA-9.6: 테스트를 실행해 통과하는지 확인한다**
-- [ ] **MOA-9.7: 커밋한다** — `feat(moa-render): A2UI 메시지로 surface 계산과 검사 추가`
+- [x] **MOA-9.4: 테스트를 실행해 실패하는지 확인한다**
+- [x] **MOA-9.5: 구현한다**
+- [x] **MOA-9.6: 테스트를 실행해 통과하는지 확인한다**
+- [x] **MOA-9.7: 커밋한다** — `feat(moa-render): A2UI 메시지로 surface 계산과 검사 추가`
 
 ### 렌더링
 
@@ -226,16 +227,18 @@ Expected: `core.js`가 출력된다. `core`에 React import가 없다는 뜻이�
 - DOC-7 "부품"의 대응 표, "값과 바인딩", "action", "갱신", "보안"을 구현한다. 허용 목록·기본값·이름 바꾸기·민감 부품 판정은 `catalog.ts`, 값 읽기·쓰기·action context는 `bind.ts`, 트리 그리기는 `MoaSurfaces.tsx`에 둔다.
 - `onError`는 같은 오류를 렌더마다 다시 보내지 않는다. `messages`가 바뀔 때 한 번씩만 보낸다.
 
-- [ ] **MOA-9.8: 테스트를 작성한다**
+- [x] **MOA-9.8: 테스트를 작성한다**
 
   - `renders root tree with moa components`
   - `maps child, children, trigger and content`
+  - `puts a Text child of Button as plain label`
   - `passes catalog defaults`: Image `fit`이 없으면 `fill`
   - `binds values and writes input back to path`
   - `user input wins over server values`
   - `resolves action context and calls onAction`
   - `leaves unknown components and missing ids empty`
   - `stops cyclic references at depth limit`
+  - `stops rendering at the component limit when children are shared`: 여러 부모가 같은 부품을 가리켜도 그리는 수가 상한에서 멈춤 (SEC-3.8)
   - `does not render images by default`
   - `renders images allowed by isAllowedUrl`
   - `appends link domain`
@@ -245,24 +248,25 @@ Expected: `core.js`가 출력된다. `core`에 React import가 없다는 뜻이�
   - `passes only catalog props`: 모델이 붙이는 `props` 객체가 있어도 catalog prop만 넘어감 (SEC-3.9)
   - `drops dangerouslySetInnerHTML, style, className and event props`: Button에 넣어도 `<button>`에 그 속성이 없음 (SEC-3.9)
   - `renders strings as text, not HTML`: Text·라벨·옵션에 `<img src=x onerror=…>`를 넣어도 요소가 생기지 않음 (SEC-3.1)
+  - `reports errors once per messages change`
 
-- [ ] **MOA-9.9: 테스트를 실행해 실패하는지 확인한다**
-- [ ] **MOA-9.10: 구현한다**
-- [ ] **MOA-9.11: 테스트를 실행해 통과하는지 확인한다**
-- [ ] **MOA-9.12: 커밋한다** — `feat(moa-render): MoaSurfaces 렌더러 추가`
+- [x] **MOA-9.9: 테스트를 실행해 실패하는지 확인한다**
+- [x] **MOA-9.10: 구현한다**
+- [x] **MOA-9.11: 테스트를 실행해 통과하는지 확인한다**
+- [x] **MOA-9.12: 커밋한다** — `feat(moa-render): MoaSurfaces 렌더러 추가`
 
 ### 스토리, 크기, 문서
 
-- [ ] **MOA-9.13: 스토리를 작성한다**
+- [x] **MOA-9.13: 스토리를 작성한다**
 
   `packages/storybook`에 `@dusunax/moa-render`, `@dusunax/moa-stream`, `@dusunax/moa-fixtures`를 workspace devDependency로 넣고, `.storybook/main.ts`에 moa처럼 `src` alias를 추가한다.
   - `Render/Surfaces`: 폼 카드, 목록 카드, 오류 자리(모르는 부품)를 한 화면에. `isAllowedUrl`·`allowSensitive`는 args로 켬
   - `Agent/Chat`: `moa-fixtures`의 `chat.json`·`tool-call.json`·`ui-card.json`을 `reduceEvent`로 끝까지 접은 정적 화면. `upTo` arg로 몇 번째 이벤트까지 접을지 고름. 타이머는 쓰지 않음
   - 설명 문자열은 MOA-6의 `i18n` 사전에 한국어·영어로 넣음
 
-- [ ] **MOA-9.14: size-limit을 설정하고 잰다** — 예산 6KB.
-- [ ] **MOA-9.15: README 두 벌과 changeset을 쓴다** — 지원 범위 표, 보안 기본값(이미지 차단, 링크 도메인, 민감 부품 차단)과 바꾸는 법. "Security" 절에 일반 입력란으로 하는 피싱은 막지 못한다는 한계를 적는다(SEC-3.5). changeset은 `minor`.
-- [ ] **MOA-9.16: 커밋한다** — `docs(moa-render): 스토리와 README 추가`
+- [x] **MOA-9.14: size-limit을 설정하고 잰다** — 예산 6KB.
+- [x] **MOA-9.15: README 두 벌과 changeset을 쓴다** — 지원 범위 표, 보안 기본값(이미지 차단, 링크 도메인, 민감 부품 차단)과 바꾸는 법. "Security" 절에 일반 입력란으로 하는 피싱은 막지 못한다는 한계를 적는다(SEC-3.5). changeset은 `minor`.
+- [x] **MOA-9.16: 커밋한다** — `docs(moa-render): 스토리와 README 추가`
 
 ---
 

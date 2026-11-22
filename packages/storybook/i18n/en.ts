@@ -130,4 +130,8 @@ export const en: Record<MessageKey, string> = {
   "sample.specimen": "The quick brown fox ABCDEFG abcdefg 0123456789",
   "sample.line": "Line {n}",
   "toolbar.theme": "moa theme",
+  "surfaces.description": "Press Sign up and the story answers in place of an agent, so the card changes. The box below shows the action sent.",
+  "surfaces.sent": "Sent to the agent (onAction)",
+  "surfaces.none": "Nothing yet",
+  "agentChat.description": "Recorded AG-UI events turned into state with `moa-stream`. Messages render as moa components and UI cards with `moa-render`. Use `upTo` to choose how many events to apply.",
 };

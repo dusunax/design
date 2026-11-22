@@ -2,7 +2,7 @@ English | [한국어](https://github.com/dusunax/design/blob/main/packages/moa-s
 
 # @dusunax/moa-stream
 
-A React hook that turns an agent event stream into UI state. It reads [AG-UI](https://docs.ag-ui.com) events and keeps `messages`, `toolCalls`, `runStatus`, and shared `state` up to date. It depends only on the types and event names from `@ag-ui/core`.
+A React hook that turns an agent event stream into UI state. It reads [AG-UI](https://github.com/ag-ui-protocol/ag-ui) events and keeps `messages`, `toolCalls`, `runStatus`, and shared `state` up to date. It depends only on the types and event names from `@ag-ui/core`.
 
 ## Install
 
