@@ -1,5 +1,5 @@
 import { Card, Text } from "@dusunax/moa";
-import { type MoaAction, type MoaRenderError, MoaSurfaces, type MoaSurfacesProps } from "@dusunax/moa-render";
+import { type MoaAction, MoaSurfaces, type MoaSurfacesProps } from "@dusunax/moa-render";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState } from "react";
 import { fn } from "storybook/test";
@@ -22,20 +22,6 @@ const messages = [
         { id: "actions", component: "Row", justify: "end", children: ["submit"] },
         { id: "submit", component: "Button", variant: "primary", child: "submitLabel", action: { event: { name: "signup", context: { name: { path: "/name" }, plan: { path: "/plan" } } } } },
         { id: "submitLabel", component: "Text", text: "Sign up" },
-      ],
-    },
-  },
-  {
-    version: "1.0",
-    createSurface: {
-      surfaceId: "tasks",
-      components: [
-        { id: "root", component: "Card", child: "list" },
-        { id: "list", component: "List", children: ["a", "b", "c", "unknown"] },
-        { id: "a", component: "CheckBox", label: "Groceries", value: true },
-        { id: "b", component: "CheckBox", label: "Workout", value: false },
-        { id: "c", component: "CheckBox", label: "Read", value: false },
-        { id: "unknown", component: "Video", url: "https://video.example/a.mp4" },
       ],
     },
   },
@@ -66,7 +52,6 @@ function SurfacesDemo(args: MoaSurfacesProps) {
   const [current, setCurrent] = useState<unknown[]>(messages);
   const [round, setRound] = useState(0);
   const [sent, setSent] = useState<MoaAction>();
-  const [errors, setErrors] = useState<MoaRenderError[]>([]);
 
   const onAction = (action: MoaAction) => {
     args.onAction?.(action);
@@ -78,22 +63,14 @@ function SurfacesDemo(args: MoaSurfacesProps) {
       setCurrent((prev) => [...prev, ...reply(action)]);
     }
   };
-  const onError = (error: MoaRenderError) => {
-    args.onError?.(error);
-    setErrors((prev) => (prev.some((e) => JSON.stringify(e) === JSON.stringify(error)) ? prev : [...prev, error]));
-  };
 
   return (
     <div style={{ display: "grid", gap: 16, maxWidth: 420 }}>
-      <MoaSurfaces key={round} {...args} messages={current} onAction={onAction} onError={onError} />
+      <MoaSurfaces key={round} {...args} messages={current} onAction={onAction} />
       <Card>
         <Text variant="caption" text={t("surfaces.sent")} />
-        <pre style={{ margin: "4px 0 12px", fontSize: 12, whiteSpace: "pre-wrap" }}>
-          {sent ? JSON.stringify({ name: sent.name, context: sent.context }, null, 2) : t("surfaces.none")}
-        </pre>
-        <Text variant="caption" text={t("surfaces.errors")} />
         <pre style={{ margin: "4px 0 0", fontSize: 12, whiteSpace: "pre-wrap" }}>
-          {errors.length ? errors.map((e) => `${e.code}: ${e.message}`).join("\n") : t("surfaces.none")}
+          {sent ? JSON.stringify({ name: sent.name, context: sent.context }, null, 2) : t("surfaces.none")}
         </pre>
       </Card>
     </div>
