@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["vite/client", "vitest/globals"],
+    "resolveJsonModule": true,
+    "isolatedDeclarations": false,
+    "declaration": false,
+    // 빌드하지 않은 workspace 패키지도 타입을 보도록 소스를 가리킨다. vite.config.ts의 alias와 같다.
+    "paths": {
+      "@dusunax/moa": ["../../packages/moa/src/index.ts"],
+      "@dusunax/moa-render": ["../../packages/moa-render/src/index.ts"],
+      "@dusunax/moa-render/core": ["../../packages/moa-render/src/core.ts"],
+      "@dusunax/moa-stream": ["../../packages/moa-stream/src/index.ts"]
+    }
+  },
+  "include": ["src", "server", "api", "vite.config.ts"]
+}

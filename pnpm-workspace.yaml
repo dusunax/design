@@ -1,5 +1,6 @@
 packages:
   - "packages/*"
+  - "apps/*"
 saveExact: true
 minimumReleaseAge: 4320
 allowBuilds:

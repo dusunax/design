@@ -277,11 +277,11 @@ Expected: `core.js`가 출력된다. `core`에 React import가 없다는 뜻이�
 
 ### 게이트
 
-- [ ] **MOA-10.0: 게이트를 확인한다** — SEC-3.
+- [x] **MOA-10.0: 게이트를 확인한다** — SEC-3.
 
 ### 앱 뼈대와 fixture 재생
 
-- [ ] **MOA-10.1: 앱을 만든다**
+- [x] **MOA-10.1: 앱을 만든다**
 
   `pnpm-workspace.yaml`에 `apps/*`를 넣고 `apps/playground`를 Vite + React로 만든다. `private: true`. `moa`, `moa-stream`, `moa-render`, `moa-fixtures`는 `workspace:*`.
 

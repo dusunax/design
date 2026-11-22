@@ -51,7 +51,7 @@ Documents that keep being revised, in no particular order. They have no status.
 | SEC-3 | review | Agent integration packages design security review | DOC-8 | — | Done | `reviews/2026-11-22-SEC-3.md` | — |
 | MOA-8 | Implementation | `moa-stream` | DOC-8 | SEC-3 | Done | Branch `MOA-8`, steps in DOC-8 | [#8](https://github.com/dusunax/design/pull/8) |
 | MOA-9 | Implementation | `moa-render` | DOC-8 | SEC-3 | Done | Branch `MOA-9`, steps in DOC-8 | [#9](https://github.com/dusunax/design/pull/9) |
-| MOA-10 | Implementation | Playground (local) | MOA-8, MOA-9 | SEC-3 | Waiting | Branch `MOA-10`, steps in DOC-8 | — |
+| MOA-10 | Implementation | Playground (local) | MOA-8, MOA-9 | SEC-3 | In progress | Branch `MOA-10`, steps in DOC-8 | — |
 | SEC-4 | review | Agent integration packages code security review (before release) | MOA-10 | — | Waiting | — | — |
 | MOA-11 | Implementation | `moa-stream`·`moa-render` release and public playground | MOA-10 | SEC-4 | Waiting | Branch `MOA-11`, steps in DOC-8 | — |
 
