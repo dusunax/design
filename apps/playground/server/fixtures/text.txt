@@ -1,0 +1,12 @@
+: OPENROUTER PROCESSING
+
+data: {"id":"gen-1","object":"chat.completion.chunk","created":1795000000,"model":"deepseek/deepseek-v4-flash","choices":[{"index":0,"delta":{"role":"assistant","content":""},"finish_reason":null}]}
+
+data: {"id":"gen-1","object":"chat.completion.chunk","created":1795000000,"model":"deepseek/deepseek-v4-flash","choices":[{"index":0,"delta":{"content":"Hello"},"finish_reason":null}]}
+
+data: {"id":"gen-1","object":"chat.completion.chunk","created":1795000000,"model":"deepseek/deepseek-v4-flash","choices":[{"index":0,"delta":{"content":"! How can I help?"},"finish_reason":null}]}
+
+data: {"id":"gen-1","object":"chat.completion.chunk","created":1795000000,"model":"deepseek/deepseek-v4-flash","choices":[{"index":0,"delta":{},"finish_reason":"stop"}]}
+
+data: [DONE]
+

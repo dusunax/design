@@ -307,13 +307,13 @@ Expected: 키 없이 열면 대화와 카드가 차례로 그려지고, 카드 �
   - OpenRouter 429는 `RUN_ERROR`의 `code`에 `limit_source`를 담아 보냄. 우리 Firewall 429와 앱이 구분하게 하기 위해서
 - `api/agent.ts`는 `export function POST(request: Request)`에서 `handleAgent(request, { fetch })`를 부른다.
 
-- [ ] **MOA-10.4: 추천 모델을 둔다**
+- [x] **MOA-10.4: 추천 모델을 둔다**
 
   `server/model.ts`에 추천 모델 목록(`deepseek/deepseek-v4-flash` 기본, `openai/gpt-5-nano`)과 모델 이름 형식 검사 함수를 둔다. 근거는 DOC-12의 2026-11-22 평가 결과다. 화면의 추천 버튼도 이 목록을 쓴다.
 
-- [ ] **MOA-10.4a: 시스템 프롬프트를 쓴다** — `server/prompt.ts`에 `render_ui` 형식 규칙과 완성된 회원가입 카드 예시 하나를 넣는다. 도구 인자는 surface 하나(`{ surfaceId, components, dataModel? }`)다. `props` 객체를 만들지 않고 prop을 부품에 바로 넣는다는 것, `children`은 id 문자열 배열이라는 것, Button의 `child`는 Text 부품의 id라는 것, 바인딩은 `{ "path": … }`, action은 `{ "event": { "name" } }`라는 것을 명시한다. DOC-13 평가에 쓴 프롬프트(`docs/decisions/data/2026-11-22-model-eval/eval-models.mjs`의 `FLAT_SYSTEM`)를 그대로 옮긴다.
-- [ ] **MOA-10.5: OpenRouter 응답 녹화본을 만든다** — 텍스트만, `render_ui` 호출, 잘못된 `render_ui` 인자, 중간에 끊긴 응답. OpenAI 호환 SSE 형식이며 손으로 쓴다.
-- [ ] **MOA-10.6: 테스트를 작성한다**
+- [x] **MOA-10.4a: 시스템 프롬프트를 쓴다** — `server/prompt.ts`에 `render_ui` 형식 규칙과 완성된 회원가입 카드 예시 하나를 넣는다. 도구 인자는 surface 하나(`{ surfaceId, components, dataModel? }`)다. `props` 객체를 만들지 않고 prop을 부품에 바로 넣는다는 것, `children`은 id 문자열 배열이라는 것, Button의 `child`는 Text 부품의 id라는 것, 바인딩은 `{ "path": … }`, action은 `{ "event": { "name" } }`라는 것을 명시한다. DOC-13 평가에 쓴 프롬프트(`docs/decisions/data/2026-11-22-model-eval/eval-models.mjs`의 `FLAT_SYSTEM`)를 그대로 옮긴다.
+- [x] **MOA-10.5: OpenRouter 응답 녹화본을 만든다** — 텍스트만, `render_ui` 호출, 잘못된 `render_ui` 인자, 중간에 끊긴 응답. OpenAI 호환 SSE 형식이며 손으로 쓴다.
+- [x] **MOA-10.6: 테스트를 작성한다**
 
   - `rejects missing key with 401`
   - `rejects oversized body with 413`
@@ -331,10 +331,13 @@ Expected: 키 없이 열면 대화와 카드가 차례로 그려지고, 카드 �
   - `calls only the OpenRouter endpoint`
   - `never logs or returns the key`: `console.*`를 감시하고, OpenRouter가 실패해도 키 문자열이 어디에도 없음
 
-- [ ] **MOA-10.7: 테스트를 실행해 실패하는지 확인한다**
-- [ ] **MOA-10.8: 구현한다**
-- [ ] **MOA-10.9: 테스트를 실행해 통과하는지 확인한다**
+- [x] **MOA-10.7: 테스트를 실행해 실패하는지 확인한다**
+- [x] **MOA-10.8: 구현한다**
+- [x] **MOA-10.9: 테스트를 실행해 통과하는지 확인한다**
 - [ ] **MOA-10.9a: 모델을 평가한다**
+
+  - [x] 스크립트를 옮기고 서버의 `prompt.ts`·`validate.ts`를 쓰게 바꿈. DOC-12 녹화 응답 60건을 새 검사로 다시 판정해 결과가 같음을 확인(DeepSeek 28/30, GPT-5 nano 30/30)
+  - [ ] 사용자가 실제 키로 실행
 
   `docs/decisions/data/2026-11-22-model-eval/eval-models.mjs`를 `apps/playground/scripts/eval-models.mjs`로 옮기고, 스크립트 안의 프롬프트·검사 대신 실제 `server/prompt.ts`와 `server/validate.ts`를 쓰게 바꾼다. 프롬프트 다섯 개를 모델마다 6번씩, 모델은 추천 모델 두 개. 키는 `OPENROUTER_API_KEY` 환경 변수에서만 읽고 출력하지 않는다. 실행은 사용자가 자기 터미널에서 한다. DOC-12의 통과율보다 낮아지면 원인을 찾고, 결과 표를 PR 리뷰 참고에 남긴다. 60회에 약 $0.02다.
 

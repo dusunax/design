@@ -1,0 +1,18 @@
+: OPENROUTER PROCESSING
+
+data: {"id":"gen-1","object":"chat.completion.chunk","created":1795000000,"model":"deepseek/deepseek-v4-flash","choices":[{"index":0,"delta":{"role":"assistant","content":"Here is the form."},"finish_reason":null}]}
+
+data: {"id":"gen-1","object":"chat.completion.chunk","created":1795000000,"model":"deepseek/deepseek-v4-flash","choices":[{"index":0,"delta":{"role":"assistant","content":null,"tool_calls":[{"index":0,"id":"call_1","type":"function","function":{"name":"render_ui","arguments":""}}]},"finish_reason":null}]}
+
+data: {"id":"gen-1","object":"chat.completion.chunk","created":1795000000,"model":"deepseek/deepseek-v4-flash","choices":[{"index":0,"delta":{"tool_calls":[{"index":0,"function":{"arguments":"{\"surfaceId\":\"signup\",\"dataModel\":{\"name\":\"\",\"email\":\"\"},\"components\":[{\"id\":\"root\",\"component\":\"Card\",\"child\":\"form\"},{\"id\":\"form\",\"componen"}}]},"finish_reason":null}]}
+
+data: {"id":"gen-1","object":"chat.completion.chunk","created":1795000000,"model":"deepseek/deepseek-v4-flash","choices":[{"index":0,"delta":{"tool_calls":[{"index":0,"function":{"arguments":"t\":\"Column\",\"children\":[\"name\",\"email\",\"submit\"]},{\"id\":\"name\",\"component\":\"TextField\",\"label\":\"Name\",\"value\":{\"path\":\"/name\"}},{\"id\":\"email\""}}]},"finish_reason":null}]}
+
+data: {"id":"gen-1","object":"chat.completion.chunk","created":1795000000,"model":"deepseek/deepseek-v4-flash","choices":[{"index":0,"delta":{"tool_calls":[{"index":0,"function":{"arguments":",\"component\":\"TextField\",\"label\":\"Email\",\"value\":{\"path\":\"/email\"}},{\"id\":\"submit\",\"component\":\"Button\",\"child\":\"submitLabel\",\"variant\":\"prim"}}]},"finish_reason":null}]}
+
+data: {"id":"gen-1","object":"chat.completion.chunk","created":1795000000,"model":"deepseek/deepseek-v4-flash","choices":[{"index":0,"delta":{"tool_calls":[{"index":0,"function":{"arguments":"ary\",\"action\":{\"event\":{\"name\":\"signup\",\"context\":{\"name\":{\"path\":\"/name\"}}}}},{\"id\":\"submitLabel\",\"component\":\"Text\",\"text\":\"Sign up\"}]}"}}]},"finish_reason":null}]}
+
+data: {"id":"gen-1","object":"chat.completion.chunk","created":1795000000,"model":"deepseek/deepseek-v4-flash","choices":[{"index":0,"delta":{},"finish_reason":"tool_calls"}]}
+
+data: [DONE]
+

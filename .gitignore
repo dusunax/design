@@ -32,3 +32,6 @@ build-storybook.log
 # moa
 dist/
 storybook-static/
+
+# playground 모델 평가 결과 (MOA-10.9a)
+apps/playground/scripts/eval-results.jsonl
