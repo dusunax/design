@@ -49,7 +49,7 @@ Documents that keep being revised, in no particular order. They have no status.
 | DOC-13 | decision | `render_ui` tool argument format (decided during DOC-7) | — | — | Done | `decisions/2026-11-22-render-ui-args.md` | — |
 | DOC-8 | plan | Agent integration packages implementation plan | DOC-7 | — | Done | `plans/2026-11-22-moa-agent-packages.md` | — |
 | SEC-3 | review | Agent integration packages design security review | DOC-8 | — | Done | `reviews/2026-11-22-SEC-3.md` | — |
-| MOA-8 | Implementation | `moa-stream` | DOC-8 | SEC-3 | In progress | Branch `MOA-8`, steps in DOC-8 | — |
+| MOA-8 | Implementation | `moa-stream` | DOC-8 | SEC-3 | Done | Branch `MOA-8`, steps in DOC-8 | [#8](https://github.com/dusunax/design/pull/8) |
 | MOA-9 | Implementation | `moa-render` | DOC-8 | SEC-3 | Waiting | Branch `MOA-9`, steps in DOC-8 | — |
 | MOA-10 | Implementation | Playground (local) | MOA-8, MOA-9 | SEC-3 | Waiting | Branch `MOA-10`, steps in DOC-8 | — |
 | SEC-4 | review | Agent integration packages code security review (before release) | MOA-10 | — | Waiting | — | — |
