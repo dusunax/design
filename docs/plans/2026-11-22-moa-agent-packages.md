@@ -201,7 +201,7 @@ Expected: `core.js`가 출력된다. `core`에 React import가 없다는 뜻이�
 - Produces (`./core`): `A2uiMessage`, `Surface = { id: string; components: Map<string, A2uiComponent>; dataModel: unknown }`, `Surfaces = Surface[]`(만든 순서), `toSurfaces(messages): { surfaces: Surfaces; errors: MoaRenderError[] }`, `checkSurfaces(surfaces): MoaRenderError[]`
 - DOC-7 "메시지"를 구현한다. 오류는 던지지 않고 `errors`에 모은다. `checkSurfaces`는 root, 없는 id 참조, 깊이·부품 수 상한을 본다. playground 서버도 이 둘로 검증한다.
 
-- [ ] **MOA-9.3: 테스트를 작성한다**
+- [x] **MOA-9.3: 테스트를 작성한다**
 
   - `creates surface with inline components and data`
   - `updates components by id`
@@ -212,11 +212,12 @@ Expected: `core.js`가 출력된다. `core`에 React import가 없다는 뜻이�
   - `reports non-array input`
   - `checkSurfaces reports missing root and missing id references`
   - `checkSurfaces reports depth and component limits`
+  - `checkSurfaces stays fast when many parents share children`: 여러 부모가 같은 부품을 가리켜 경로가 지수적으로 늘어나도 바로 끝남 (SEC-3.8)
 
-- [ ] **MOA-9.4: 테스트를 실행해 실패하는지 확인한다**
-- [ ] **MOA-9.5: 구현한다**
-- [ ] **MOA-9.6: 테스트를 실행해 통과하는지 확인한다**
-- [ ] **MOA-9.7: 커밋한다** — `feat(moa-render): A2UI 메시지로 surface 계산과 검사 추가`
+- [x] **MOA-9.4: 테스트를 실행해 실패하는지 확인한다**
+- [x] **MOA-9.5: 구현한다**
+- [x] **MOA-9.6: 테스트를 실행해 통과하는지 확인한다**
+- [x] **MOA-9.7: 커밋한다** — `feat(moa-render): A2UI 메시지로 surface 계산과 검사 추가`
 
 ### 렌더링
 
