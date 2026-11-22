@@ -128,6 +128,7 @@ export const ko = {
   "sample.specimen": "가나다라마바사 ABCDEFG abcdefg 0123456789",
   "sample.line": "{n}번째 줄",
   "toolbar.theme": "moa 테마",
+  "agentChat.description": "녹화한 AG-UI 이벤트를 `moa-stream`으로 상태로 바꾸고, 메시지는 moa 부품으로, UI 카드는 `moa-render`로 그린다. `upTo`로 몇 번째 이벤트까지 반영할지 고른다.",
 } as const;
 
 export type MessageKey = keyof typeof ko;

@@ -1,7 +1,7 @@
 import { fileURLToPath } from "node:url";
 import type { StorybookConfig } from "@storybook/react-vite";
 
-const moaSrc = fileURLToPath(new URL("../../moa/src/index.ts", import.meta.url));
+const src = (path: string): string => fileURLToPath(new URL(`../../${path}`, import.meta.url));
 // 언어별로 따로 빌드한다(MOA-6). 소개 MDX만 언어에 맞는 파일을 고르고, 스토리 설명은 i18n/t.ts가 고른다.
 const locale = process.env.STORYBOOK_LOCALE === "en" ? "en" : "ko";
 
@@ -16,7 +16,13 @@ const config: StorybookConfig = {
   viteFinal: (config) => {
     config.resolve ??= {};
     const alias = Array.isArray(config.resolve.alias) ? config.resolve.alias : [];
-    config.resolve.alias = [...alias, { find: /^@dusunax\/moa$/, replacement: moaSrc }];
+    config.resolve.alias = [
+      ...alias,
+      { find: /^@dusunax\/moa$/, replacement: src("moa/src/index.ts") },
+      { find: /^@dusunax\/moa-render$/, replacement: src("moa-render/src/index.ts") },
+      { find: /^@dusunax\/moa-render\/core$/, replacement: src("moa-render/src/core.ts") },
+      { find: /^@dusunax\/moa-stream$/, replacement: src("moa-stream/src/index.ts") },
+    ];
     return config;
   },
 };

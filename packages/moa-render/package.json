@@ -30,7 +30,8 @@
   "scripts": {
     "build": "tsdown",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "size": "size-limit"
   },
   "peerDependencies": {
     "@dusunax/moa": "^0.1.1",
@@ -39,6 +40,7 @@
   },
   "devDependencies": {
     "@dusunax/moa": "workspace:*",
+    "@size-limit/preset-small-lib": "14.3.0",
     "@testing-library/jest-dom": "7.0.1",
     "@testing-library/react": "16.3.3",
     "@testing-library/user-event": "14.6.9",
@@ -47,6 +49,7 @@
     "jsdom": "31.0.0",
     "react": "19.3.1",
     "react-dom": "19.3.1",
+    "size-limit": "14.3.0",
     "tsdown": "0.23.7",
     "typescript": "7.0.2",
     "vitest": "5.1.0"

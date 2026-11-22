@@ -256,16 +256,16 @@ Expected: `core.js`가 출력된다. `core`에 React import가 없다는 뜻이�
 
 ### 스토리, 크기, 문서
 
-- [ ] **MOA-9.13: 스토리를 작성한다**
+- [x] **MOA-9.13: 스토리를 작성한다**
 
   `packages/storybook`에 `@dusunax/moa-render`, `@dusunax/moa-stream`, `@dusunax/moa-fixtures`를 workspace devDependency로 넣고, `.storybook/main.ts`에 moa처럼 `src` alias를 추가한다.
   - `Render/Surfaces`: 폼 카드, 목록 카드, 오류 자리(모르는 부품)를 한 화면에. `isAllowedUrl`·`allowSensitive`는 args로 켬
   - `Agent/Chat`: `moa-fixtures`의 `chat.json`·`tool-call.json`·`ui-card.json`을 `reduceEvent`로 끝까지 접은 정적 화면. `upTo` arg로 몇 번째 이벤트까지 접을지 고름. 타이머는 쓰지 않음
   - 설명 문자열은 MOA-6의 `i18n` 사전에 한국어·영어로 넣음
 
-- [ ] **MOA-9.14: size-limit을 설정하고 잰다** — 예산 6KB.
-- [ ] **MOA-9.15: README 두 벌과 changeset을 쓴다** — 지원 범위 표, 보안 기본값(이미지 차단, 링크 도메인, 민감 부품 차단)과 바꾸는 법. "Security" 절에 일반 입력란으로 하는 피싱은 막지 못한다는 한계를 적는다(SEC-3.5). changeset은 `minor`.
-- [ ] **MOA-9.16: 커밋한다** — `docs(moa-render): 스토리와 README 추가`
+- [x] **MOA-9.14: size-limit을 설정하고 잰다** — 예산 6KB.
+- [x] **MOA-9.15: README 두 벌과 changeset을 쓴다** — 지원 범위 표, 보안 기본값(이미지 차단, 링크 도메인, 민감 부품 차단)과 바꾸는 법. "Security" 절에 일반 입력란으로 하는 피싱은 막지 못한다는 한계를 적는다(SEC-3.5). changeset은 `minor`.
+- [x] **MOA-9.16: 커밋한다** — `docs(moa-render): 스토리와 README 추가`
 
 ---
 

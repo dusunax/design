@@ -130,4 +130,5 @@ export const en: Record<MessageKey, string> = {
   "sample.specimen": "The quick brown fox ABCDEFG abcdefg 0123456789",
   "sample.line": "Line {n}",
   "toolbar.theme": "moa theme",
+  "agentChat.description": "Recorded AG-UI events turned into state with `moa-stream`. Messages render as moa components and UI cards with `moa-render`. Use `upTo` to choose how many events to apply.",
 };
