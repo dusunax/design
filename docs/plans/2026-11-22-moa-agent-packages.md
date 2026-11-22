@@ -110,19 +110,19 @@ apps/playground/
 
 ### 게이트
 
-- [ ] **MOA-8.0: 게이트를 확인한다** — SEC-3. DOC-4의 게이트 확인을 따른다. SEC-3에서 나온 수정 Step은 `MOA-8.0a`처럼 붙인다.
+- [x] **MOA-8.0: 게이트를 확인한다** — SEC-3. DOC-4의 게이트 확인을 따른다. SEC-3에서 나온 수정 Step은 `MOA-8.0a`처럼 붙인다.
 
 ### 패키지 뼈대
 
-- [ ] **MOA-8.1: 패키지를 만든다**
+- [x] **MOA-8.1: 패키지를 만든다**
 
   `packages/moa/`의 `tsconfig.json`, `tsdown.config.ts`, `vitest.config.ts`를 본떠 `packages/moa-stream/`을 만든다. entry는 `src/index.ts` 하나다. `package.json`은 `version: "0.0.0"`, `files: ["dist", "README.ko.md"]`, `peerDependencies: { react: "^19" }`, `dependencies: { "@ag-ui/core": "1.0.4" }`다. devDependency 버전은 moa와 같게 둔다.
 
 Run: `pnpm install && pnpm --filter @dusunax/moa-stream build`
 Expected: `dist/index.js`와 `dist/index.d.ts`가 생긴다.
 
-- [ ] **MOA-8.2: fixture 패키지를 만든다** — `packages/moa-fixtures`를 `private: true`로 만들고 File Structure의 이벤트 네 파일과 `replay(events, delayMs)`를 둔다. 각 파일은 `BaseEvent[]` JSON이고 `ui-card.json`은 DOC-9 예시 모양을 따른다. `moa-stream`은 이 패키지를 devDependency(`workspace:*`)로만 쓴다.
-- [ ] **MOA-8.3: 커밋한다** — `chore: moa-stream 뼈대와 moa-fixtures 추가`
+- [x] **MOA-8.2: fixture 패키지를 만든다** — `packages/moa-fixtures`를 `private: true`로 만들고 File Structure의 이벤트 네 파일과 `replay(events, delayMs)`를 둔다. 각 파일은 `BaseEvent[]` JSON이고 `ui-card.json`은 DOC-9 예시 모양을 따른다. `moa-stream`은 이 패키지를 devDependency(`workspace:*`)로만 쓴다.
+- [x] **MOA-8.3: 커밋한다** — `chore: moa-stream 뼈대와 moa-fixtures 추가`
 
 ### reducer와 JSON Patch
 
@@ -130,11 +130,12 @@ Expected: `dist/index.js`와 `dist/index.d.ts`가 생긴다.
 - Produces: `StreamState`, `ToolCallState`, `initialState: StreamState`, `reduceEvent(state, event): StreamState`, `applyPatch(doc, ops): { ok: true; value: unknown } | { ok: false; reason: string }` (패키지 안에서만 사용)
 - DOC-7 "이벤트 처리"와 "JSON Patch"를 그대로 구현한다.
 
-- [ ] **MOA-8.4: 테스트를 작성한다**
+- [x] **MOA-8.4: 테스트를 작성한다**
 
   - `streams text messages`: `chat.json`을 다 넣으면 assistant 메시지 하나에 글자가 이어 붙고 `runStatus`가 `finished`
   - `tracks tool calls`: `tool-call.json` → `args`가 원문으로 이어지고 결과 뒤 `finished`
   - `joins text parts of tool results`: `content`가 파트 배열이면 text 파트만 이어 붙임
+  - `marks unfinished tool calls as error on RUN_ERROR`
   - `creates and patches activity messages`: `ui-card.json` → activity 메시지 두 개, delta는 해당 카드에만
   - `keeps activity when replace is false`
   - `applies add and replace with array index and dash`
@@ -143,10 +144,10 @@ Expected: `dist/index.js`와 `dist/index.d.ts`가 생긴다.
   - `ignores unknown events and ids`
   - `does not mutate previous state`
 
-- [ ] **MOA-8.5: 테스트를 실행해 실패하는지 확인한다**
-- [ ] **MOA-8.6: 구현한다**
-- [ ] **MOA-8.7: 테스트를 실행해 통과하는지 확인한다**
-- [ ] **MOA-8.8: 커밋한다** — `feat(moa-stream): 이벤트 reducer와 JSON Patch 추가`
+- [x] **MOA-8.5: 테스트를 실행해 실패하는지 확인한다**
+- [x] **MOA-8.6: 구현한다**
+- [x] **MOA-8.7: 테스트를 실행해 통과하는지 확인한다**
+- [x] **MOA-8.8: 커밋한다** — `feat(moa-stream): 이벤트 reducer와 JSON Patch 추가`
 
 ### SSE와 hook
 
@@ -154,25 +155,27 @@ Expected: `dist/index.js`와 `dist/index.d.ts`가 생긴다.
 - Produces: `sseEvents(url, init?): AsyncIterable<BaseEvent>`, `useAgentStream(): { state; run(source, newMessages?); abort() }`
 - `sseEvents`는 `fetch(url, { method: "POST", ...init })`로 요청하고, `data:` 줄을 모아 빈 줄에서 `JSON.parse`한다. HTTP 오류는 `RUN_ERROR` 이벤트 하나로 바꿔 내보낸다.
 
-- [ ] **MOA-8.9: 테스트를 작성한다**
+- [x] **MOA-8.9: 테스트를 작성한다**
 
   - `parses SSE data lines`
   - `joins events split across chunks`: 한 이벤트를 세 청크로 나눠도 한 번만 나옴
+  - `turns malformed data into RUN_ERROR`
   - `turns HTTP errors into RUN_ERROR`
+  - `turns thrown errors into error state`
   - `run appends new messages before events`
   - `run aborts the previous run`
   - `abort returns to idle`
 
-- [ ] **MOA-8.10: 테스트를 실행해 실패하는지 확인한다**
-- [ ] **MOA-8.11: 구현한다**
-- [ ] **MOA-8.12: 테스트를 실행해 통과하는지 확인한다**
-- [ ] **MOA-8.13: 커밋한다** — `feat(moa-stream): SSE 파서와 useAgentStream 추가`
+- [x] **MOA-8.10: 테스트를 실행해 실패하는지 확인한다**
+- [x] **MOA-8.11: 구현한다**
+- [x] **MOA-8.12: 테스트를 실행해 통과하는지 확인한다**
+- [x] **MOA-8.13: 커밋한다** — `feat(moa-stream): SSE 파서와 useAgentStream 추가`
 
 ### 크기와 문서
 
-- [ ] **MOA-8.14: size-limit을 설정하고 잰다** — 예산 4KB. 넘으면 PR 리뷰 참고에 원인을 적는다.
-- [ ] **MOA-8.15: README 두 벌과 changeset을 쓴다** — 설치, `useAgentStream` 예시, 이벤트 배열을 async generator로 넣는 법, `@ag-ui/client`를 넣는 법. changeset은 `minor`(첫 배포 0.1.0).
-- [ ] **MOA-8.16: 커밋한다** — `docs(moa-stream): README와 크기 예산 추가`
+- [x] **MOA-8.14: size-limit을 설정하고 잰다** — 예산 4KB. 넘으면 PR 리뷰 참고에 원인을 적는다.
+- [x] **MOA-8.15: README 두 벌과 changeset을 쓴다** — 설치, `useAgentStream` 예시, 이벤트 배열을 async generator로 넣는 법, `@ag-ui/client`를 넣는 법. changeset은 `minor`(첫 배포 0.1.0).
+- [x] **MOA-8.16: 커밋한다** — `docs(moa-stream): README와 크기 예산 추가`
 
 ---
 

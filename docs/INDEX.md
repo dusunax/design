@@ -47,7 +47,7 @@ ID의 순서와 상태는 이 문서에만 적는다. 다른 문서는 이 표�
 | DOC-13 | decision | `render_ui` 도구 인자 형식 (DOC-7 중 결정) | — | — | 완료 | `decisions/2026-11-22-render-ui-args.md` | — |
 | DOC-8 | plan | 에이전트 연결 패키지 구현 플랜 | DOC-7 | — | 완료 | `plans/2026-11-22-moa-agent-packages.md` | — |
 | SEC-3 | review | 에이전트 연결 패키지 설계 보안 점검 | DOC-8 | — | 완료 | `reviews/2026-11-22-SEC-3.md` | — |
-| MOA-8 | 구현 | `moa-stream` | DOC-8 | SEC-3 | 대기 | 브랜치 `MOA-8`, Step은 DOC-8 | — |
+| MOA-8 | 구현 | `moa-stream` | DOC-8 | SEC-3 | 진행 | 브랜치 `MOA-8`, Step은 DOC-8 | — |
 | MOA-9 | 구현 | `moa-render` | DOC-8 | SEC-3 | 대기 | 브랜치 `MOA-9`, Step은 DOC-8 | — |
 | MOA-10 | 구현 | playground (로컬) | MOA-8, MOA-9 | SEC-3 | 대기 | 브랜치 `MOA-10`, Step은 DOC-8 | — |
 | SEC-4 | review | 에이전트 연결 패키지 코드 보안 점검 (배포·공개 전) | MOA-10 | — | 대기 | — | — |

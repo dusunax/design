@@ -1,0 +1,59 @@
+[
+  { "type": "RUN_STARTED", "threadId": "thread-1", "runId": "run-3" },
+  { "type": "TEXT_MESSAGE_START", "messageId": "m5", "role": "assistant" },
+  { "type": "TEXT_MESSAGE_CONTENT", "messageId": "m5", "delta": "Fill in the form below." },
+  { "type": "TEXT_MESSAGE_END", "messageId": "m5" },
+  {
+    "type": "ACTIVITY_SNAPSHOT",
+    "messageId": "ui-1",
+    "activityType": "moa-ui",
+    "content": {
+      "messages": [
+        {
+          "version": "1.0",
+          "createSurface": {
+            "surfaceId": "signup",
+            "dataModel": { "name": "", "email": "" },
+            "components": [
+              { "id": "root", "component": "Card", "child": "form" },
+              { "id": "form", "component": "Column", "children": ["title", "name", "email", "submit"] },
+              { "id": "title", "component": "Text", "text": "Sign up" },
+              { "id": "name", "component": "TextField", "label": "Name", "value": { "path": "/name" } },
+              { "id": "email", "component": "TextField", "label": "Email", "value": { "path": "/email" } },
+              { "id": "submit", "component": "Button", "child": "submitLabel", "variant": "primary", "action": { "event": { "name": "signup", "context": { "name": { "path": "/name" }, "email": { "path": "/email" } } } } },
+              { "id": "submitLabel", "component": "Text", "text": "Sign up" }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "type": "ACTIVITY_SNAPSHOT",
+    "messageId": "ui-2",
+    "activityType": "moa-ui",
+    "content": {
+      "messages": [
+        {
+          "version": "1.0",
+          "createSurface": {
+            "surfaceId": "plan",
+            "components": [
+              { "id": "root", "component": "Card", "child": "choices" },
+              { "id": "choices", "component": "ChoicePicker", "label": "Plan", "options": [{ "label": "Free", "value": "free" }, { "label": "Pro", "value": "pro" }], "value": ["free"] }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "type": "ACTIVITY_DELTA",
+    "messageId": "ui-1",
+    "activityType": "moa-ui",
+    "patch": [
+      { "op": "add", "path": "/messages/-", "value": { "version": "1.0", "updateDataModel": { "surfaceId": "signup", "path": "/name", "value": "Ada" } } }
+    ]
+  },
+  { "type": "RUN_FINISHED", "threadId": "thread-1", "runId": "run-3" }
+]
